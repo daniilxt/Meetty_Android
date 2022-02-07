@@ -3,7 +3,6 @@ package io.daniilxt.fintech.navigation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import io.daniilxt.feature.FeatureRouter
-import io.daniilxt.fintech.R
 
 class Navigator : FeatureRouter {
 
@@ -25,10 +24,6 @@ class Navigator : FeatureRouter {
     }
 
     override fun openProfileFragment() {
-        when (navController?.currentDestination?.id) {
-            R.id.mainScreenFragment ->
-                navController?.navigate(R.id.action_mainScreenFragment_to_profileFragment)
-        }
     }
 
     override fun back() {
