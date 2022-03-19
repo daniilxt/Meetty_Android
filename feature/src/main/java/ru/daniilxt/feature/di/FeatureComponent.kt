@@ -6,6 +6,7 @@ import ru.daniilxt.common.di.CommonApi
 import ru.daniilxt.common.di.scope.FeatureScope
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.main_screen.di.MainScreenComponent
+import ru.daniilxt.feature.onboarding.di.OnboardingComponent
 
 
 @Component(
@@ -21,6 +22,7 @@ import ru.daniilxt.feature.main_screen.di.MainScreenComponent
 interface FeatureComponent {
 
     fun mainScreenComponentFactory(): MainScreenComponent.Factory
+    fun onboardingComponentFactory(): OnboardingComponent.Factory
 
     @Component.Factory
     interface Factory {
