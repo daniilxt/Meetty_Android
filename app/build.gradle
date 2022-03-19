@@ -6,10 +6,9 @@ plugins {
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
-        applicationId "io.daniilxt.fintech"
+        applicationId "ru.daniilxt.fintech"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode versionCode

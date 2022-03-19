@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.daniilxt.fintech">
+    package="ru.daniilxt.fintech">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!--networkSecurityConfig Added for android 9+-->
     <application
-        android:name="io.daniilxt.fintech.App"
+        android:name="ru.daniilxt.fintech.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Fintech"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="io.daniilxt.fintech.root.presentation.MainActivity"
+            android:name="ru.daniilxt.fintech.root.presentation.MainActivity"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
