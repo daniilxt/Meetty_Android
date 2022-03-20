@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.Fintech" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Meetty" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/background_primary</item>
         <item name="colorPrimaryVariant">@color/background_secondary</item>

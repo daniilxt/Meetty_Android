@@ -46,6 +46,7 @@ dependencies {
     implementation constraintDep
 
     implementation daggerDep
+    implementation 'androidx.databinding:viewbinding:7.1.2'
     kapt daggerKapt
 
     implementation okHttpDep
@@ -67,4 +68,9 @@ dependencies {
 
     implementation legacyDep
 
+    implementation lifecycleCommonDep
+    implementation lifecycleRuntimeDep
+
+    implementation coroutinesDep
+    implementation coroutinesAndroidDep
 }

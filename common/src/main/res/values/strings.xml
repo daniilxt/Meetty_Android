@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fintech</string>
+    <string name="app_name">Meetty</string>
     <string name="developers_life">Developers life</string>
     <string name="latest">Последние</string>
     <string name="top">Лучшие</string>
@@ -9,4 +9,11 @@
     <string name="section_now_unavailable">Раздел временно недоступен</string>
     <string name="profile">Профиль</string>
     <string name="profile_in_development">Профиль находится в разаработке. Просим прощения за доставленное неудобство</string>
+
+    <string name="error_unknown">Неизвестная ошибка, попробуйте позднее.</string>
+    <string name="error_connection">Ошибка подключения к серверу, попробуйте позднее.</string>
+
+    <string name="menu_test">Тест</string>
+
+    <string name="description_back">Вернуться назад</string>
 </resources>
