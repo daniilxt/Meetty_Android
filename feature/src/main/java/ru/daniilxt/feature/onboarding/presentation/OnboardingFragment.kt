@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
+import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.viewBinding
@@ -20,6 +21,16 @@ class OnboardingFragment : BaseFragment<OnboardingViewModel>(R.layout.fragment_o
         super.onViewCreated(view, savedInstanceState)
         requireActivity().setStatusBarColor(R.color.white)
         requireView().setLightStatusBar()
+        initButtons()
+    }
+
+    private fun initButtons() {
+        with(binding) {
+            register.setDebounceClickListener {
+            }
+            signIn.setDebounceClickListener {
+            }
+        }
     }
 
     override fun inject() {

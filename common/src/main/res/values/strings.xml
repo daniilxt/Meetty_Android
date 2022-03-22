@@ -16,4 +16,6 @@
     <string name="menu_test">Тест</string>
 
     <string name="description_back">Вернуться назад</string>
+    <string name="sign_in">Войти</string>
+    <string name="register">Регистрация</string>
 </resources>
