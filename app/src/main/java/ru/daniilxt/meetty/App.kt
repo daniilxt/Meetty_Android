@@ -1,12 +1,12 @@
 package ru.daniilxt.meetty
 
 import android.app.Application
-import androidx.viewbinding.BuildConfig
 import ru.daniilxt.common.di.CommonApi
 import ru.daniilxt.common.di.FeatureContainer
 import ru.daniilxt.meetty.di.app.AppComponent
 import ru.daniilxt.meetty.di.app.DaggerAppComponent
 import ru.daniilxt.meetty.di.deps.FeatureHolderManager
+import ru.daniilxt.meetty.log.ReleaseTree
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -30,9 +30,8 @@ open class App : Application(), FeatureContainer {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         } else {
-            Timber.plant(ru.daniilxt.meetty.log.ReleaseTree())
+            Timber.plant(ReleaseTree())
         }
-
     }
 
     override fun <T> getFeature(key: Class<*>): T {

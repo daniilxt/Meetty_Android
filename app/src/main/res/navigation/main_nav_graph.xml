@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/onboardingFragment">
+    app:startDestination="@id/welcomeScreenFragment">
 
     <fragment
         android:id="@+id/mainScreenFragment"
@@ -16,4 +16,9 @@
         android:name="ru.daniilxt.feature.onboarding.presentation.OnboardingFragment"
         android:label="OnboardingFragment"
         tools:layout="@layout/fragment_onboarding" />
+    <fragment
+        android:id="@+id/welcomeScreenFragment"
+        android:name="ru.daniilxt.feature.welcome_screen.presentation.WelcomeScreenFragment"
+        android:label="WelcomeScreenFragment" />
+
 </navigation>

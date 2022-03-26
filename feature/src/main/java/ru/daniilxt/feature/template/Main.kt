@@ -1,5 +1,5 @@
 package ru.daniilxt.feature.template
 
 fun main() {
-    GenerateFeatureModule("created_test_module", "CreatedTestModule").main()
+    GenerateFeatureModule("welcome_screen", "WelcomeScreen").main()
 }

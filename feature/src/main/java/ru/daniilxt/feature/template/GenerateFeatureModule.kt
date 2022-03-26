@@ -7,9 +7,9 @@ import java.nio.file.Paths
 
 @SuppressLint("NewApi")
 class GenerateFeatureModule(private val moduleName: String, private val className: String) {
-    val packageName = "ru.daniilxt"
-    val directoryPath = "feature/src/main/java/ru/daniilxt/feature/"
-    val directoryLayoutPath = "feature/src/main/res/layout/"
+    var packageName = "ru.daniilxt"
+    var directoryPath = "feature/src/main/java/ru/daniilxt/feature/"
+    var directoryLayoutPath = "feature/src/main/res/layout/"
 
     private fun String.toSnakeCase() = this.map {
         if (it.isUpperCase()) "_${it.toLowerCase()}" else "$it"
@@ -72,7 +72,7 @@ class GenerateFeatureModule(private val moduleName: String, private val classNam
                     fun create(@BindsInstance fragment: Fragment): ${className}Component
                 }
 
-                fun inject(${className.replaceFirstChar { it.lowercase() }}Fragment: Fragment)
+                fun inject(${className.replaceFirstChar { it.lowercase() }}Fragment: ${className}Fragment)
             }
         """.trimIndent()
 
@@ -172,7 +172,7 @@ class GenerateFeatureModule(private val moduleName: String, private val classNam
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/background_primary"
-                tools:context=".${packageName}.presentation.${className}Fragment">
+                tools:context=".${moduleName}.presentation.${className}Fragment">
 
                 <TextView
                     android:id="@+id/et_start"

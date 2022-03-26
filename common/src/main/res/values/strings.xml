@@ -18,4 +18,7 @@
     <string name="description_back">Вернуться назад</string>
     <string name="sign_in">Войти</string>
     <string name="register">Регистрация</string>
+    <string name="welcome_title">Приветствуем в нашем приложении</string>
+    <string name="next">Далее</string>
+    <string name="welcome_text">Представляем вам новое средство поиска деловых контактов. Давай же скорее приступим к поиску новых связей.</string>
 </resources>
