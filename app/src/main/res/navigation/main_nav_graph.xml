@@ -19,6 +19,13 @@
     <fragment
         android:id="@+id/welcomeScreenFragment"
         android:name="ru.daniilxt.feature.welcome_screen.presentation.WelcomeScreenFragment"
-        android:label="WelcomeScreenFragment" />
-
+        android:label="WelcomeScreenFragment">
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_welcomeScreenDescriptionFragment"
+            app:destination="@id/welcomeScreenDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeScreenDescriptionFragment"
+        android:name="ru.daniilxt.feature.welcome_screen_description.presentation.WelcomeScreenDescriptionFragment"
+        android:label="WelcomeScreenDescriptionFragment" />
 </navigation>

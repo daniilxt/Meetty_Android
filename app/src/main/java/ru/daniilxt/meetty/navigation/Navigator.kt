@@ -3,6 +3,7 @@ package ru.daniilxt.meetty.navigation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.meetty.R
 
 class Navigator : FeatureRouter {
 
@@ -30,6 +31,16 @@ class Navigator : FeatureRouter {
         val popped = navController!!.popBackStack()
         if (!popped) {
             activity!!.finish()
+        }
+    }
+
+    override fun openWelcomeDescriptionFragment() {
+        when (navController?.currentDestination?.id) {
+            R.id.welcomeScreenFragment -> {
+                navController?.navigate(
+                    R.id.action_welcomeScreenFragment_to_welcomeScreenDescriptionFragment
+                )
+            }
         }
     }
 }

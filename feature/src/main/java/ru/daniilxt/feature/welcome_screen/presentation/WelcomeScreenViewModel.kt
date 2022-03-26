@@ -5,5 +5,6 @@ import ru.daniilxt.feature.FeatureRouter
 
 class WelcomeScreenViewModel(private val router: FeatureRouter) : BaseViewModel() {
     fun openWelcomeAbout() {
+        router.openWelcomeDescriptionFragment()
     }
 }

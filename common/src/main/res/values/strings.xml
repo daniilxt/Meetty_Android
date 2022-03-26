@@ -21,4 +21,6 @@
     <string name="welcome_title">Приветствуем в нашем приложении</string>
     <string name="next">Далее</string>
     <string name="welcome_text">Представляем вам новое средство поиска деловых контактов. Давай же скорее приступим к поиску новых связей.</string>
+    <string name="go">Вперёд</string>
+    <string name="main_features">Основные функции</string>
 </resources>

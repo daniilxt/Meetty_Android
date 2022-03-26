@@ -74,4 +74,6 @@ dependencies {
     implementation roomDep
     implementation roomKtxDep
     kapt roomCompilerKapt
+
+    implementation coilDep
 }

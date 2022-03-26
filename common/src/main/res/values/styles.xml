@@ -31,6 +31,10 @@
         <item name="rippleColor">@color/text_color_secondary_dark</item>
     </style>
 
+    <style name="MaterialCardView.Circle" parent="Widget.MaterialComponents.CardView">
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="ImageButtonSelectable" parent="SelectableItemTheme">
         <item name="android:theme">@style/SelectableItemTheme</item>
         <item name="android:background">?selectableItemBackgroundBorderless</item>
@@ -63,4 +67,10 @@
         <item name="android:textAlignment">center</item>
     </style>
 
+    <style name="TextView.PLainText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/text_color_primary_dark</item>
+        <item name="fontFamily">@font/work_sans_regular</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textAlignment">center</item>
+    </style>
 </resources>
