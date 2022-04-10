@@ -4,8 +4,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
 import ru.daniilxt.common.extensions.viewBinding
-import ru.daniilxt.feature.databinding.ItemAppFeatureBinding
-import ru.daniilxt.feature.domain.model.FeatureDescription
+import ru.daniilxt.feature.databinding.ItemDialogBinding
+import ru.daniilxt.feature.domain.model.UserDialog
 import ru.daniilxt.feature.user_dialogs.presentation.adapter.diffutil.UserDialogsCallback
 import ru.daniilxt.feature.user_dialogs.presentation.adapter.view_holder.UserDialogsViewHolder
 import timber.log.Timber
@@ -17,10 +17,10 @@ class UserDialogsAdapter : RecyclerView.Adapter<UserDialogsViewHolder>() {
         parent: ViewGroup,
         viewType: Int
     ): UserDialogsViewHolder =
-        UserDialogsViewHolder(parent.viewBinding(ItemAppFeatureBinding::inflate))
+        UserDialogsViewHolder(parent.viewBinding(ItemDialogBinding::inflate))
 
     override fun onBindViewHolder(holder: UserDialogsViewHolder, position: Int) {
-        Timber.i("${differ.currentList.get(position)}")
+        Timber.i("${differ.currentList[position]}")
         holder.bind(differ.currentList[position])
     }
 
@@ -28,7 +28,7 @@ class UserDialogsAdapter : RecyclerView.Adapter<UserDialogsViewHolder>() {
         return differ.currentList.size
     }
 
-    fun bind(data: List<FeatureDescription>) {
+    fun bind(data: List<UserDialog>) {
         differ.submitList(data)
     }
 

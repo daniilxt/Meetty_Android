@@ -11,10 +11,12 @@ import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentUserDialogsBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
+import ru.daniilxt.feature.user_dialogs.presentation.adapter.UserDialogsAdapter
 
 class UserDialogsFragment : BaseFragment<UserDialogsViewModel>(R.layout.fragment_user_dialogs) {
 
     override val binding: FragmentUserDialogsBinding by viewBinding(FragmentUserDialogsBinding::bind)
+    private val userDialogsAdapter = UserDialogsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,6 +27,18 @@ class UserDialogsFragment : BaseFragment<UserDialogsViewModel>(R.layout.fragment
     override fun setupViews() {
         super.setupViews()
         initToolbar()
+        initRecycler()
+    }
+
+    override fun setupViewModelSubscriber() {
+        super.setupViewModelSubscriber()
+        viewModel.dialogs.observe {
+            userDialogsAdapter.bind(it)
+        }
+    }
+
+    private fun initRecycler() {
+        binding.dialogsRv.adapter = userDialogsAdapter
     }
 
     private fun initToolbar() {

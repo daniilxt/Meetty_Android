@@ -15,7 +15,6 @@ import ru.daniilxt.feature.databinding.FragmentWelcomeScreenBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
 
-
 class WelcomeScreenFragment :
     BaseFragment<WelcomeScreenViewModel>(R.layout.fragment_welcome_screen) {
 
@@ -39,7 +38,7 @@ class WelcomeScreenFragment :
     }
 
     private fun initButtons() {
-        binding.mbNext.setDebounceClickListener{
+        binding.mbNext.setDebounceClickListener {
             viewModel.openWelcomeAbout()
         }
     }

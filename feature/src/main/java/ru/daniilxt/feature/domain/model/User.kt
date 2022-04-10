@@ -7,6 +7,6 @@ data class User(
     val avatarLink: String
 ) {
     fun getCapitalizedFullUserName(): String {
-        return "${firstName.first().uppercase()} ${lastName.first().uppercase()} "
+        return "${firstName.replaceFirstChar { it.uppercase() }} ${lastName.replaceFirstChar { it.uppercase() }} "
     }
 }
