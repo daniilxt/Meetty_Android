@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/welcomeScreenFragment">
+    app:startDestination="@id/userDialogsFragment">
 
     <fragment
         android:id="@+id/mainScreenFragment"
@@ -40,4 +40,8 @@
         android:id="@+id/loginFragment"
         android:name="ru.daniilxt.feature.login.presentation.LoginFragment"
         android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/userDialogsFragment"
+        android:name="ru.daniilxt.feature.user_dialogs.presentation.UserDialogsFragment"
+        android:label="UserDialogsFragment" />
 </navigation>
