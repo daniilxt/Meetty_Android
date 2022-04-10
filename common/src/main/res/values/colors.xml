@@ -25,6 +25,8 @@
     <color name="text_color_third">#B2CBE4</color>
     <color name="text_color_primary_dark">#3700B3</color>
 
+    <color name="text_color_hint_primary">#A3A3A3</color>
+
     <color name="highlight_color_primary">#A3A3A3</color>
 
     <color name="background_dark">#ffb8860b</color>

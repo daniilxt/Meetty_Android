@@ -5,6 +5,7 @@ import android.view.View
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.clearLightStatusBar
+import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
@@ -26,6 +27,13 @@ class WelcomeScreenDescriptionFragment :
         super.onViewCreated(view, savedInstanceState)
         requireActivity().setStatusBarColor(R.color.white)
         requireView().clearLightStatusBar()
+        initButtons()
+    }
+
+    private fun initButtons() {
+        binding.mbNext.setDebounceClickListener {
+            viewModel.openOnboarding()
+        }
     }
 
     override fun setupViews() {

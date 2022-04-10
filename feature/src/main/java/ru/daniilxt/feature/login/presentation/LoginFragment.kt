@@ -1,42 +1,38 @@
-package ru.daniilxt.feature.onboarding.presentation
+package ru.daniilxt.feature.login.presentation
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
-import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
-import ru.daniilxt.feature.databinding.FragmentOnboardingBinding
+import ru.daniilxt.feature.databinding.FragmentLoginBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
 
-class OnboardingFragment : BaseFragment<OnboardingViewModel>(R.layout.fragment_onboarding) {
+class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
-    override val binding: FragmentOnboardingBinding by viewBinding(FragmentOnboardingBinding::bind)
+    override val binding: FragmentLoginBinding by viewBinding(FragmentLoginBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().setStatusBarColor(R.color.white)
         requireView().setLightStatusBar()
-        initButtons()
-    }
-
-    private fun initButtons() {
-        with(binding) {
-            register.setDebounceClickListener {
-            }
-            signIn.setDebounceClickListener {
-                viewModel.openLoginFragment()
-            }
-        }
+/*            requireActivity().window.clearFlags(WindowManager
+                .LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        */
+        requireActivity().window.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or
+                    WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+        )
     }
 
     override fun inject() {
         FeatureUtils.getFeature<FeatureComponent>(this, FeatureApi::class.java)
-            .onboardingComponentFactory()
+            .loginComponentFactory()
             .create(this)
             .inject(this)
     }

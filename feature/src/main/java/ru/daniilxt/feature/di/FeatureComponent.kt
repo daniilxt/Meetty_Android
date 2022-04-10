@@ -5,6 +5,7 @@ import dagger.Component
 import ru.daniilxt.common.di.CommonApi
 import ru.daniilxt.common.di.scope.FeatureScope
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.login.di.LoginComponent
 import ru.daniilxt.feature.main_screen.di.MainScreenComponent
 import ru.daniilxt.feature.onboarding.di.OnboardingComponent
 import ru.daniilxt.feature.welcome_screen.di.WelcomeScreenComponent
@@ -27,6 +28,7 @@ interface FeatureComponent {
     fun onboardingComponentFactory(): OnboardingComponent.Factory
     fun welcomeScreenComponentFactory(): WelcomeScreenComponent.Factory
     fun welcomeScreenDescriptionComponentFactory(): WelcomeScreenDescriptionComponent.Factory
+    fun loginComponentFactory(): LoginComponent.Factory
 
     @Component.Factory
     interface Factory {

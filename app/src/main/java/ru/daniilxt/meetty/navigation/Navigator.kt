@@ -43,4 +43,24 @@ class Navigator : FeatureRouter {
             }
         }
     }
+
+    override fun openOnboarding() {
+        when (navController?.currentDestination?.id) {
+            R.id.welcomeScreenDescriptionFragment -> {
+                navController?.navigate(
+                    R.id.action_welcomeScreenDescriptionFragment_to_onboardingFragment
+                )
+            }
+        }
+    }
+
+    override fun openLoginFragment() {
+        when (navController?.currentDestination?.id) {
+            R.id.onboardingFragment -> {
+                navController?.navigate(
+                    R.id.action_onboardingFragment_to_loginFragment
+                )
+            }
+        }
+    }
 }
