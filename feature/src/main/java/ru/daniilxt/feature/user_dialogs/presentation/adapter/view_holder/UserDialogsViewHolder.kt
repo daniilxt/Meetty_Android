@@ -3,6 +3,7 @@ package ru.daniilxt.feature.user_dialogs.presentation.adapter.view_holder
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
+import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.feature.databinding.ItemDialogBinding
 import ru.daniilxt.feature.domain.model.UserDialog
 import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
@@ -10,7 +11,7 @@ import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
 class UserDialogsViewHolder(
     private val binding: ItemDialogBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(data: UserDialog) {
+    fun bind(data: UserDialog, onDialogClick: (dialogId: Long) -> Unit) {
         // TODO edit
         val companion = data.returnCompanionUser(UserDialogsProvider.myUser)
         binding.tvTitle.text = companion.getCapitalizedFullUserName()
@@ -18,6 +19,9 @@ class UserDialogsViewHolder(
         binding.tvTime.text = data.lastMessage.time.toString()
         binding.ivIcon.load(companion.avatarLink) {
             transformations(CircleCropTransformation())
+        }
+        itemView.setDebounceClickListener {
+            onDialogClick(data.id)
         }
     }
 }

@@ -8,9 +8,9 @@ import ru.daniilxt.feature.databinding.ItemDialogBinding
 import ru.daniilxt.feature.domain.model.UserDialog
 import ru.daniilxt.feature.user_dialogs.presentation.adapter.diffutil.UserDialogsCallback
 import ru.daniilxt.feature.user_dialogs.presentation.adapter.view_holder.UserDialogsViewHolder
-import timber.log.Timber
 
-class UserDialogsAdapter : RecyclerView.Adapter<UserDialogsViewHolder>() {
+class UserDialogsAdapter(private val onDialogCLick: (chatId: Long) -> Unit) :
+    RecyclerView.Adapter<UserDialogsViewHolder>() {
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
 
     override fun onCreateViewHolder(
@@ -20,8 +20,7 @@ class UserDialogsAdapter : RecyclerView.Adapter<UserDialogsViewHolder>() {
         UserDialogsViewHolder(parent.viewBinding(ItemDialogBinding::inflate))
 
     override fun onBindViewHolder(holder: UserDialogsViewHolder, position: Int) {
-        Timber.i("${differ.currentList[position]}")
-        holder.bind(differ.currentList[position])
+        holder.bind(differ.currentList[position], this.onDialogCLick)
     }
 
     override fun getItemCount(): Int {

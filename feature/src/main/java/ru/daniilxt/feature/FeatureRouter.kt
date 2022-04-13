@@ -6,4 +6,5 @@ interface FeatureRouter {
     fun openWelcomeDescriptionFragment()
     fun openOnboarding()
     fun openLoginFragment()
+    fun openChat(chatId: Long)
 }

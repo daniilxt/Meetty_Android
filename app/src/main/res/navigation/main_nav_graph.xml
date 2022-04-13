@@ -43,5 +43,13 @@
     <fragment
         android:id="@+id/userDialogsFragment"
         android:name="ru.daniilxt.feature.user_dialogs.presentation.UserDialogsFragment"
-        android:label="UserDialogsFragment" />
+        android:label="UserDialogsFragment" >
+        <action
+            android:id="@+id/action_userDialogsFragment_to_userChatFragment"
+            app:destination="@id/userChatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userChatFragment"
+        android:name="ru.daniilxt.feature.chat.presentation.UserChatFragment"
+        android:label="UserChatFragment" />
 </navigation>

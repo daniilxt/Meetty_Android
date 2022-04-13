@@ -3,6 +3,7 @@ package ru.daniilxt.meetty.navigation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.chat.presentation.UserChatFragment
 import ru.daniilxt.meetty.R
 
 class Navigator : FeatureRouter {
@@ -59,6 +60,17 @@ class Navigator : FeatureRouter {
             R.id.onboardingFragment -> {
                 navController?.navigate(
                     R.id.action_onboardingFragment_to_loginFragment
+                )
+            }
+        }
+    }
+
+    override fun openChat(chatId: Long) {
+        when (navController?.currentDestination?.id) {
+            R.id.userDialogsFragment -> {
+                val bundle = UserChatFragment.makeBundle(chatId)
+                navController?.navigate(
+                    R.id.action_userDialogsFragment_to_userChatFragment, bundle
                 )
             }
         }

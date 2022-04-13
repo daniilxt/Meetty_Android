@@ -16,7 +16,9 @@ import ru.daniilxt.feature.user_dialogs.presentation.adapter.UserDialogsAdapter
 class UserDialogsFragment : BaseFragment<UserDialogsViewModel>(R.layout.fragment_user_dialogs) {
 
     override val binding: FragmentUserDialogsBinding by viewBinding(FragmentUserDialogsBinding::bind)
-    private val userDialogsAdapter = UserDialogsAdapter()
+    private val userDialogsAdapter = UserDialogsAdapter { chatId ->
+        viewModel.openChat(chatId)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

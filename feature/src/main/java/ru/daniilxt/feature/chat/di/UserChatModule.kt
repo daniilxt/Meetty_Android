@@ -1,4 +1,4 @@
-package ru.daniilxt.feature.dialog_messages.di
+package ru.daniilxt.feature.chat.di
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -9,22 +9,22 @@ import dagger.multibindings.IntoMap
 import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
-import ru.daniilxt.feature.dialog_messages.presentation.DialogMessagesViewModel
+import ru.daniilxt.feature.chat.presentation.UserChatViewModel
 
 @Module(
     includes = [
         ViewModelModule::class
     ]
 )
-class DialogMessagesModule {
+class UserChatModule {
 
     @Provides
     @IntoMap
-    @ViewModelKey(DialogMessagesViewModel::class)
+    @ViewModelKey(UserChatViewModel::class)
     fun provideViewModel(
         navigator: FeatureRouter
     ): ViewModel {
-        return DialogMessagesViewModel(
+        return UserChatViewModel(
             navigator
         )
     }
@@ -33,7 +33,7 @@ class DialogMessagesModule {
     fun provideViewModelCreator(
         fragment: Fragment,
         viewModelFactory: ViewModelProvider.Factory
-    ): DialogMessagesViewModel {
-        return ViewModelProvider(fragment, viewModelFactory).get(DialogMessagesViewModel::class.java)
+    ): UserChatViewModel {
+        return ViewModelProvider(fragment, viewModelFactory).get(UserChatViewModel::class.java)
     }
 }

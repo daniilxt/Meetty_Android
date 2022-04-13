@@ -5,7 +5,7 @@ import dagger.Component
 import ru.daniilxt.common.di.CommonApi
 import ru.daniilxt.common.di.scope.FeatureScope
 import ru.daniilxt.feature.FeatureRouter
-import ru.daniilxt.feature.dialog_messages.di.DialogMessagesComponent
+import ru.daniilxt.feature.chat.di.UserChatComponent
 import ru.daniilxt.feature.login.di.LoginComponent
 import ru.daniilxt.feature.main_screen.di.MainScreenComponent
 import ru.daniilxt.feature.onboarding.di.OnboardingComponent
@@ -31,7 +31,7 @@ interface FeatureComponent {
     fun welcomeScreenDescriptionComponentFactory(): WelcomeScreenDescriptionComponent.Factory
     fun loginComponentFactory(): LoginComponent.Factory
     fun userDialogsComponentFactory(): UserDialogsComponent.Factory
-    fun dialogMessagesComponentFactory(): DialogMessagesComponent.Factory
+    fun userChatComponentFactory(): UserChatComponent.Factory
 
     @Component.Factory
     interface Factory {
