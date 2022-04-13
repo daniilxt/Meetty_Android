@@ -118,7 +118,7 @@ fun View.dpToPx(dp: Float): Float = context.dpToPx(dp)
  * @param text Displayed text.
  */
 fun TextView.showAnimatedText(text: String) {
-    val anim1 = AnimationUtils.loadAnimation(this.context, R.anim.appear_text);
+    val anim1 = AnimationUtils.loadAnimation(this.context, R.anim.appear_text)
     this.startAnimation(anim1)
     this.text = text
 }

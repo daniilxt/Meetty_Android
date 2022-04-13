@@ -5,13 +5,13 @@ import dagger.Component
 import ru.daniilxt.common.di.CommonApi
 import ru.daniilxt.common.di.scope.FeatureScope
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.dialog_messages.di.DialogMessagesComponent
 import ru.daniilxt.feature.login.di.LoginComponent
 import ru.daniilxt.feature.main_screen.di.MainScreenComponent
 import ru.daniilxt.feature.onboarding.di.OnboardingComponent
 import ru.daniilxt.feature.user_dialogs.di.UserDialogsComponent
 import ru.daniilxt.feature.welcome_screen.di.WelcomeScreenComponent
 import ru.daniilxt.feature.welcome_screen_description.di.WelcomeScreenDescriptionComponent
-
 
 @Component(
     dependencies = [
@@ -31,6 +31,7 @@ interface FeatureComponent {
     fun welcomeScreenDescriptionComponentFactory(): WelcomeScreenDescriptionComponent.Factory
     fun loginComponentFactory(): LoginComponent.Factory
     fun userDialogsComponentFactory(): UserDialogsComponent.Factory
+    fun dialogMessagesComponentFactory(): DialogMessagesComponent.Factory
 
     @Component.Factory
     interface Factory {
