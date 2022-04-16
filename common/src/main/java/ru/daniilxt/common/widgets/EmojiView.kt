@@ -67,15 +67,13 @@ class EmojiView @JvmOverloads constructor(
             textSize
         )
         reactionsCount =
-            typedArray.getInteger(
-                R.styleable.EmojiView_customReactionsCount, DEFAULT_REACTIONS_COUNT
-            )
+            typedArray.getInteger(R.styleable.EmojiView_customReactionsCount, 0)
         reactionsPaint.textSize = textPaint.textSize
         typedArray.recycle()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        textPaint.getTextBounds(text + reactionsCount, 0, text.length, textBounds)
+        textPaint.getTextBounds(text, 0, text.length, textBounds)
 
         val textHeight = textBounds.height()
         val textWidth = textBounds.width()
@@ -111,14 +109,28 @@ class EmojiView @JvmOverloads constructor(
         textCoordinate.y = h / 2f + textBounds.height() / 2 - tempFontMetrics.descent
 
         reactionsPaint.getFontMetrics(tempFontMetrics)
-        reactionsCoordinate.x = w.toFloat() - paddingEnd - context.dpToPx(INNER_END_PADDING)
+        reactionsCoordinate.x =
+            w.toFloat() - paddingEnd - context.dpToPx(INNER_END_PADDING) - tempFontMetrics.descent
         reactionsCoordinate.y = textCoordinate.y
     }
+
+    var checked = false
 
     override fun onCreateDrawableState(extraSpace: Int): IntArray {
         val drawableState = super.onCreateDrawableState(extraSpace + SUPPORTED_DRAWABLE_STATE.size)
         if (isSelected) {
             mergeDrawableStates(drawableState, SUPPORTED_DRAWABLE_STATE)
+            if (reactionsCount != 0 && !checked) {
+                reactionsCount++
+                checked = true
+                requestLayout()
+            }
+        } else {
+            if (reactionsCount != 0 && checked) {
+                reactionsCount--
+                checked = false
+                requestLayout()
+            }
         }
         return drawableState
     }
@@ -137,7 +149,7 @@ class EmojiView @JvmOverloads constructor(
         private const val DEFAULT_TEXT_SIZE = 14F
         private val SUPPORTED_DRAWABLE_STATE = intArrayOf(android.R.attr.state_selected)
         private const val DEFAULT_REACTIONS_COUNT = 0
-        private const val INNER_START_PADDING = 8F
+        private const val INNER_START_PADDING = 10F
         private val INNER_END_PADDING get() = INNER_START_PADDING
         private const val INNER_TOP_PADDING = 8F
     }

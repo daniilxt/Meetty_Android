@@ -3,7 +3,7 @@
     <declare-styleable name="EmojiView">
         <attr name="customTextColor" format="color" />
         <attr name="customText" format="string" />
-        <attr name="customReactionsCount" format="string" />
+        <attr name="customReactionsCount" format="integer" />
         <attr name="customTextSize" format="dimension" />
     </declare-styleable>
 </resources>
