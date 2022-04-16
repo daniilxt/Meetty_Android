@@ -32,7 +32,7 @@ class FlexboxLayout @JvmOverloads constructor(
 
             totalWidth = when (widthMode) {
                 MeasureSpec.EXACTLY -> if (widthSize < totalWidth) {
-                    totalHeight += child.measuredHeight + childMarginTop + childMarginBottom
+                    totalHeight += child.measuredHeight + childMarginTop + childMarginBottom + topViewMargin
                     0
                 } else totalWidth
 
@@ -43,11 +43,10 @@ class FlexboxLayout @JvmOverloads constructor(
                 MeasureSpec.UNSPECIFIED -> totalWidth
                 else -> throw IllegalStateException()
             }
-            totalHeight =
-                maxOf(
-                    totalHeight,
-                    child.measuredHeight + childMarginTop + childMarginBottom + topViewMargin
-                )
+            totalHeight = maxOf(
+                totalHeight,
+                child.measuredHeight + childMarginTop + childMarginBottom + topViewMargin
+            )
         }
         val resultWidth = resolveSize(totalWidth + paddingRight + paddingLeft, widthMeasureSpec)
         val resultHeight = resolveSize(totalHeight + paddingTop + paddingBottom, heightMeasureSpec)
