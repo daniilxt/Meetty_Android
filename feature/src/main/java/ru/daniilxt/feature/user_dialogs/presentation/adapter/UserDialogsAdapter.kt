@@ -9,7 +9,7 @@ import ru.daniilxt.feature.domain.model.UserDialog
 import ru.daniilxt.feature.user_dialogs.presentation.adapter.diffutil.UserDialogsCallback
 import ru.daniilxt.feature.user_dialogs.presentation.adapter.view_holder.UserDialogsViewHolder
 
-class UserDialogsAdapter(private val onDialogCLick: (chatId: Long) -> Unit) :
+class UserDialogsAdapter(private val onDialogCLick: (userDialog: UserDialog) -> Unit) :
     RecyclerView.Adapter<UserDialogsViewHolder>() {
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
 

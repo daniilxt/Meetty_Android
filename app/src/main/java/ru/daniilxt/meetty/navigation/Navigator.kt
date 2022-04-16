@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.chat.presentation.UserChatFragment
+import ru.daniilxt.feature.domain.model.UserDialog
 import ru.daniilxt.meetty.R
 
 class Navigator : FeatureRouter {
@@ -65,10 +66,10 @@ class Navigator : FeatureRouter {
         }
     }
 
-    override fun openChat(chatId: Long) {
+    override fun openChat(userDialog: UserDialog) {
         when (navController?.currentDestination?.id) {
             R.id.userDialogsFragment -> {
-                val bundle = UserChatFragment.makeBundle(chatId)
+                val bundle = UserChatFragment.makeBundle(userDialog)
                 navController?.navigate(
                     R.id.action_userDialogsFragment_to_userChatFragment, bundle
                 )

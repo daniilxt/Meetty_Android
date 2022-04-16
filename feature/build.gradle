@@ -76,4 +76,6 @@ dependencies {
     kapt roomCompilerKapt
 
     implementation coilDep
+
+    implementation stompDep
 }

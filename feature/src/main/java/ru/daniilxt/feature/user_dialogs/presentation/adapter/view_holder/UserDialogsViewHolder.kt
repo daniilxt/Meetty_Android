@@ -11,7 +11,7 @@ import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
 class UserDialogsViewHolder(
     private val binding: ItemDialogBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(data: UserDialog, onDialogClick: (dialogId: Long) -> Unit) {
+    fun bind(data: UserDialog, onDialogClick: (userDialog: UserDialog) -> Unit) {
         // TODO edit
         val companion = data.returnCompanionUser(UserDialogsProvider.myUser)
         binding.tvTitle.text = companion.getCapitalizedFullUserName()
@@ -21,7 +21,7 @@ class UserDialogsViewHolder(
             transformations(CircleCropTransformation())
         }
         itemView.setDebounceClickListener {
-            onDialogClick(data.id)
+            onDialogClick(data)
         }
     }
 }

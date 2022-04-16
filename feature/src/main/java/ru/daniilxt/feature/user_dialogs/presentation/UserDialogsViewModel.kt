@@ -17,8 +17,7 @@ class UserDialogsViewModel(private val router: FeatureRouter) : BaseViewModel() 
         _dialogs.value = UserDialogsProvider.getUserDialogs()
     }
 
-    fun openChat(chatId: Long) {
-        router.openChat(chatId)
+    fun openChat(userDialog: UserDialog) {
+        router.openChat(userDialog)
     }
-
 }

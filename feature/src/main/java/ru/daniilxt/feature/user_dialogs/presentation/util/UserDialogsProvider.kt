@@ -1,14 +1,13 @@
 package ru.daniilxt.feature.user_dialogs.presentation.util
 
-import android.os.Build
-import androidx.annotation.RequiresApi
+import android.annotation.SuppressLint
 import ru.daniilxt.feature.domain.model.Message
 import ru.daniilxt.feature.domain.model.User
 import ru.daniilxt.feature.domain.model.UserDialog
 import java.time.LocalDate
 import java.time.LocalTime
 
-@RequiresApi(Build.VERSION_CODES.O)
+@SuppressLint("NewApi")
 object UserDialogsProvider {
     val myUser = User(
         id = 1,

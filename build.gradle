@@ -61,6 +61,8 @@ buildscript {
 
         coilVersion = '1.3.2'
 
+        stompVersion = '1.6.4'
+
 
         kotlinDep = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
@@ -114,6 +116,8 @@ buildscript {
         roomCompilerKapt = "androidx.room:room-compiler:$room_version"
 
         coilDep = "io.coil-kt:coil:$coilVersion"
+
+        stompDep = "com.github.NaikSoftware:StompProtocolAndroid:$stompVersion"
     }
 
     ext.kotlin_version = "1.5.30"

@@ -3,5 +3,7 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">developerslife.ru</domain>
         <domain includeSubdomains="true">static.devli.ru</domain>
+        <domain includeSubdomains="true">ws://bc9b-95-24-226-149.eu.ngrok.io</domain>
+        <domain includeSubdomains="true">https://bc9b-95-24-226-149.eu.ngrok.io</domain>
     </domain-config>
 </network-security-config>

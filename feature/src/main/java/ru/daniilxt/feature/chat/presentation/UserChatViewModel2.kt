@@ -1,20 +1,15 @@
+/*
 package ru.daniilxt.feature.chat.presentation
 
 import android.annotation.SuppressLint
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 import ru.daniilxt.common.base.BaseViewModel
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.domain.model.Message
@@ -30,35 +25,41 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 
 @SuppressLint("NewApi")
-class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
+class UserChatViewModel2(private val router: FeatureRouter) : BaseViewModel() {
     private var _userDialog: UserDialog? = null
     val userDialog get() = _userDialog!!
     fun userDialog(chat: UserDialog) {
         _userDialog = chat
     }
 
-    companion object {
-        private const val STOMP = "STOMP_STOMP"
-        const val SOCKET_URL = "wss://bc9b-95-24-226-149.eu.ngrok.io/api/chat/websocket"
-        const val CHAT_TOPIC = "/topic/chat"
-        const val CHAT_LINK_SOCKET = "/api/chat/sock"
-    }
-
-    private val gson: Gson = GsonBuilder().registerTypeAdapter(LocalDateTime::class.java,
+    private val gson: Gson = GsonBuilder().registerTypeAdapter(
+        LocalDateTime::class.java,
         GsonLocalDateTimeAdapter()
     ).create()
     private var mStompClient: StompClient? = null
     private var compositeDisposable: CompositeDisposable? = null
 
+    private var _chatState = MutableStateFlow<Message?>(null)
+    val liveChatState: StateFlow<Message?> get() = _chatState
 
     init {
 //            val headerMap: Map<String, String> =
 //                Collections.singletonMap("Authorization", "Token")
-        mStompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, SOCKET_URL/*, headerMap*/)
+        mStompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, SOCKET_URL*/
+/*, headerMap*//*
+)
             .withServerHeartbeat(30000)
         resetSubscriptions()
         initChat()
     }
+
+    private fun resetSubscriptions() {
+        if (compositeDisposable != null) {
+            compositeDisposable!!.dispose()
+        }
+        compositeDisposable = CompositeDisposable()
+    }
+
 
     private fun initChat() {
         resetSubscriptions()
@@ -68,14 +69,14 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
                 .subscribeOn(Schedulers.io(), false)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ topicMessage: StompMessage ->
-                    Log.d(STOMP, topicMessage.payload)
-                    val message: ChatSocketMessage =
-                        gson.fromJson(topicMessage.payload, ChatSocketMessage::class.java)
-                    val newMessage = dtoToEntity(message)
-                    addMessage(newMessage)
+                    Timber.tag(STOMP).i("??? ${topicMessage.payload}")
+                    */
+/*           val message: Message =
+                                   gson.fromJson(topicMessage.payload, Message::class.java)
+                               addMessage(message)*//*
+
                 },
                     {
-                        Log.e(STOMP, "Error!", it)
                     }
                 )
 
@@ -84,11 +85,12 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { lifecycleEvent: LifecycleEvent ->
                     when (lifecycleEvent.type!!) {
-                        LifecycleEvent.Type.OPENED -> Log.d(STOMP, "Stomp connection opened")
-                        LifecycleEvent.Type.ERROR -> Log.e(STOMP, "Error", lifecycleEvent.exception)
+                        LifecycleEvent.Type.OPENED -> Timber.tag(STOMP).i("Stomp connection opened")
+                        LifecycleEvent.Type.ERROR -> Timber.tag(STOMP)
+                            .i("Error ${lifecycleEvent.exception}")
                         LifecycleEvent.Type.FAILED_SERVER_HEARTBEAT,
                         LifecycleEvent.Type.CLOSED -> {
-                            Log.d(STOMP, "Stomp connection closed")
+                            Timber.tag(STOMP).i("Stomp connection closed")
                         }
                     }
                 }
@@ -102,19 +104,24 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
 
 
         } else {
-            Log.e(STOMP, "mStompClient is null!")
+            Timber.tag(STOMP).i("Stomp client is null")
         }
     }
 
     fun sendMessage(text: String) {
-        val message = Message2(text = text, author = "Me", receiver = "Max")
-        val chatSocketMessage = entityToDto(message)
-        sendCompletable(mStompClient!!.send(CHAT_LINK_SOCKET, gson.toJson(chatSocketMessage)))
-        addMessage(message)
-    }
-
-    private fun addMessage(message: Message2) {
-        Timber.tag(STOMP).i("added msg ${message}")
+        //val message = Message(text = text, author = "Me")
+        val chatSocketMessage = Message(
+            id = 0,
+            date = LocalDate.now(),
+            time = LocalTime.now(),
+            content = "hi ${LocalDateTime.now()}",
+            reactions = emptyList(),
+            sender = UserDialogsProvider.myUser
+        )
+        val test = "Hello ${LocalDateTime.now()}"
+        //sendCompletable(mStompClient!!.send(CHAT_LINK_SOCKET, gson.toJson(chatSocketMessage)))
+        //addMessage(chatSocketMessage)
+        sendCompletable(mStompClient!!.send(CHAT_LINK_SOCKET, gson.toJson(test)))
     }
 
     private fun sendCompletable(request: Completable) {
@@ -123,27 +130,25 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     {
-                        Log.d(STOMP, "Stomp sended")
+                        Timber.tag(STOMP).i("Stomp sended")
                     },
                     {
-                        Log.e(STOMP, "Stomp error", it)
+                        Timber.tag(STOMP).i("Stomp error $it")
                     }
                 )
         )
     }
 
-    private fun resetSubscriptions() {
-        if (compositeDisposable != null) {
-            compositeDisposable!!.dispose()
-        }
-
-        compositeDisposable = CompositeDisposable()
+    private fun addMessage(message: Message) {
+        _chatState.value = message
     }
 
-    override fun onCleared() {
-        super.onCleared()
-
-        mStompClient?.disconnect()
-        compositeDisposable?.dispose()
+    companion object {
+        private const val STOMP = "TAG_STOMP"
+        const val SOCKET_URL = "wss://bc9b-95-24-226-149.eu.ngrok.io/api/chat/websocket"
+        const val CHAT_TOPIC = "/topic/chat"
+        const val CHAT_LINK_SOCKET = "/api/chat/sock"
     }
+
 }
+*/

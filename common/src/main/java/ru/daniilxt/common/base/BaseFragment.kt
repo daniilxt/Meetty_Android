@@ -25,8 +25,8 @@ abstract class BaseFragment<T : BaseViewModel>(@LayoutRes fragmentLayoutId: Int)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         inject()
         super.onViewCreated(view, savedInstanceState)
-        setupViews()
         setupFromArguments()
+        setupViews()
         setupViewModelSubscriber()
     }
 
