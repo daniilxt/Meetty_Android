@@ -23,12 +23,12 @@
         android:id="@+id/tv_message"
         android:layout_width="@dimen/dp_200"
         android:layout_height="wrap_content"
-        android:textColor="@color/text_color_secondary"
+        android:textColor="@color/black"
         android:textSize="@dimen/sp_16" />
 
-    <ru.daniilxt.common.widgets.FlexBoxLayout
+    <ru.daniilxt.common.widgets.FlexboxLayout
         android:id="@+id/flexbox"
-        android:layout_width="270dp"
+        android:layout_width="@dimen/dp_270"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent" />
 </ru.daniilxt.common.widgets.IncomeMessageViewGroup>

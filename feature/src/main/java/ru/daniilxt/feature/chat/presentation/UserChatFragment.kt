@@ -9,6 +9,7 @@ import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
+import ru.daniilxt.feature.chat.presentation.adapter.MessageAdapter
 import ru.daniilxt.feature.databinding.FragmentUserChatBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
@@ -19,6 +20,10 @@ import timber.log.Timber
 class UserChatFragment : BaseFragment<UserChatViewModel>(R.layout.fragment_user_chat) {
 
     override val binding: FragmentUserChatBinding by viewBinding(FragmentUserChatBinding::bind)
+
+    private val messageAdapter =
+        MessageAdapter(onEmojiClickListener = { messageId, reaction ->
+        }, onMessageLongCLickListener = { id -> })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,8 +41,20 @@ class UserChatFragment : BaseFragment<UserChatViewModel>(R.layout.fragment_user_
     override fun setupViews() {
         super.setupViews()
         initToolbar()
+        initRecycler()
         binding.btn.setDebounceClickListener {
             viewModel.sendMessage("hey)")
+        }
+    }
+
+    private fun initRecycler() {
+        binding.messagesRv.adapter = messageAdapter
+    }
+
+    override fun setupViewModelSubscriber() {
+        super.setupViewModelSubscriber()
+        viewModel.userMessages.observe {
+            messageAdapter.bind(it)
         }
     }
 

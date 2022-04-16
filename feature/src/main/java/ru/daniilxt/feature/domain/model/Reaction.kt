@@ -7,5 +7,6 @@ import kotlinx.parcelize.Parcelize
 data class Reaction(
     val id: Long,
     val emojiText: String,
-    val usersId: List<Long>
+    val usersId: List<Long>,
+    val count: Long
 ) : Parcelable

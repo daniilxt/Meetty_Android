@@ -4,8 +4,7 @@ import android.annotation.SuppressLint
 import ru.daniilxt.feature.domain.model.Message
 import ru.daniilxt.feature.domain.model.User
 import ru.daniilxt.feature.domain.model.UserDialog
-import java.time.LocalDate
-import java.time.LocalTime
+import java.time.LocalDateTime
 
 @SuppressLint("NewApi")
 object UserDialogsProvider {
@@ -41,11 +40,11 @@ object UserDialogsProvider {
             id = 1L,
             lastMessage = Message(
                 id = 1,
-                date = LocalDate.now(),
-                time = LocalTime.of(14, 22, 55),
+                dateTime = LocalDateTime.of(2022, 4, 13, 14, 22, 55),
                 "Hello world how are you",
                 reactions = emptyList(),
-                sender = firstUser
+                sender = firstUser,
+                isMy = false
             ),
             firstUser = myUser,
             secondUser = firstUser
@@ -54,11 +53,11 @@ object UserDialogsProvider {
             id = 2L,
             lastMessage = Message(
                 id = 4,
-                date = LocalDate.now(),
-                time = LocalTime.of(13, 55, 55),
+                dateTime = LocalDateTime.of(2022, 4, 13, 13, 55, 55),
                 "Oh, Lore Loren",
                 reactions = emptyList(),
-                sender = secondUser
+                sender = secondUser,
+                isMy = false
             ),
             firstUser = secondUser,
             secondUser = myUser
@@ -67,11 +66,11 @@ object UserDialogsProvider {
             id = 3L,
             lastMessage = Message(
                 id = 6,
-                date = LocalDate.now(),
-                time = LocalTime.of(13, 12, 55),
+                dateTime = LocalDateTime.of(2022, 4, 13, 13, 12, 55),
                 "Welcome to Middenheim",
                 reactions = emptyList(),
-                sender = secondUser
+                sender = secondUser,
+                isMy = false
             ),
             firstUser = thirdUser,
             secondUser = myUser

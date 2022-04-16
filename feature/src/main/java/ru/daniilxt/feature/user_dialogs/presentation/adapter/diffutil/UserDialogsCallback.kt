@@ -15,7 +15,7 @@ class UserDialogsCallback : DiffUtil.ItemCallback<UserDialog>() {
         oldItem: UserDialog,
         newItem: UserDialog
     ): Boolean {
-        return oldItem.lastMessage == newItem.lastMessage && oldItem.firstUser == newItem.firstUser
-                && oldItem.secondUser == newItem.secondUser
+        return oldItem.lastMessage == newItem.lastMessage && oldItem.firstUser == newItem.firstUser &&
+            oldItem.secondUser == newItem.secondUser
     }
 }
