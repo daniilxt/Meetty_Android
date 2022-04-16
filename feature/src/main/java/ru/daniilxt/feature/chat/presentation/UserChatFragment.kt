@@ -39,9 +39,6 @@ class UserChatFragment : BaseFragment<UserChatViewModel>(R.layout.fragment_user_
         binding.btn.setDebounceClickListener {
             viewModel.sendMessage("hey)")
         }
-        binding.emoji.setDebounceClickListener {
-            it.isSelected = !it.isSelected
-        }
     }
 
     private fun initToolbar() {
