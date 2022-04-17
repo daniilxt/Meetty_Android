@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import ru.daniilxt.common.R
@@ -50,62 +49,45 @@ class OutcomeMessageViewGroup @JvmOverloads constructor(
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        val titleText = getChildAt(0)
-        val messageText = getChildAt(1)
-        val dateText = getChildAt(2)
-        val flexboxLayout = getChildAt(3)
+        val messageText = getChildAt(0)
+        val dateText = getChildAt(1)
+        val flexboxLayout = getChildAt(2)
 
-        titleText.layout(
-            leftMargin,
-            topTitleMargin,
-            titleText.measuredWidth + leftTitleMargin,
-            titleText.measuredHeight + topTitleMargin
-        )
+        Timber.i("CUSTOM $width $height")
         messageText.layout(
-            titleText.left,
-            titleText.bottom,
-            messageText.measuredWidth + titleText.left,
-            messageText.measuredHeight + titleText.bottom
+            width - messageText.measuredWidth,
+            topTitleMargin,
+            width,
+            messageText.measuredHeight + topTitleMargin
         )
         dateText.layout(
-            messageText.right - dateText.measuredWidth-leftTitleMargin,
-            messageText.bottom,
+            messageText.right - dateText.measuredWidth - leftTitleMargin,
+            messageText.bottom - topTitleMargin,
             messageText.right,
             dateText.measuredHeight + messageText.bottom
         )
         flexboxLayout.layout(
-            messageText.left - leftTitleMargin,
-            dateText.bottom + flexBoxTopMargin,
-            flexboxLayout.measuredWidth + messageText.left - leftTitleMargin,
-            flexboxLayout.measuredHeight + dateText.bottom + flexBoxTopMargin
+            width- flexboxLayout.measuredWidth,
+            dateText.bottom - topTitleMargin / 2,
+            width,
+            flexboxLayout.measuredHeight + dateText.bottom
         )
     }
 
     override fun dispatchDraw(canvas: Canvas) {
-
-        val title = getChildAt(0)
-        val message = getChildAt(1)
-        val date = getChildAt(2)
-        val rectWidth = maxViewWidth(title, message)
+        val message = getChildAt(0)
+        val date = getChildAt(1)
         val drawableOval = drawable
         if (drawableOval != null) {
             drawableOval.setBounds(
-                title.left - leftTitleMargin / 2,
-                title.top - topTitleMargin,
-                rectWidth.right,
-                date.bottom
+                message.left - leftTitleMargin / 2,
+                message.top - topTitleMargin,
+                message.right,
+                date.bottom - topTitleMargin
             )
             drawableOval.draw(canvas)
         }
         super.dispatchDraw(canvas)
-    }
-
-    private fun maxViewWidth(title: View, message: View): View {
-        return if (title.width > message.width) {
-            title
-        } else {
-            message
-        }
     }
 
     override fun generateLayoutParams(attrs: AttributeSet?): LayoutParams {
