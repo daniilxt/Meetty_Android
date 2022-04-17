@@ -69,4 +69,5 @@
     <dimen name="dp_58">58dp</dimen>
     <dimen name="dp_62">62dp</dimen>
     <dimen name="dp_66">66dp</dimen>
+    <dimen name="sp_40">40sp</dimen>
 </resources>

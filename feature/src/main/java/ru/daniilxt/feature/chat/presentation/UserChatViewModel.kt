@@ -13,7 +13,9 @@ import kotlinx.coroutines.flow.StateFlow
 import ru.daniilxt.common.base.BaseViewModel
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.domain.model.Message
+import ru.daniilxt.feature.domain.model.ReactionWrapper
 import ru.daniilxt.feature.domain.model.UserDialog
+import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
 import timber.log.Timber
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
@@ -140,5 +142,29 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
 
         mStompClient?.disconnect()
         compositeDisposable?.dispose()
+    }
+
+    fun sendMessage2(text: String) {
+        _userMessages.value = _userMessages.value + listOf(
+            Message(
+                dateTime = LocalDateTime.now(),
+                reactions = emptyList(),
+                content = text,
+                isMy = true,
+                sender = UserDialogsProvider.myUser
+            )
+        )
+    }
+
+    // TODO handle reactions count
+    fun setReaction(reactionWrapper: ReactionWrapper) {
+        _userMessages.value = _userMessages.value.map {
+            if (it.id == reactionWrapper.messageId) {
+                val reactions = it.reactions + listOf(reactionWrapper.reaction)
+                it.copy(reactions = reactions)
+            } else {
+                it
+            }
+        }
     }
 }

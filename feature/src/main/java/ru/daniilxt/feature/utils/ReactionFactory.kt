@@ -1,8 +1,10 @@
-package ru.daniilxt.common.widgets
+package ru.daniilxt.feature.utils
 
-class EmojiFactory {
-    fun getEmoji() : ArrayList<String> = arrayListOf(
-        "\u1f44d\ude00",
+import ru.daniilxt.feature.domain.model.Reaction
+import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
+
+object ReactionFactory {
+    private fun getEmoji(): ArrayList<String> = arrayListOf(
         "\uD83D\uDE01",
         "\uD83D\uDE02",
         "\uD83E\uDD70",
@@ -47,4 +49,17 @@ class EmojiFactory {
         "\uD83C\uDFC6",
         "\uD83C\uDF93"
     )
+
+    fun getReactions(): List<Reaction> {
+        return getEmoji().mapIndexed { index, s -> s.toReaction(index) }
+    }
+
+    private fun String.toReaction(index: Int): Reaction {
+        return Reaction(
+            id = index.toLong(),
+            emojiText = this,
+            usersId = listOf(UserDialogsProvider.myUser.id),
+            count = 1
+        )
+    }
 }

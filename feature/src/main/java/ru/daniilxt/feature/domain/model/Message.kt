@@ -1,16 +1,16 @@
 package ru.daniilxt.feature.domain.model
 
+import android.annotation.SuppressLint
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.LocalTime
 
+@SuppressLint("NewApi")
 @Parcelize
 data class Message(
-    val id: Long,
-    val dateTime: LocalDateTime,
-    val content: String,
+    val id: Long = -1L,
+    val dateTime: LocalDateTime = LocalDateTime.now(),
+    val content: String = "",
     val reactions: List<Reaction> = emptyList(),
     val sender: User,
     val isMy: Boolean = false

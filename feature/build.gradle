@@ -78,4 +78,6 @@ dependencies {
     implementation coilDep
 
     implementation stompDep
+
+    implementation fragmentKtxDep
 }
