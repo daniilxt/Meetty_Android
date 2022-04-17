@@ -33,7 +33,7 @@ object MessageTestProvider {
                     ),
                     Reaction(
                         id = 2,
-                        emojiText = "\uD83E\uDD29",
+                        emojiText = "\uD83D\uDE01",
                         usersId = listOf(1, 2),
                         count = 2
                     )
@@ -54,7 +54,7 @@ object MessageTestProvider {
                     ),
                     Reaction(
                         id = 2,
-                        emojiText = "\uD83E\uDD29",
+                        emojiText = "\uD83D\uDE01",
                         usersId = listOf(1, 2),
                         count = 2
                     ),
@@ -78,7 +78,7 @@ object MessageTestProvider {
                     ),
                     Reaction(
                         id = 6,
-                        emojiText = "\uD83E\uDD2F",
+                        emojiText = "\uD83E\uDD22",
                         usersId = listOf(1, 2),
                         count = 2
                     ),
@@ -99,7 +99,8 @@ object MessageTestProvider {
                     ),
                     Reaction(
                         id = 2,
-                        emojiText = "\uD83E\uDD29",
+                        emojiText = "\uD83D\uDE01",
+
                         usersId = listOf(1, 2),
                         count = 2
                     ),
@@ -140,7 +141,7 @@ object MessageTestProvider {
                     ),
                     Reaction(
                         id = 2,
-                        emojiText = "\uD83E\uDD29",
+                        emojiText = "\uD83D\uDE01",
                         usersId = listOf(1, 2),
                         count = 2
                     )
@@ -161,7 +162,7 @@ object MessageTestProvider {
                     ),
                     Reaction(
                         id = 2,
-                        emojiText = "\uD83E\uDD29",
+                        emojiText = "\uD83D\uDE01",
                         usersId = listOf(1, 2),
                         count = 2
                     )
