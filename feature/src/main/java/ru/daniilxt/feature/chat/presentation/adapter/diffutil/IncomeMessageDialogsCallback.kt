@@ -3,7 +3,7 @@ package ru.daniilxt.feature.chat.presentation.adapter.diffutil
 import androidx.recyclerview.widget.DiffUtil
 import ru.daniilxt.feature.domain.model.Message
 
-class MessageDialogsCallback : DiffUtil.ItemCallback<Message>() {
+class IncomeMessageDialogsCallback : DiffUtil.ItemCallback<Message>() {
     override fun areItemsTheSame(
         oldItem: Message,
         newItem: Message

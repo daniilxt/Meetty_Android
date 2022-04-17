@@ -1,0 +1,39 @@
+<ru.daniilxt.common.widgets.OutcomeMessageViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dp_12"
+    android:layout_marginTop="@dimen/dp_20"
+    app:layout_constraintStart_toStartOf="parent">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_color_secondary_dark"
+        android:textSize="@dimen/sp_14" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_10"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_10"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_10" />
+
+    <ru.daniilxt.common.widgets.FlexboxLayout
+        android:id="@+id/flexbox"
+        android:layout_width="@dimen/dp_270"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_20"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</ru.daniilxt.common.widgets.OutcomeMessageViewGroup>

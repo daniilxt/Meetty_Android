@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
+    android:background="@android:color/holo_blue_bright"
     tools:context=".chat.presentation.UserChatFragment">
 
     <include
@@ -31,13 +31,4 @@
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/msg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/layout_toolbar"
-        android:layout_marginTop="@dimen/dp_100">
-    </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
