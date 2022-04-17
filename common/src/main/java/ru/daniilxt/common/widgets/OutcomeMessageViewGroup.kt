@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import ru.daniilxt.common.R
 import ru.daniilxt.common.extensions.dpToPx
-import timber.log.Timber
 
 class OutcomeMessageViewGroup @JvmOverloads constructor(
     context: Context,
@@ -17,8 +16,6 @@ class OutcomeMessageViewGroup @JvmOverloads constructor(
     defStyleRes: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val leftMargin = context.dpToPx(22F).toInt()
-    private val flexBoxTopMargin = context.dpToPx(10F).toInt()
     private val topTitleMargin = context.dpToPx(8F).toInt()
     private val leftTitleMargin = context.dpToPx(22F).toInt()
     var drawable: Drawable? =
@@ -53,7 +50,6 @@ class OutcomeMessageViewGroup @JvmOverloads constructor(
         val dateText = getChildAt(1)
         val flexboxLayout = getChildAt(2)
 
-        Timber.i("CUSTOM $width $height")
         messageText.layout(
             width - messageText.measuredWidth,
             topTitleMargin,
@@ -67,7 +63,7 @@ class OutcomeMessageViewGroup @JvmOverloads constructor(
             dateText.measuredHeight + messageText.bottom
         )
         flexboxLayout.layout(
-            width- flexboxLayout.measuredWidth,
+            width - flexboxLayout.measuredWidth,
             dateText.bottom - topTitleMargin / 2,
             width,
             flexboxLayout.measuredHeight + dateText.bottom

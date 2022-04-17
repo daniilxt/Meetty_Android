@@ -18,6 +18,7 @@ class IncomeEmojiMessageViewHolder(val binding: ItemIncomeEmojiMessageBinding) :
         with(binding) {
             tvName.text = message.sender.getCapitalizedFullUserName()
             tvMessage.text = message.content
+            tvDate.text = message.dateTime.toLocalTime().toString()
             ivPhoto.load(R.drawable.placeholder_image) {
                 transformations(CircleCropTransformation())
             }

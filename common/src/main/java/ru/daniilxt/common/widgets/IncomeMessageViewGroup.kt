@@ -34,7 +34,7 @@ class IncomeMessageViewGroup @JvmOverloads constructor(
         for (i in 0 until childCount) {
             val child = getChildAt(i)
             measureChildWithMargins(
-                child, widthMeasureSpec, totalWidth, heightMeasureSpec, totalHeight
+                child, widthMeasureSpec, 0, heightMeasureSpec, totalHeight
             )
             val childMarginLeft = (child.layoutParams as MarginLayoutParams).leftMargin
             val childMarginRight = (child.layoutParams as MarginLayoutParams).rightMargin
@@ -52,7 +52,8 @@ class IncomeMessageViewGroup @JvmOverloads constructor(
         val imageView = getChildAt(0)
         val titleText = getChildAt(1)
         val messageText = getChildAt(2)
-        val flexboxLayout = getChildAt(3)
+        val dateText = getChildAt(3)
+        val flexboxLayout = getChildAt(4)
 
         imageView.layout(
             0, 0, imageView.measuredWidth, imageView.measuredHeight
@@ -69,11 +70,17 @@ class IncomeMessageViewGroup @JvmOverloads constructor(
             messageText.measuredWidth + titleText.left,
             messageText.measuredHeight + titleText.bottom
         )
+        dateText.layout(
+            messageText.right - dateText.measuredWidth - leftTitleMargin,
+            messageText.bottom,
+            messageText.right + topTitleMargin,
+            dateText.measuredHeight + messageText.bottom
+        )
         flexboxLayout.layout(
             messageText.left - leftTitleMargin,
-            messageText.bottom + flexBoxTopMargin,
+            dateText.bottom + flexBoxTopMargin,
             flexboxLayout.measuredWidth + messageText.left - leftTitleMargin,
-            flexboxLayout.measuredHeight + messageText.bottom + flexBoxTopMargin
+            flexboxLayout.measuredHeight + dateText.bottom + flexBoxTopMargin
         )
     }
 
@@ -81,6 +88,7 @@ class IncomeMessageViewGroup @JvmOverloads constructor(
 
         val title = getChildAt(1)
         val message = getChildAt(2)
+        val date = getChildAt(3)
         val rectWidth = maxViewWidth(title, message)
         val drawableOval = drawable
         if (drawableOval != null) {
@@ -88,7 +96,7 @@ class IncomeMessageViewGroup @JvmOverloads constructor(
                 title.left - leftTitleMargin / 2,
                 title.top - topTitleMargin,
                 rectWidth.right,
-                message.bottom + topTitleMargin
+                date.bottom
             )
             drawableOval.draw(canvas)
         }
