@@ -73,4 +73,11 @@
         <item name="android:textSize">@dimen/sp_16</item>
         <item name="android:textAlignment">center</item>
     </style>
+
+    <style name="EditText.InputForm" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">#282828</item>
+    </style>
 </resources>

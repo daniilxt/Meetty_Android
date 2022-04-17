@@ -25,4 +25,6 @@
     <string name="main_features">Основные функции</string>
     <string name="email">Email</string>
     <string name="dialogs">Диалоги</string>
+    <string name="write_message">Написать..</string>
+
 </resources>

@@ -42,9 +42,9 @@ class UserChatFragment : BaseFragment<UserChatViewModel>(R.layout.fragment_user_
         super.setupViews()
         initToolbar()
         initRecycler()
-        binding.btn.setDebounceClickListener {
+   /*     binding.btn.setDebounceClickListener {
             viewModel.sendMessage("hey)")
-        }
+        }*/
     }
 
     private fun initRecycler() {
