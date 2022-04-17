@@ -1,6 +1,5 @@
 package ru.daniilxt.feature.chat.presentation.adapter.view_holder
 
-import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
 import ru.daniilxt.common.widgets.EmojiView
@@ -10,8 +9,8 @@ import ru.daniilxt.feature.domain.model.Message
 import ru.daniilxt.feature.domain.model.Reaction
 
 class IncomeEmojiMessageViewHolder(val binding: ItemIncomeEmojiMessageBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    fun bind(
+    EmojiMessageViewHolder<IncomeEmojiMessageViewHolder>(binding) {
+    override fun bind(
         message: Message,
         onEmojiClickListener: (messageId: Long, reaction: Reaction) -> Unit,
         onMessageLongCLickListener: (messageId: Long) -> Unit

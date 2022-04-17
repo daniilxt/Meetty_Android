@@ -1,15 +1,17 @@
 package ru.daniilxt.feature.chat.presentation.adapter.view_holder
 
-import androidx.recyclerview.widget.RecyclerView
+import android.annotation.SuppressLint
 import ru.daniilxt.common.widgets.EmojiView
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.ItemOutcomeEmojiMessageBinding
 import ru.daniilxt.feature.domain.model.Message
 import ru.daniilxt.feature.domain.model.Reaction
 
+@SuppressLint("NewApi")
+
 class OutcomeEmojiMessageViewHolder(val binding: ItemOutcomeEmojiMessageBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-    fun bind(
+    EmojiMessageViewHolder<OutcomeEmojiMessageViewHolder>(binding) {
+    override fun bind(
         message: Message,
         onEmojiClickListener: (messageId: Long, reaction: Reaction) -> Unit,
         onMessageLongCLickListener: (messageId: Long) -> Unit

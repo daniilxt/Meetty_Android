@@ -147,6 +147,27 @@ object MessageTestProvider {
                 ),
                 sender = UserDialogsProvider.firstUser,
                 isMy = false
+            ),
+            Message(
+                id = 6,
+                dateTime = LocalDateTime.of(2022, 4, 13, 14, 25, 15),
+                "Message from me Hello! ",
+                reactions = listOf(
+                    Reaction(
+                        id = 1,
+                        emojiText = "\uD83D\uDE34",
+                        usersId = listOf(1),
+                        count = 1
+                    ),
+                    Reaction(
+                        id = 2,
+                        emojiText = "\uD83E\uDD29",
+                        usersId = listOf(1, 2),
+                        count = 2
+                    )
+                ),
+                sender = UserDialogsProvider.myUser,
+                isMy = true
             )
         )
     }
