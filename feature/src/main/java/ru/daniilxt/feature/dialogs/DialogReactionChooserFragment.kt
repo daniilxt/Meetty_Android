@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -50,12 +49,6 @@ class DialogReactionChooserFragment : BottomSheetDialogFragment() {
         }
 
         setFragmentResultListener(UserChatFragment.MESSAGE_ID) { _, bundle ->
-            Toast.makeText(
-                requireContext(),
-                "${bundle.getLong(UserChatFragment.MESSAGE_ID)}",
-                Toast.LENGTH_SHORT
-            )
-                .show()
             viewModel.messageId = bundle.getLong(UserChatFragment.MESSAGE_ID)
         }
         return binding.root

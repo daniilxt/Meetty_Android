@@ -1,7 +1,6 @@
 package ru.daniilxt.feature.chat.presentation
 
 import android.annotation.SuppressLint
-import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import io.reactivex.Completable
@@ -34,13 +33,6 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
         _userDialog = chat
     }
 
-    companion object {
-        private const val STOMP = "STOMP_STOMP"
-        const val SOCKET_URL = "wss://bc9b-95-24-226-149.eu.ngrok.io/api/chat/websocket"
-        const val CHAT_TOPIC = "/topic/chat"
-        const val CHAT_LINK_SOCKET = "/api/chat/sock"
-    }
-
     private val gson: Gson = GsonBuilder().registerTypeAdapter(
         LocalDateTime::class.java,
         GsonLocalDateTimeAdapter()
@@ -50,9 +42,7 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
 
     init {
         _userMessages.value = MessageTestProvider.getMessages()
-//            val headerMap: Map<String, String> =
-//                Collections.singletonMap("Authorization", "Token")
-        mStompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, SOCKET_URL/*, headerMap*/)
+        mStompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, SOCKET_URL)
             .withServerHeartbeat(30000)
         resetSubscriptions()
         initChat()
@@ -67,14 +57,13 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { topicMessage: StompMessage ->
-                        Log.d(STOMP, topicMessage.payload)
+                        Timber.tag(STOMP).i(topicMessage.payload)
                         val message: ChatSocketMessage =
                             gson.fromJson(topicMessage.payload, ChatSocketMessage::class.java)
-                        val newMessage = dtoToEntity(message)
-                        addMessage(newMessage)
+                        addMessage(message.toMessage())
                     },
                     {
-                        Log.e(STOMP, "Error!", it)
+                        Timber.tag(STOMP).i("Error! $it")
                     }
                 )
 
@@ -83,11 +72,12 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { lifecycleEvent: LifecycleEvent ->
                     when (lifecycleEvent.type!!) {
-                        LifecycleEvent.Type.OPENED -> Log.d(STOMP, "Stomp connection opened")
-                        LifecycleEvent.Type.ERROR -> Log.e(STOMP, "Error", lifecycleEvent.exception)
+                        LifecycleEvent.Type.OPENED -> Timber.tag(STOMP).i("Stomp connection opened")
+                        LifecycleEvent.Type.ERROR -> Timber.tag(STOMP)
+                            .e("Error ${lifecycleEvent.exception}")
                         LifecycleEvent.Type.FAILED_SERVER_HEARTBEAT,
                         LifecycleEvent.Type.CLOSED -> {
-                            Log.d(STOMP, "Stomp connection closed")
+                            Timber.tag(STOMP).i("Stomp connection closed")
                         }
                     }
                 }
@@ -99,19 +89,13 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
                 mStompClient!!.connect()
             }
         } else {
-            Log.e(STOMP, "mStompClient is null!")
+            Timber.tag(STOMP).e("mStompClient is null!")
         }
     }
 
-    fun sendMessage(text: String) {
-        val message = Message2(text = text, author = "Me", receiver = "Max")
-        val chatSocketMessage = entityToDto(message)
-        sendCompletable(mStompClient!!.send(CHAT_LINK_SOCKET, gson.toJson(chatSocketMessage)))
-        addMessage(message)
-    }
-
-    private fun addMessage(message: Message2) {
+    private fun addMessage(message: Message) {
         Timber.tag(STOMP).i("added msg $message")
+        _userMessages.value = _userMessages.value + listOf(message)
     }
 
     private fun sendCompletable(request: Completable) {
@@ -120,10 +104,10 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     {
-                        Log.d(STOMP, "Stomp sended")
+                        Timber.tag(STOMP).i("Stomp sended")
                     },
                     {
-                        Log.e(STOMP, "Stomp error", it)
+                        Timber.tag(STOMP).e("Stomp error $it")
                     }
                 )
         )
@@ -144,27 +128,38 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
         compositeDisposable?.dispose()
     }
 
-    fun sendMessage2(text: String) {
-        _userMessages.value = _userMessages.value + listOf(
-            Message(
-                dateTime = LocalDateTime.now(),
-                reactions = emptyList(),
+    fun sendMessage(text: String) {
+        val chatSocketMessage =
+            ChatSocketMessage(
                 content = text,
-                isMy = true,
-                sender = UserDialogsProvider.myUser
+                sender = iUser,
+                receiver = companion
             )
-        )
+        sendCompletable(mStompClient!!.send(CHAT_LINK_SOCKET, gson.toJson(chatSocketMessage)))
+        //addMessage(chatSocketMessage.toMessage())
     }
 
     // TODO handle reactions count
     fun setReaction(reactionWrapper: ReactionWrapper) {
         _userMessages.value = _userMessages.value.map {
             if (it.id == reactionWrapper.messageId) {
-                val reactions = it.reactions + listOf(reactionWrapper.reaction)
+                val reactions = it.reactions + listOf(
+                    reactionWrapper.reaction
+                )
                 it.copy(reactions = reactions)
             } else {
                 it
             }
         }
+    }
+
+    companion object {
+        val iUser = UserDialogsProvider.myUser
+        val companion = UserDialogsProvider.firstUser
+
+        private const val STOMP = "STOMP_STOMP"
+        const val SOCKET_URL = "wss://4847-95-24-226-149.eu.ngrok.io/api/chat/websocket"
+        const val CHAT_TOPIC = "/topic/chat"
+        const val CHAT_LINK_SOCKET = "/api/chat/sock"
     }
 }

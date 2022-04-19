@@ -46,9 +46,9 @@ class UserChatFragment :
         requireActivity().setStatusBarColor(R.color.white)
         requireView().setLightStatusBar()
         setFragmentResultListener(DialogReactionChooserFragment.RECEIVED_DATA_KEY) { _, bundle ->
-            Toast.makeText(requireContext(), "GOOD", Toast.LENGTH_SHORT).show()
 
-             val reactionWrapper = bundle.getParcelable<ReactionWrapper>(DialogReactionChooserFragment.RECEIVED_DATA_KEY)
+            val reactionWrapper =
+                bundle.getParcelable<ReactionWrapper>(DialogReactionChooserFragment.RECEIVED_DATA_KEY)
             reactionWrapper?.let { viewModel.setReaction(it) }
         }
     }
@@ -66,7 +66,8 @@ class UserChatFragment :
         initRecycler()
         binding.etMessage.ibSend.setDebounceClickListener {
             if (binding.etMessage.inputFormEt.text?.isNotEmpty() == true) {
-                viewModel.sendMessage2(binding.etMessage.inputFormEt.text.toString())
+                viewModel.sendMessage(binding.etMessage.inputFormEt.text.toString())
+                binding.etMessage.inputFormEt.text?.clear()
             }
         }
     }

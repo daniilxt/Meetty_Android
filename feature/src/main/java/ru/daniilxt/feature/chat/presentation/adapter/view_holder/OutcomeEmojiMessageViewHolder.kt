@@ -18,7 +18,8 @@ class OutcomeEmojiMessageViewHolder(val binding: ItemOutcomeEmojiMessageBinding)
     ) {
         with(binding) {
             tvMessage.text = message.content
-            tvDate.text = message.dateTime.toLocalTime().toString()
+            val time = message.dateTime.toLocalTime()
+            tvDate.text = "${time.hour}:${time.minute}:${time.second}"
             flexbox.removeAllViews()
             message.reactions.forEach { reaction ->
                 val emojiView = EmojiView(binding.root.context)

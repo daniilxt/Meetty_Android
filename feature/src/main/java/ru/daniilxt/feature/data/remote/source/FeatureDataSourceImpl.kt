@@ -12,7 +12,7 @@ class FeatureDataSourceImpl @Inject constructor(
 ) :
     FeatureDataSource {
     override fun getDialogs(userId: Long): Single<RequestResult<List<UserDialog>>> {
-        return featureApiService.getEvents().map {
+        return featureApiService.getEvents(userId).map {
             when {
                 it.isSuccessful -> {
                     RequestResult.Success(listOf())

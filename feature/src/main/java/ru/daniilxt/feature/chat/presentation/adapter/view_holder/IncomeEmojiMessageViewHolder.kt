@@ -7,6 +7,7 @@ import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.ItemIncomeEmojiMessageBinding
 import ru.daniilxt.feature.domain.model.Message
 import ru.daniilxt.feature.domain.model.Reaction
+import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
 
 class IncomeEmojiMessageViewHolder(val binding: ItemIncomeEmojiMessageBinding) :
     EmojiMessageViewHolder<IncomeEmojiMessageViewHolder>(binding) {
@@ -18,8 +19,9 @@ class IncomeEmojiMessageViewHolder(val binding: ItemIncomeEmojiMessageBinding) :
         with(binding) {
             tvName.text = message.sender.getCapitalizedFullUserName()
             tvMessage.text = message.content
-            tvDate.text = message.dateTime.toLocalTime().toString()
-            ivPhoto.load(R.drawable.placeholder_image) {
+            val time = message.dateTime.toLocalTime()
+            tvDate.text = "${time.hour}:${time.minute}:${time.second}"
+            ivPhoto.load(message.sender.avatarLink) {
                 transformations(CircleCropTransformation())
             }
             flexbox.removeAllViews()
@@ -28,6 +30,11 @@ class IncomeEmojiMessageViewHolder(val binding: ItemIncomeEmojiMessageBinding) :
                 emojiView.reactionsCount = reaction.count.toInt()
                 emojiView.text = reaction.emojiText
                 emojiView.setBackgroundResource(R.drawable.bg_custom_text_view)
+
+                if (UserDialogsProvider.myUser.id in reaction.usersId) {
+                    emojiView.isSelected = true
+                }
+
                 emojiView.setOnClickListener { v ->
                     v.isSelected = !v.isSelected
                     onEmojiClickListener(message.id, reaction)
