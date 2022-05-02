@@ -24,4 +24,8 @@
     <string name="go">Вперёд</string>
     <string name="main_features">Основные функции</string>
     <string name="email">Email</string>
+
+    <string name="tab_name">Шаг %d</string>
+    <string name="skip_step">Пропустить шаг</string>
+
 </resources>

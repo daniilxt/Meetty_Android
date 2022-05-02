@@ -1,5 +1,5 @@
 package ru.daniilxt.feature.template
 
 fun main() {
-    GenerateFeatureModule("login", "Login").main()
+    GenerateFeatureModule("profile_steps", "ProfileSteps").main()
 }
