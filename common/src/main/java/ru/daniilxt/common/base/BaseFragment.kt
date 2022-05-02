@@ -23,8 +23,8 @@ abstract class BaseFragment<T : BaseViewModel>(@LayoutRes fragmentLayoutId: Int)
     protected abstract val binding: ViewBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        inject()
         super.onViewCreated(view, savedInstanceState)
+        inject()
         setupViews()
         setupFromArguments()
         setupViewModelSubscriber()

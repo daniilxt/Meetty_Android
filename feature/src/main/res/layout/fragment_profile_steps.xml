@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="@dimen/dp_10"
-        android:visibility="gone"
         android:indeterminateTint="@color/button_tint_primary"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,26 +31,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_step_title"
-        style="@style/TextView.Title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginTop="@dimen/dp_16"
-        android:includeFontPadding="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
-        app:layout_constraintWidth_percent="0.65" />
-
     <ru.daniilxt.common.widgets.page_indicator.PageIndicator
         android:id="@+id/frg_profile_steps__page_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_30"
+        app:layout_constraintBottom_toTopOf="@id/frg_profile_steps__mb_next"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_step_title"
         app:selectedColor="@color/button_tint_primary"
         app:unselectedColor="@color/button_tint_primary" />
 
@@ -58,9 +48,10 @@
         android:id="@+id/frg_profile_steps__view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/frg_profile_steps__mb_next"
+        app:layout_constraintBottom_toTopOf="@id/frg_profile_steps__page_indicator"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frg_profile_steps__page_indicator" />
+        app:layout_constraintTop_toBottomOf="@id/frg_profile_steps__page_indicator"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/frg_profile_steps__mb_next"

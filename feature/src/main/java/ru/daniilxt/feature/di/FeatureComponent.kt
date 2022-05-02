@@ -8,7 +8,10 @@ import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.login.di.LoginComponent
 import ru.daniilxt.feature.main_screen.di.MainScreenComponent
 import ru.daniilxt.feature.onboarding.di.OnboardingComponent
+import ru.daniilxt.feature.profile_personal_info.di.ProfilePersonalInfoComponent
 import ru.daniilxt.feature.profile_steps.di.ProfileStepsComponent
+import ru.daniilxt.feature.profile_user_achievements.di.ProfileUserAchievementsComponent
+import ru.daniilxt.feature.profile_user_education.di.ProfileUserEducationComponent
 import ru.daniilxt.feature.welcome_screen.di.WelcomeScreenComponent
 import ru.daniilxt.feature.welcome_screen_description.di.WelcomeScreenDescriptionComponent
 
@@ -31,6 +34,9 @@ interface FeatureComponent {
     fun welcomeScreenDescriptionComponentFactory(): WelcomeScreenDescriptionComponent.Factory
     fun loginComponentFactory(): LoginComponent.Factory
     fun profileStepsComponentFactory(): ProfileStepsComponent.Factory
+    fun profilePersonalInfoComponentFactory(): ProfilePersonalInfoComponent.Factory
+    fun profileUserAchievementsComponentFactory(): ProfileUserAchievementsComponent.Factory
+    fun profileUserEducationComponentFactory(): ProfileUserEducationComponent.Factory
 
     @Component.Factory
     interface Factory {
