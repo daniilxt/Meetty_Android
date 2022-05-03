@@ -32,6 +32,10 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         }
     var lastUsedFrg: Fragment? = null
 
+    val fragmentsTitleList: Array<String> by lazy {
+        requireContext().resources.getStringArray(R.array.profile_steps)
+    }
+
     private val viewPagerAdapter by lazy {
         ViewPagerAdapter(
             this,
@@ -47,6 +51,7 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         override fun onPageSelected(position: Int) {
             viewModel.setCurrentSelectedPage(position)
             lastUsedFrg = currentFragment
+            binding.tvStepTitle.text = fragmentsTitleList[position]
         }
     }
 
@@ -61,26 +66,26 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
     override fun onDestroy() {
         super.onDestroy()
         // TODO why crash
-//        binding.frgProfileStepsViewPager.unregisterOnPageChangeCallback(viewPagerCallback)
+//        binding.viewPager.unregisterOnPageChangeCallback(viewPagerCallback)
     }
 
     private fun initViewPager() {
-        binding.frgProfileStepsViewPager.adapter = viewPagerAdapter
-        binding.frgProfileStepsPageIndicator.setViewPager(binding.frgProfileStepsViewPager)
-        binding.frgProfileStepsViewPager.setCurrentItem(
+        binding.viewPager.adapter = viewPagerAdapter
+        binding.includeBottomStepMenu.pageIndicator.setViewPager(binding.viewPager)
+        binding.viewPager.setCurrentItem(
             viewModel.currentSelectedPage,
             true
         )
 
-        binding.frgProfileStepsViewPager.registerOnPageChangeCallback(viewPagerCallback)
+        binding.viewPager.registerOnPageChangeCallback(viewPagerCallback)
 
         // This is needed to disable user scrolling
-        binding.frgProfileStepsViewPager.isUserInputEnabled = false
-        binding.frgProfileStepsViewPager.offscreenPageLimit = viewPagerAdapter.itemCount
+        binding.viewPager.isUserInputEnabled = false
+        binding.viewPager.offscreenPageLimit = viewPagerAdapter.itemCount
     }
 
     private fun initButtons() {
-        binding.frgProfileStepsMbNext.setDebounceClickListener {
+        binding.includeBottomStepMenu.mbNext.setDebounceClickListener {
             currentFragment?.let { frg ->
                 viewPagerAdapter.checkFragmentAlacrity(frg) { isFieldsFilled ->
                     if (isFieldsFilled) {
@@ -89,20 +94,20 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
                 }
             }
         }
-        binding.frgProfileStepsMbPrev.setDebounceClickListener {
+        binding.includeBottomStepMenu.mbPrev.setDebounceClickListener {
             openPreviousPage()
         }
-        binding.frgProfileStepsMbSkip.setDebounceClickListener {
+        binding.includeBottomStepMenu.mbSkip.setDebounceClickListener {
         }
     }
 
     private fun openNextPage() {
-        if (binding.frgProfileStepsViewPager.currentItem == viewPagerAdapter.itemCount - 1) {
+        if (binding.viewPager.currentItem == viewPagerAdapter.itemCount - 1) {
             handleProfileEndFilling()
             return
         }
         hideKeyboardWithDelay {
-            binding.frgProfileStepsViewPager.setCurrentItem(
+            binding.viewPager.setCurrentItem(
                 viewModel.currentSelectedPage + 1,
                 true
             )
@@ -115,7 +120,7 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
                 viewModel.back()
                 return@hideKeyboardWithDelay
             }
-            binding.frgProfileStepsViewPager.setCurrentItem(
+            binding.viewPager.setCurrentItem(
                 viewModel.currentSelectedPage - 1,
                 true
             )

@@ -20,6 +20,9 @@ class ProfilePersonalInfoFragment :
     override val binding: FragmentProfilePersonalInfoBinding by viewBinding(
         FragmentProfilePersonalInfoBinding::bind
     )
+    private val etDelegate by lazy {
+        InputFieldDelegate(binding)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,8 +30,21 @@ class ProfilePersonalInfoFragment :
         requireView().setLightStatusBar()
     }
 
+    override fun setupViews() {
+        super.setupViews()
+        initTextFields()
+        addNewDelegate(etDelegate)
+    }
+
+    private fun addNewDelegate(etDelegate: BaseDelegate) {
+        etDelegate.loadDelegate()
+    }
+
     override fun isFieldsFilled(callback: (isFilled: Boolean) -> Unit) {
         callback(true)
+    }
+
+    private fun initTextFields() {
     }
 
     override fun inject() {

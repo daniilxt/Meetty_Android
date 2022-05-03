@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/background_secondary"
+    android:background="@color/background_third"
     tools:context=".profile_steps.presentation.ProfileStepsFragment">
 
     <ProgressBar
@@ -20,76 +20,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginTop="@dimen/dp_40"
-        android:textAllCaps="true"
-        android:textColor="@color/text_color_secondary_dark"
-        android:textSize="@dimen/sp_14"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ru.daniilxt.common.widgets.page_indicator.PageIndicator
-        android:id="@+id/frg_profile_steps__page_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginTop="@dimen/dp_16"
-        android:layout_marginBottom="@dimen/dp_30"
-        app:layout_constraintBottom_toTopOf="@id/frg_profile_steps__mb_next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:selectedColor="@color/button_tint_primary"
-        app:unselectedColor="@color/button_tint_primary" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/frg_profile_steps__view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/frg_profile_steps__page_indicator"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frg_profile_steps__page_indicator"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/frg_profile_steps__mb_next"
-        style="@style/Button.Enter.Filled"
+        android:id="@+id/tv_step_title"
+        style="@style/TextView.Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp_16"
-        android:text="@string/next"
-        app:layout_constraintBottom_toTopOf="@id/frg_profile_steps__mb_skip"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_40"
+        android:fontFamily="@font/montserrat_medium"
+        android:textSize="@dimen/sp_20"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/frg_profile_steps__mb_prev"
-        app:layout_goneMarginBottom="@dimen/dp_16" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/frg_profile_steps__mb_prev"
-        style="@style/ImageButton.Filled.Centered"
-        android:layout_width="@dimen/dp_60"
-        android:layout_height="@dimen/dp_48"
-        android:layout_marginHorizontal="@dimen/dp_16"
-        android:backgroundTint="@color/white"
-        app:icon="@drawable/ic_back_arrow_24"
-        app:iconGravity="textStart"
-        app:iconSize="@dimen/dp_26"
-        app:iconTint="@color/button_tint_primary"
-        app:layout_constraintBottom_toBottomOf="@id/frg_profile_steps__mb_next"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/frg_profile_steps__mb_next" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.65" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/frg_profile_steps__mb_skip"
-        style="@style/Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp_16"
-        android:layout_marginBottom="@dimen/dp_16"
-        android:text="@string/skip_step"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/include_bottom_step_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_step_title" />
+
+    <include
+        android:id="@+id/include_bottom_step_menu"
+        layout="@layout/include_bottom_step_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

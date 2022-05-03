@@ -2,7 +2,10 @@ package ru.daniilxt.common.extensions
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.graphics.Typeface
 import android.os.Build
+import android.text.InputFilter
+import android.text.InputType
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -14,7 +17,9 @@ import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import ru.daniilxt.common.R
+import ru.daniilxt.common.databinding.InputFieldBinding
 import ru.daniilxt.common.utils.DebounceClickListener
 import ru.daniilxt.common.utils.DebouncePostHandler
 
@@ -118,7 +123,34 @@ fun View.dpToPx(dp: Float): Float = context.dpToPx(dp)
  * @param text Displayed text.
  */
 fun TextView.showAnimatedText(text: String) {
-    val anim1 = AnimationUtils.loadAnimation(this.context, R.anim.appear_text);
+    val anim1 = AnimationUtils.loadAnimation(this.context, R.anim.appear_text)
     this.startAnimation(anim1)
     this.text = text
+}
+
+/**
+ * Allows set text attributes on EditTextLayout. Set hint,text,input type
+ *
+ * @param hintText The hint text string
+ * @param textLength The constraint of text. Like: max text length is 6
+ * @param inputType The type of text like Password,TextAllCaps etc..
+ * @param text The text in EditText..
+ * @param textTypeface The text typeface like BOLD or NORMAL etc...
+ */
+fun InputFieldBinding.setInputFormAttributes(
+    hintText: String,
+    textLength: Int = 100,
+    inputType: Int = (InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS),
+    text: String = "",
+    textTypeface: Int = Typeface.NORMAL
+) {
+    with(this) {
+        textInputLayout.hint = hintText
+        textInputEt.inputType = inputType
+        textInputLayout.typeface =
+            ResourcesCompat.getFont(this.textInputEt.context, R.font.gilroy_medium)
+        textInputEt.filters += InputFilter.LengthFilter(textLength)
+        textInputEt.setText(text)
+        textInputEt.setTypeface(textInputEt.typeface, textTypeface)
+    }
 }
