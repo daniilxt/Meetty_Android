@@ -16,6 +16,7 @@ import ru.daniilxt.feature.databinding.FragmentProfileStepsBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
 import ru.daniilxt.feature.profile_personal_info.presentation.ProfilePersonalInfoFragment
+import ru.daniilxt.feature.profile_registration.presentation.ProfileRegistrationFragment
 import ru.daniilxt.feature.profile_steps.presentation.adapter.ViewPagerAdapter
 import ru.daniilxt.feature.profile_user_achievements.presentation.ProfileUserAchievementsFragment
 import ru.daniilxt.feature.profile_user_education.presentation.ProfileUserEducationFragment
@@ -40,7 +41,7 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         ViewPagerAdapter(
             this,
             listOf(
-                ProfilePersonalInfoFragment.newInstance(),
+                ProfileRegistrationFragment.newInstance(),
                 ProfileUserAchievementsFragment.newInstance(),
                 ProfileUserAchievementsFragment.newInstance(),
                 ProfileUserEducationFragment.newInstance()
