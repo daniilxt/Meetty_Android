@@ -1,5 +1,6 @@
 package ru.daniilxt.feature.profile_personal_info.presentation
 
+import ru.daniilxt.common.base.BaseDelegate
 import ru.daniilxt.common.extensions.setInputFormAttributes
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentProfilePersonalInfoBinding

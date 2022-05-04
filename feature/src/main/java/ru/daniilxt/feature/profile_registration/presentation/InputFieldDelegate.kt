@@ -4,7 +4,7 @@ import android.text.InputType
 import ru.daniilxt.common.extensions.setInputFormAttributes
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentProfileRegistrationBinding
-import ru.daniilxt.feature.profile_personal_info.presentation.BaseDelegate
+import ru.daniilxt.common.base.BaseDelegate
 
 class InputFieldDelegate(
     private val binding: FragmentProfileRegistrationBinding,

@@ -1,4 +1,4 @@
-package ru.daniilxt.feature.profile_personal_info.presentation
+package ru.daniilxt.common.base
 
 import android.content.Context
 import androidx.viewbinding.ViewBinding

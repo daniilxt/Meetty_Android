@@ -2,6 +2,7 @@ package ru.daniilxt.feature.profile_personal_info.presentation
 
 import android.os.Bundle
 import android.view.View
+import ru.daniilxt.common.base.BaseDelegate
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.setLightStatusBar
