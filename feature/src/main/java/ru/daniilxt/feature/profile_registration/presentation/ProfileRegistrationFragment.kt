@@ -1,28 +1,33 @@
 package ru.daniilxt.feature.profile_registration.presentation
 
-import android.os.Bundle
-import android.view.View
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
-import ru.daniilxt.common.extensions.setLightStatusBar
-import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentProfileRegistrationBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
+import ru.daniilxt.feature.profile_personal_info.presentation.BaseDelegate
+import ru.daniilxt.feature.profile_steps.presentation.adapter.IValidateFragmentFields
 
 class ProfileRegistrationFragment :
-    BaseFragment<ProfileRegistrationViewModel>(R.layout.fragment_profile_registration) {
+    BaseFragment<ProfileRegistrationViewModel>(R.layout.fragment_profile_registration),
+    IValidateFragmentFields {
 
     override val binding: FragmentProfileRegistrationBinding by viewBinding(
         FragmentProfileRegistrationBinding::bind
     )
+    private val etDelegate by lazy {
+        InputFieldDelegate(binding, viewModel)
+    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        requireActivity().setStatusBarColor(R.color.white)
-        requireView().setLightStatusBar()
+    override fun setupViews() {
+        super.setupViews()
+        addNewDelegate(etDelegate)
+    }
+
+    private fun addNewDelegate(etDelegate: BaseDelegate) {
+        etDelegate.loadDelegate()
     }
 
     override fun inject() {
@@ -36,5 +41,10 @@ class ProfileRegistrationFragment :
         fun newInstance(): ProfileRegistrationFragment {
             return ProfileRegistrationFragment()
         }
+    }
+
+    override fun isFieldsFilled(callback: (isFilled: Boolean) -> Unit) {
+        val isFilled = etDelegate.isFieldsCorrectAndPutToBundle()
+        callback(isFilled)
     }
 }
