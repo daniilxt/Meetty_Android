@@ -11,6 +11,7 @@
         style="@style/TextView.SubTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_marginHorizontal="@dimen/dp_16"
         tools:text="Август 2021" />
 
