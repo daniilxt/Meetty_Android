@@ -41,8 +41,8 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         ViewPagerAdapter(
             this,
             listOf(
+                ProfilePersonalInfoFragment.newInstance(),
                 ProfileRegistrationFragment.newInstance(),
-                ProfileUserAchievementsFragment.newInstance(),
                 ProfileUserAchievementsFragment.newInstance(),
                 ProfileUserEducationFragment.newInstance()
             )
@@ -129,7 +129,6 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
     }
 
     private fun handleProfileEndFilling() {
-
     }
 
     override fun inject() {

@@ -39,6 +39,25 @@
     <string name="password_error">Введите корректный пароль</string>
     <string name="passwords_not_match">Пароли не совпадают</string>
     <string name="email_incorrect">Введите корректный Email</string>
+    <string name="sim_hint">__________</string>
+    <string name="sim_mask">+7 (###) ###-##-##</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="birthd_day">Дата рождения</string>
+    <string name="calendar_month_header">%s %s</string>
+
+    <string name="monday_short">пн</string>
+    <string name="tuesday_short">вт</string>
+    <string name="wednesday_short">ср</string>
+    <string name="thursday_short">чт</string>
+    <string name="friday_short">пт</string>
+    <string name="saturday_short">сб</string>
+    <string name="sunday_short">вс</string>
+
+    <string name="select_date">Выберите дату</string>
+    <string name="select_start_date">Выберите дату начала</string>
+    <string name="end_date">Дата окончания</string>
+    <string name="save">Сохранить</string>
+    <string name="event_date">Дата события</string>
 
 
     <string-array name="profile_steps">

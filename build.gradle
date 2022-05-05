@@ -61,6 +61,10 @@ buildscript {
 
         coilVersion = '1.3.2'
 
+        maskedEditTextVersion = '1.0.5'
+
+        calendarViewVersion = '1.0.4'
+
 
         kotlinDep = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
@@ -114,6 +118,10 @@ buildscript {
         roomCompilerKapt = "androidx.room:room-compiler:$room_version"
 
         coilDep = "io.coil-kt:coil:$coilVersion"
+
+        maskedEditTextDep = "ru.egslava:MaskedEditText:$maskedEditTextVersion"
+
+        calendarViewDep = "com.github.kizitonwose:CalendarView:$calendarViewVersion"
     }
 
     ext.kotlin_version = "1.5.30"

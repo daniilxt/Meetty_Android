@@ -5,6 +5,7 @@ import dagger.Component
 import ru.daniilxt.common.di.CommonApi
 import ru.daniilxt.common.di.scope.FeatureScope
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.calendar.di.CalendarComponent
 import ru.daniilxt.feature.login.di.LoginComponent
 import ru.daniilxt.feature.main_screen.di.MainScreenComponent
 import ru.daniilxt.feature.onboarding.di.OnboardingComponent
@@ -15,7 +16,6 @@ import ru.daniilxt.feature.profile_user_achievements.di.ProfileUserAchievementsC
 import ru.daniilxt.feature.profile_user_education.di.ProfileUserEducationComponent
 import ru.daniilxt.feature.welcome_screen.di.WelcomeScreenComponent
 import ru.daniilxt.feature.welcome_screen_description.di.WelcomeScreenDescriptionComponent
-
 
 @Component(
     dependencies = [
@@ -39,6 +39,7 @@ interface FeatureComponent {
     fun profileUserAchievementsComponentFactory(): ProfileUserAchievementsComponent.Factory
     fun profileUserEducationComponentFactory(): ProfileUserEducationComponent.Factory
     fun profileRegistrationComponentFactory(): ProfileRegistrationComponent.Factory
+    fun calendarComponentFactory(): CalendarComponent.Factory
 
     @Component.Factory
     interface Factory {

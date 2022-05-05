@@ -76,4 +76,6 @@ dependencies {
 
     implementation coroutinesDep
     implementation coroutinesAndroidDep
+
+    implementation maskedEditTextDep
 }
