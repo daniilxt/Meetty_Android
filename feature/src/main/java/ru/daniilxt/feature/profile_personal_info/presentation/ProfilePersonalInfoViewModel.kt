@@ -7,4 +7,13 @@ import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
 class ProfilePersonalInfoViewModel(
     private val router: FeatureRouter,
     private val dataWrapper: ProfileDataWrapper
-) : BaseViewModel()
+) : BaseViewModel() {
+    fun isFieldValid(text: String): Boolean = text.isNotBlank()
+    fun isPhoneNumberCorrect(simPhoneNumber: String): Boolean {
+        return simPhoneNumber.length == PHONE_NUMBER_LENGTH_WITHOUT_COUNTRY_CODE
+    }
+
+    companion object {
+        private const val PHONE_NUMBER_LENGTH_WITHOUT_COUNTRY_CODE = 10
+    }
+}

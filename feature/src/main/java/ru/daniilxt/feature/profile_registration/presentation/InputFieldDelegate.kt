@@ -1,10 +1,10 @@
 package ru.daniilxt.feature.profile_registration.presentation
 
 import android.text.InputType
+import ru.daniilxt.common.base.BaseDelegate
 import ru.daniilxt.common.extensions.setInputFormAttributes
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentProfileRegistrationBinding
-import ru.daniilxt.common.base.BaseDelegate
 
 class InputFieldDelegate(
     private val binding: FragmentProfileRegistrationBinding,

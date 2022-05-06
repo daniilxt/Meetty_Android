@@ -39,6 +39,8 @@
     <string name="password_error">Введите корректный пароль</string>
     <string name="passwords_not_match">Пароли не совпадают</string>
     <string name="email_incorrect">Введите корректный Email</string>
+    <string name="field_cannot_be_empty">Поле не может быть пустым</string>
+    <string name="phone_number_warning">Введите номер телефона</string>
     <string name="sim_hint">__________</string>
     <string name="sim_mask">+7 (###) ###-##-##</string>
     <string name="phone_number">Номер телефона</string>
@@ -59,6 +61,8 @@
     <string name="save">Сохранить</string>
     <string name="event_date">Дата события</string>
     <string name="ok">ок</string>
+    <string name="man">Мужской</string>
+    <string name="woman">Женский</string>
 
 
     <string-array name="profile_steps">

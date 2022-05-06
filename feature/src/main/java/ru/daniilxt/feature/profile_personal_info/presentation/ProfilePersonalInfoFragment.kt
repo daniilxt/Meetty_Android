@@ -39,7 +39,7 @@ class ProfilePersonalInfoFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().setStatusBarColor(R.color.white)
+        requireActivity().setStatusBarColor(R.color.background_third)
         requireView().setLightStatusBar()
     }
 
@@ -50,6 +50,7 @@ class ProfilePersonalInfoFragment :
     }
 
     private fun setButtons() {
+
         binding.etBirthDay.textInputEt.setDebounceClickListener {
             datePickerDialog.setSelectedDate(LocalDate.now())
             datePickerDialog.setOnDestroyListener { date ->
@@ -62,6 +63,15 @@ class ProfilePersonalInfoFragment :
                 )
             }
             datePickerDialog.show(parentFragmentManager, DATE_DIALOG_TAG)
+        }
+        binding.mbMan.isChecked = true
+        binding.mbMan.setDebounceClickListener(delay = 0L) {
+            binding.mbMan.isChecked = true
+            binding.mbWoman.isChecked = false
+        }
+        binding.mbWoman.setDebounceClickListener(delay = 0L) {
+            binding.mbMan.isChecked = false
+            binding.mbWoman.isChecked = true
         }
     }
 
