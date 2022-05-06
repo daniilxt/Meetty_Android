@@ -1,14 +1,17 @@
 package ru.daniilxt.feature.profile_personal_info.presentation
 
-import android.widget.Toast
+import android.content.res.ColorStateList
+import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputLayout
 import ru.daniilxt.common.base.BaseDelegate
-import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setInputFormAttributes
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentProfilePersonalInfoBinding
 
-class InputFieldDelegate(private val binding: FragmentProfilePersonalInfoBinding) :
+class InputFieldDelegate(
+    private val binding: FragmentProfilePersonalInfoBinding,
+    private val viewModel: ProfilePersonalInfoViewModel
+) :
     BaseDelegate(binding) {
     override fun loadDelegate() {
         super.loadDelegate()
@@ -23,11 +26,16 @@ class InputFieldDelegate(private val binding: FragmentProfilePersonalInfoBinding
                 hintText = context.getString(R.string.birthd_day),
             )
             textInputLayout.endIconMode = TextInputLayout.END_ICON_CUSTOM
+            textInputLayout.setEndIconTintList(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        context,
+                        R.color.background_third_dark
+                    )
+                )
+            )
             textInputLayout.setEndIconDrawable(R.drawable.ic_calendar_24)
             textInputEt.isFocusableInTouchMode = false
-            textInputEt.setDebounceClickListener {
-                Toast.makeText(context, "dkfk", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 }

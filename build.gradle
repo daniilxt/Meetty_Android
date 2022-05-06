@@ -3,17 +3,17 @@ buildscript {
 
     ext {
         minSdkVersion = 21
-        targetSdkVersion = 30
+        targetSdkVersion = 31
         versionCode = 1
         versionName = "1.0.0"
-        compileSdkVersion = 30
+        compileSdkVersion = 31
         buildToolsVersion = "30.0.2"
 
         kotlinVersion = '1.5.30'
 
         ktlintPinterestVersion = '0.40.0'
 
-        materialVersion = '1.5.0-alpha02'
+        materialVersion = '1.6.0'
 
         googleServicesVersion = '4.3.10'
 
@@ -64,6 +64,8 @@ buildscript {
         maskedEditTextVersion = '1.0.5'
 
         calendarViewVersion = '1.0.4'
+
+        carouselLayoutVersion = '1.4.6'
 
 
         kotlinDep = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
@@ -122,6 +124,8 @@ buildscript {
         maskedEditTextDep = "ru.egslava:MaskedEditText:$maskedEditTextVersion"
 
         calendarViewDep = "com.github.kizitonwose:CalendarView:$calendarViewVersion"
+
+        carouselLayoutDep = "com.mig35:carousellayoutmanager:$carouselLayoutVersion"
     }
 
     ext.kotlin_version = "1.5.30"

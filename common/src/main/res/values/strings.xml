@@ -58,6 +58,7 @@
     <string name="end_date">Дата окончания</string>
     <string name="save">Сохранить</string>
     <string name="event_date">Дата события</string>
+    <string name="ok">ок</string>
 
 
     <string-array name="profile_steps">

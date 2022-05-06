@@ -22,6 +22,9 @@ import ru.daniilxt.common.R
 import ru.daniilxt.common.databinding.InputFieldBinding
 import ru.daniilxt.common.utils.DebounceClickListener
 import ru.daniilxt.common.utils.DebouncePostHandler
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.Month
 import java.time.YearMonth
 import java.util.*
 
@@ -180,4 +183,10 @@ fun TextView.setStandaloneMonthString(yearMonth: YearMonth, text: String = "") {
 fun TextView.setTextColorFromRes(@ColorRes resId: Int) {
     val color = ContextCompat.getColor(context, resId)
     this.setTextColor(color)
+}
+
+fun Month.getStandaloneName(): String {
+    return SimpleDateFormat("LLLL", Locale.getDefault()).format(
+        LocalDate.now().withMonth(this.value).toDate()
+    )
 }
