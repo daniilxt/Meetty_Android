@@ -1,14 +1,20 @@
 package ru.daniilxt.feature.profile_personal_info.presentation
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import ru.daniilxt.common.base.BaseDelegate
 import ru.daniilxt.common.extensions.setInputFormAttributes
 import ru.daniilxt.feature.R
+import ru.daniilxt.feature.data_wrapper.UserPersonalInfo
 import ru.daniilxt.feature.databinding.FragmentProfilePersonalInfoBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
+@SuppressLint("NewApi")
 class InputFieldDelegate(
     private val binding: FragmentProfilePersonalInfoBinding,
     private val viewModel: ProfilePersonalInfoViewModel
@@ -50,21 +56,40 @@ class InputFieldDelegate(
 
     fun isFieldsCorrectAndPutToBundle(): Boolean {
         val firstName = binding.etFirstName.textInputEt
-        if (isFieldNotEmpty(firstName)) return false
+        if (!isFieldNotEmpty(firstName)) return false
 
         val lastName = binding.etLastName.textInputEt
-        if (isFieldNotEmpty(lastName)) return false
+        if (!isFieldNotEmpty(lastName)) return false
 
         val birthDay = binding.etBirthDay.textInputEt
-        if (isFieldNotEmpty(birthDay)) return false
-
-        val phoneNumber = binding.etPhoneNumber
-
-        if (!viewModel.isPhoneNumberCorrect(phoneNumber.text.toString())) {
-            firstName.error = context.getString(R.string.phone_number_warning)
+        if (!viewModel.isFieldValid(birthDay.text.toString())) {
+            Toast.makeText(context, R.string.field_cannot_be_empty, Toast.LENGTH_SHORT).show()
             return false
         }
-        //viewModel.putRegistrationData(lastName.text.toString(), lastName.text.toString())
+
+        val phoneNumber = binding.etPhoneNumber
+        if (!viewModel.isPhoneNumberCorrect(phoneNumber.rawText)) {
+            Toast.makeText(context, R.string.phone_number_warning, Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        viewModel.putRegistrationData(
+            UserPersonalInfo(
+                firstName = firstName.text.toString(),
+                lastName = lastName.text.toString(),
+                birthDay = LocalDate.parse(birthDay.text.toString(), format),
+                phoneNumber = phoneNumber.text.toString(),
+                sex = getActiveButtonText()
+            )
+        )
         return true
+    }
+
+    private fun getActiveButtonText() = with(binding) {
+        if (mbMan.isChecked) mbMan.text.toString() else mbWoman.text.toString()
+    }
+
+    companion object {
+        val format: DateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
     }
 }

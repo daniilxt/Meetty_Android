@@ -11,12 +11,10 @@ import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
-import ru.daniilxt.feature.calendar.presentation.CalendarFragment
 import ru.daniilxt.feature.calendar_dialog.dialogs.DatePickerDialogFragment
 import ru.daniilxt.feature.databinding.FragmentProfilePersonalInfoBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
-import ru.daniilxt.feature.domain.model.CalendarSelectionMode
 import ru.daniilxt.feature.profile_steps.presentation.adapter.IValidateFragmentFields
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -32,7 +30,6 @@ class ProfilePersonalInfoFragment :
     private val etDelegate by lazy {
         InputFieldDelegate(binding, viewModel)
     }
-    private val calendarFragment by lazy { CalendarFragment(CalendarSelectionMode.SINGLE_DAY) }
     private val datePickerDialog: DatePickerDialogFragment by lazy {
         DatePickerDialogFragment()
     }
@@ -80,7 +77,8 @@ class ProfilePersonalInfoFragment :
     }
 
     override fun isFieldsFilled(callback: (isFilled: Boolean) -> Unit) {
-        callback(true)
+        val isFieldsFilled = etDelegate.isFieldsCorrectAndPutToBundle()
+        callback(isFieldsFilled)
     }
 
     override fun inject() {
