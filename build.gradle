@@ -67,6 +67,10 @@ buildscript {
 
         carouselLayoutVersion = '1.4.6'
 
+        rxPermissionVersion = '0.12'
+        rxAndroid3Version = '3.0.0'
+        rxJava3Version = '3.0.7'
+        rxKotlin3Version = '3.0.0'
 
         kotlinDep = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
@@ -126,6 +130,11 @@ buildscript {
         calendarViewDep = "com.github.kizitonwose:CalendarView:$calendarViewVersion"
 
         carouselLayoutDep = "com.mig35:carousellayoutmanager:$carouselLayoutVersion"
+
+        rxPermissionDep = "com.github.tbruyelle:rxpermissions:$rxPermissionVersion"
+        rxAndroid3Dep = "io.reactivex.rxjava3:rxandroid:$rxAndroid3Version"
+        rxJava3Dep = "io.reactivex.rxjava3:rxjava:$rxJava3Version"
+        rxKotlin3Dep = "io.reactivex.rxjava3:rxkotlin:$rxKotlin3Version"
     }
 
     ext.kotlin_version = "1.5.30"

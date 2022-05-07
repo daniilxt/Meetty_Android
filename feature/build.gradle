@@ -82,4 +82,11 @@ dependencies {
     implementation calendarViewDep
 
     implementation carouselLayoutDep
+
+    implementation rxPermissionDep
+
+    implementation rxJava3Dep
+    implementation rxAndroid3Dep
+    implementation rxKotlin3Dep
+
 }
