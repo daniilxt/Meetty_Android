@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textfield.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/spinner_wrapper"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColorHint="@color/text_color_hint_primary"
+    android:theme="@style/changeBackgroundColor"
+    app:boxBackgroundColor="@color/background_third"
+    app:boxStrokeColor="@color/button_tint_primary"
+    app:endIconTint="@color/dropdown_arrow_tint"
+    app:hintTextColor="@color/text_color_hint_primary"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <AutoCompleteTextView
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:textColor="@color/black" />
+</com.google.android.material.textfield.TextInputLayout>

@@ -76,6 +76,7 @@ dependencies {
     kapt roomCompilerKapt
 
     implementation coilDep
+    implementation matisseDep
 
     implementation maskedEditTextDep
 

@@ -88,7 +88,7 @@
 
     <style name="TextView.Title" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
         <item name="android:textSize">@dimen/sp_20</item>
     </style>
 
@@ -102,7 +102,7 @@
     <style name="TextView.PLainText" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">@color/text_color_primary_dark</item>
         <item name="fontFamily">@font/work_sans_regular</item>
-        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textSize">@dimen/sp_14</item>
         <item name="android:textAlignment">center</item>
     </style>
 
@@ -153,5 +153,9 @@
         <item name="cornerSizeTopLeft">@dimen/dp_32</item>
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="changeBackgroundColor"  parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="colorSurface">@color/white</item>
     </style>
 </resources>

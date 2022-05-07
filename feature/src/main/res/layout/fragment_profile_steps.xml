@@ -26,7 +26,6 @@
         android:layout_marginStart="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_40"
         android:fontFamily="@font/montserrat_medium"
-        android:textSize="@dimen/sp_20"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"

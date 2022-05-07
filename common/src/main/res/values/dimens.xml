@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="grid_expected_size">100dp</dimen>
 
     <dimen name="sp_36">36sp</dimen>
     <dimen name="sp_34">34sp</dimen>
