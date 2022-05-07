@@ -63,7 +63,7 @@ class InputFieldDelegate(
 
         val birthDay = binding.etBirthDay.textInputEt
         if (!viewModel.isFieldValid(birthDay.text.toString())) {
-            Toast.makeText(context, R.string.field_cannot_be_empty, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.birth_day_warning, Toast.LENGTH_SHORT).show()
             return false
         }
 

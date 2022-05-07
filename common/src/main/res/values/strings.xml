@@ -41,6 +41,7 @@
     <string name="email_incorrect">Введите корректный Email</string>
     <string name="field_cannot_be_empty">Поле не может быть пустым</string>
     <string name="phone_number_warning">Введите номер телефона</string>
+    <string name="birth_day_warning">Введите дату рождения</string>
     <string name="sim_hint">__________</string>
     <string name="sim_mask">+7 (###) ###-##-##</string>
     <string name="phone_number">Номер телефона</string>
