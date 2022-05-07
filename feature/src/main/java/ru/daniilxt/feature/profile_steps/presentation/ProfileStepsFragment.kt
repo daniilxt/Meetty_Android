@@ -1,14 +1,19 @@
 package ru.daniilxt.feature.profile_steps.presentation
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.shape.CornerFamily
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
+import ru.daniilxt.common.extensions.dpToPx
 import ru.daniilxt.common.extensions.hideKeyboardWithDelay
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setLightStatusBar
+import ru.daniilxt.common.extensions.setNavigationBarColor
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
@@ -31,9 +36,9 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
                 FRAGMENT_TAG + viewPagerAdapter.getItemId(viewModel.currentSelectedPage)
             )
         }
-    var lastUsedFrg: Fragment? = null
+    private var lastUsedFrg: Fragment? = null
 
-    val fragmentsTitleList: Array<String> by lazy {
+    private val fragmentsTitleList: Array<String> by lazy {
         requireContext().resources.getStringArray(R.array.profile_steps)
     }
 
@@ -41,8 +46,8 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         ViewPagerAdapter(
             this,
             listOf(
-                ProfilePersonalInfoFragment.newInstance(),
                 ProfileRegistrationFragment.newInstance(),
+                ProfilePersonalInfoFragment.newInstance(),
                 ProfileUserAchievementsFragment.newInstance(),
                 ProfileUserEducationFragment.newInstance()
             )
@@ -58,8 +63,9 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().setStatusBarColor(R.color.white)
+        requireActivity().setStatusBarColor(R.color.background_third)
         requireView().setLightStatusBar()
+        requireActivity().setNavigationBarColor(R.color.white)
         initViewPager()
         initButtons()
     }
@@ -86,6 +92,8 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
     }
 
     private fun initButtons() {
+        val radius = resources.getDimension(R.dimen.dp_50)
+
         binding.includeBottomStepMenu.mbNext.setDebounceClickListener {
             currentFragment?.let { frg ->
                 viewPagerAdapter.checkFragmentAlacrity(frg) { isFieldsFilled ->

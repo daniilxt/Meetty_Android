@@ -1,14 +1,10 @@
 package ru.daniilxt.feature.profile_personal_info.presentation
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import android.view.View
 import ru.daniilxt.common.base.BaseDelegate
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.setDebounceClickListener
-import ru.daniilxt.common.extensions.setLightStatusBar
-import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.calendar_dialog.dialogs.DatePickerDialogFragment
@@ -32,12 +28,6 @@ class ProfilePersonalInfoFragment :
     }
     private val datePickerDialog: DatePickerDialogFragment by lazy {
         DatePickerDialogFragment()
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        requireActivity().setStatusBarColor(R.color.background_third)
-        requireView().setLightStatusBar()
     }
 
     override fun setupViews() {
@@ -72,10 +62,6 @@ class ProfilePersonalInfoFragment :
         }
     }
 
-    private fun addNewDelegate(etDelegate: BaseDelegate) {
-        etDelegate.loadDelegate()
-    }
-
     override fun isFieldsFilled(callback: (isFilled: Boolean) -> Unit) {
         val isFieldsFilled = etDelegate.isFieldsCorrectAndPutToBundle()
         callback(isFieldsFilled)
@@ -86,6 +72,10 @@ class ProfilePersonalInfoFragment :
             .profilePersonalInfoComponentFactory()
             .create(this)
             .inject(this)
+    }
+
+    private fun addNewDelegate(etDelegate: BaseDelegate) {
+        etDelegate.loadDelegate()
     }
 
     companion object {

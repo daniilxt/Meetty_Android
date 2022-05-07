@@ -26,8 +26,9 @@ class ProfileRegistrationFragment :
         addNewDelegate(etDelegate)
     }
 
-    private fun addNewDelegate(etDelegate: BaseDelegate) {
-        etDelegate.loadDelegate()
+    override fun isFieldsFilled(callback: (isFilled: Boolean) -> Unit) {
+        val isFilled = etDelegate.isFieldsCorrectAndPutToBundle()
+        callback(isFilled)
     }
 
     override fun inject() {
@@ -37,14 +38,13 @@ class ProfileRegistrationFragment :
             .inject(this)
     }
 
+    private fun addNewDelegate(etDelegate: BaseDelegate) {
+        etDelegate.loadDelegate()
+    }
+
     companion object {
         fun newInstance(): ProfileRegistrationFragment {
             return ProfileRegistrationFragment()
         }
-    }
-
-    override fun isFieldsFilled(callback: (isFilled: Boolean) -> Unit) {
-        val isFilled = etDelegate.isFieldsCorrectAndPutToBundle()
-        callback(isFilled)
     }
 }
