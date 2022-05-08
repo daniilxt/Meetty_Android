@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.widget.addTextChangedListener
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.ui.MatisseActivity
@@ -60,7 +61,7 @@ class ProfileUserEducationFragment :
     override fun setupViewModelSubscriber() {
         super.setupViewModelSubscriber()
         viewModel.photosList.observe {
-            photoStudentBookAdapter.bind(it)
+            photoStudentBookAdapter.bind(it.toList())
         }
         viewModel.citiesList.observe { cityList ->
             setSpinnerListAdapter(binding.spinnerCities.spinner, cityList.map { it.cityName })
@@ -71,11 +72,6 @@ class ProfileUserEducationFragment :
                 instituteList.map { it.instituteName }
             )
         }
-    }
-
-    private fun setSpinnerListAdapter(spinner: AutoCompleteTextView, data: List<String>) {
-        val adapter = ArrayAdapter(requireContext(), R.layout.spinner_text_item, data)
-        spinner.setAdapter(adapter)
     }
 
     override fun isFieldsFilled(callback: (isFilled: Boolean) -> Unit) {
@@ -92,10 +88,20 @@ class ProfileUserEducationFragment :
 
     private fun initAdapters() {
         binding.rvPhotos.adapter = photoStudentBookAdapter
+
+        binding.spinnerCities.spinner.addTextChangedListener(afterTextChanged = { city ->
+            viewModel.filterEduByCity(city.toString())
+            binding.spinnerInstitutes.spinner.text.clear()
+        })
     }
 
     private fun addNewDelegate(etDelegate: BaseDelegate) {
         etDelegate.loadDelegate()
+    }
+
+    private fun setSpinnerListAdapter(spinner: AutoCompleteTextView, data: List<String>) {
+        val adapter = ArrayAdapter(requireContext(), R.layout.spinner_text_item, data)
+        spinner.setAdapter(adapter)
     }
 
     private fun requestAndSelectPhoto() {
