@@ -155,7 +155,12 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
-    <style name="changeBackgroundColor"  parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+    <style name="spinnerBackground" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="colorSurface">@color/white</item>
+    </style>
+
+    <style name="chipStyle.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_toggle_tint</item>
+        <item name="android:textColor">@color/chip_toggle_text_color</item>
     </style>
 </resources>

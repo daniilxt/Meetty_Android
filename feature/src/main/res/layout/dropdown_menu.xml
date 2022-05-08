@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textColorHint="@color/text_color_hint_primary"
-    android:theme="@style/changeBackgroundColor"
+    android:theme="@style/spinnerBackground"
     app:boxBackgroundColor="@color/background_third"
     app:boxStrokeColor="@color/button_tint_primary"
     app:endIconTint="@color/dropdown_arrow_tint"

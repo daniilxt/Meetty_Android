@@ -1,6 +1,7 @@
 package ru.daniilxt.feature.data_wrapper
 
 import kotlinx.coroutines.flow.MutableStateFlow
+import ru.daniilxt.feature.domain.model.ProfessionalInterest
 import java.io.File
 import java.time.LocalDate
 
@@ -20,13 +21,18 @@ class ProfileDataWrapper {
         _profileData.value = _profileData.value.copy(userEducationInfo = userEducationInfo)
     }
 
+    fun setProfessionalInterestsData(professionalInterest: List<ProfessionalInterest>) {
+        _profileData.value = _profileData.value.copy(professionalInterest = professionalInterest)
+    }
+
     fun getData() = _profileData.value
 }
 
 data class ProfileData(
     val useCredentials: UserCredentials? = null,
     val userPersonalInfo: UserPersonalInfo? = null,
-    val userEducationInfo: UserEducationInfo? = null
+    val userEducationInfo: UserEducationInfo? = null,
+    val professionalInterest: List<ProfessionalInterest> = emptyList()
 )
 
 data class UserCredentials(

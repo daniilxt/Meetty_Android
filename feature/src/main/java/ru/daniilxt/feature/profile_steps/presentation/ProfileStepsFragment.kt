@@ -1,15 +1,11 @@
 package ru.daniilxt.feature.profile_steps.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.shape.CornerFamily
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
-import ru.daniilxt.common.extensions.dpToPx
 import ru.daniilxt.common.extensions.hideKeyboardWithDelay
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setLightStatusBar
@@ -21,6 +17,7 @@ import ru.daniilxt.feature.databinding.FragmentProfileStepsBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
 import ru.daniilxt.feature.profile_personal_info.presentation.ProfilePersonalInfoFragment
+import ru.daniilxt.feature.profile_professional_interests.presentation.ProfileProfessionalInterestsFragment
 import ru.daniilxt.feature.profile_registration.presentation.ProfileRegistrationFragment
 import ru.daniilxt.feature.profile_steps.presentation.adapter.ViewPagerAdapter
 import ru.daniilxt.feature.profile_user_achievements.presentation.ProfileUserAchievementsFragment
@@ -46,6 +43,7 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         ViewPagerAdapter(
             this,
             listOf(
+                ProfileProfessionalInterestsFragment.newInstance(),
                 ProfileUserEducationFragment.newInstance(),
                 ProfileRegistrationFragment.newInstance(),
                 ProfilePersonalInfoFragment.newInstance(),

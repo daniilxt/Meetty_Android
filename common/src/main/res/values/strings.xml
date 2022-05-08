@@ -72,6 +72,7 @@
     <string name="city_selection_warning">Необходимо выбрать город</string>
     <string name="selection_institute_warning">Необходимо выбрать интситут</string>
     <string name="student_book_warning">Необходимо прикрепить фото студенческого билета</string>
+    <string name="choose_at_least_one_category">Выберите хотя бы одну категорию</string>
 
 
     <string-array name="profile_steps">
