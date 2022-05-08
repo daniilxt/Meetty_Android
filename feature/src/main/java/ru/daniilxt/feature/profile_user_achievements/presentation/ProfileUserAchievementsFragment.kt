@@ -8,6 +8,7 @@ import ru.daniilxt.feature.databinding.FragmentProfileUserAchievementsBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
 import ru.daniilxt.feature.profile_steps.presentation.adapter.IValidateFragmentFields
+import ru.daniilxt.feature.profile_user_achievements.presentation.adapter.UserAchievementAdapter
 
 class ProfileUserAchievementsFragment :
     BaseFragment<ProfileUserAchievementsViewModel>(R.layout.fragment_profile_user_achievements),
@@ -16,6 +17,28 @@ class ProfileUserAchievementsFragment :
     override val binding: FragmentProfileUserAchievementsBinding by viewBinding(
         FragmentProfileUserAchievementsBinding::bind
     )
+
+    private val achieveAdapter by lazy {
+        UserAchievementAdapter(onDeleteAchieveClickListener = {
+            viewModel.deleteAchievement(it)
+        })
+    }
+
+    override fun setupViews() {
+        super.setupViews()
+        initRecyclerAdapter()
+    }
+
+    private fun initRecyclerAdapter() {
+        binding.rvAchievement.adapter = achieveAdapter
+    }
+
+    override fun setupViewModelSubscriber() {
+        super.setupViewModelSubscriber()
+        viewModel.userAchievements.observe {
+            achieveAdapter.bind(it)
+        }
+    }
 
     override fun isFieldsFilled(callback: (isFilled: Boolean) -> Unit) {
         callback(true)
@@ -33,4 +56,5 @@ class ProfileUserAchievementsFragment :
             return ProfileUserAchievementsFragment()
         }
     }
+}
 }

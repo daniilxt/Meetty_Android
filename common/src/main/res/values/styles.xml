@@ -101,7 +101,7 @@
 
     <style name="TextView.PLainText" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">@color/text_color_primary_dark</item>
-        <item name="fontFamily">@font/work_sans_regular</item>
+        <item name="fontFamily">@font/gilroy_medium</item>
         <item name="android:textSize">@dimen/sp_14</item>
         <item name="android:textAlignment">center</item>
     </style>
