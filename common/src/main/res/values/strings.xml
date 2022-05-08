@@ -69,6 +69,9 @@
     <string name="attach_student_book">Прикрепите фото студенческого билета</string>
 
     <string name="need_permissions">Пожалуйста, предоставьте необходимые разрешения</string>
+    <string name="city_selection_warning">Необходимо выбрать город</string>
+    <string name="selection_institute_warning">Необходимо выбрать интситут</string>
+    <string name="student_book_warning">Необходимо прикрепить фото студенческого билета</string>
 
 
     <string-array name="profile_steps">

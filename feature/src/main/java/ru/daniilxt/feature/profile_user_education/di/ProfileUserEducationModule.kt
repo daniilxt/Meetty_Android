@@ -9,6 +9,7 @@ import dagger.multibindings.IntoMap
 import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
 import ru.daniilxt.feature.profile_user_education.presentation.ProfileUserEducationViewModel
 
 @Module(
@@ -22,10 +23,11 @@ class ProfileUserEducationModule {
     @IntoMap
     @ViewModelKey(ProfileUserEducationViewModel::class)
     fun provideViewModel(
-        navigator: FeatureRouter
+        navigator: FeatureRouter,
+        dataWrapper: ProfileDataWrapper
     ): ViewModel {
         return ProfileUserEducationViewModel(
-            navigator
+            navigator, dataWrapper
         )
     }
 
@@ -34,6 +36,9 @@ class ProfileUserEducationModule {
         fragment: Fragment,
         viewModelFactory: ViewModelProvider.Factory
     ): ProfileUserEducationViewModel {
-        return ViewModelProvider(fragment, viewModelFactory).get(ProfileUserEducationViewModel::class.java)
+        return ViewModelProvider(
+            fragment,
+            viewModelFactory
+        ).get(ProfileUserEducationViewModel::class.java)
     }
 }

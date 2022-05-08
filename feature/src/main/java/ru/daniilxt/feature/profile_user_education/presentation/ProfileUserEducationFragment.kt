@@ -3,6 +3,7 @@ package ru.daniilxt.feature.profile_user_education.presentation
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.zhihu.matisse.Matisse
@@ -61,10 +62,25 @@ class ProfileUserEducationFragment :
         viewModel.photosList.observe {
             photoStudentBookAdapter.bind(it)
         }
+        viewModel.citiesList.observe { cityList ->
+            setSpinnerListAdapter(binding.spinnerCities.spinner, cityList.map { it.cityName })
+        }
+        viewModel.institutesList.observe { instituteList ->
+            setSpinnerListAdapter(
+                binding.spinnerInstitutes.spinner,
+                instituteList.map { it.instituteName }
+            )
+        }
+    }
+
+    private fun setSpinnerListAdapter(spinner: AutoCompleteTextView, data: List<String>) {
+        val adapter = ArrayAdapter(requireContext(), R.layout.spinner_text_item, data)
+        spinner.setAdapter(adapter)
     }
 
     override fun isFieldsFilled(callback: (isFilled: Boolean) -> Unit) {
-        callback(true)
+        val isFieldsFilled = inputFieldDelegate.isFieldsCorrectAndPutToBundle()
+        callback(isFieldsFilled)
     }
 
     override fun inject() {
@@ -75,14 +91,6 @@ class ProfileUserEducationFragment :
     }
 
     private fun initAdapters() {
-        val citiesList = listOf("Санкт-Петербург", "Москва", "Новосибирск")
-        val institutesList = listOf("Политех", "СПБГУ", "МФТИ")
-        val citiesAdapter = ArrayAdapter(requireContext(), R.layout.spinner_text_item, citiesList)
-        binding.spinnerCities.spinner.setAdapter(citiesAdapter)
-        val institutesAdapter =
-            ArrayAdapter(requireContext(), R.layout.spinner_text_item, institutesList)
-        binding.spinnerInstitutes.spinner.setAdapter(institutesAdapter)
-
         binding.rvPhotos.adapter = photoStudentBookAdapter
     }
 
