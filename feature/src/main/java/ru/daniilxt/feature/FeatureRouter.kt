@@ -1,6 +1,9 @@
 package ru.daniilxt.feature
 
 interface FeatureRouter {
-    fun openProfileFragment()
     fun back()
+    fun openProfileFragment()
+    fun openWelcomeDescriptionFragment()
+    fun openOnboarding()
+    fun openLoginFragment()
 }

@@ -17,6 +17,15 @@ fun Activity.setStatusBarColor(@ColorRes color: Int) {
 }
 
 @Suppress("DEPRECATION")
+fun Activity.setNavigationBarColor(@ColorRes color: Int) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        window.navigationBarColor = resources.getColor(color, theme)
+    } else {
+        window.navigationBarColor = resources.getColor(color)
+    }
+}
+
+@Suppress("DEPRECATION")
 fun Activity.isOnline(context: Context): Boolean {
     val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

@@ -3,11 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/mainScreenFragment">
+    app:startDestination="@id/profileStepsFragment">
 
     <fragment
         android:id="@+id/mainScreenFragment"
         android:name="ru.daniilxt.feature.main_screen.presentation.MainScreenFragment"
         android:label="MainScreenFragment"
         tools:layout="@layout/fragment_main_screen" />
+
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="ru.daniilxt.feature.onboarding.presentation.OnboardingFragment"
+        android:label="OnboardingFragment"
+        tools:layout="@layout/fragment_onboarding" >
+        <action
+            android:id="@+id/action_onboardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeScreenFragment"
+        android:name="ru.daniilxt.feature.welcome_screen.presentation.WelcomeScreenFragment"
+        android:label="WelcomeScreenFragment">
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_welcomeScreenDescriptionFragment"
+            app:destination="@id/welcomeScreenDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeScreenDescriptionFragment"
+        android:name="ru.daniilxt.feature.welcome_screen_description.presentation.WelcomeScreenDescriptionFragment"
+        android:label="WelcomeScreenDescriptionFragment">
+        <action
+            android:id="@+id/action_welcomeScreenDescriptionFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ru.daniilxt.feature.login.presentation.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/profileStepsFragment"
+        android:name="ru.daniilxt.feature.profile_steps.presentation.ProfileStepsFragment"
+        android:label="ProfileStepsFragment" />
 </navigation>

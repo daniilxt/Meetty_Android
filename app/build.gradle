@@ -8,7 +8,7 @@ android {
     compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
-        applicationId "ru.daniilxt.fintech"
+        applicationId "ru.daniilxt.meety"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode versionCode
@@ -28,6 +28,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -50,6 +51,7 @@ dependencies {
     implementation kotlinDep
 
     implementation androidDep
+    implementation androidxCoreDep
     implementation constraintDep
 
     implementation lifecycleVMDep

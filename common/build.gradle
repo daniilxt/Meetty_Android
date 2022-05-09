@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -46,6 +49,7 @@ dependencies {
     implementation constraintDep
 
     implementation daggerDep
+    implementation 'androidx.databinding:viewbinding:7.1.2'
     kapt daggerKapt
 
     implementation okHttpDep
@@ -64,7 +68,22 @@ dependencies {
     implementation glideDep
     implementation coilDep
     implementation coilGifDep
+    implementation matisseDep
 
     implementation legacyDep
+
+    implementation lifecycleCommonDep
+    implementation lifecycleRuntimeDep
+
+    implementation coroutinesDep
+    implementation coroutinesAndroidDep
+
+    implementation maskedEditTextDep
+
+    implementation rxPermissionDep
+
+    implementation rxJava3Dep
+    implementation rxAndroid3Dep
+    implementation rxKotlin3Dep
 
 }
