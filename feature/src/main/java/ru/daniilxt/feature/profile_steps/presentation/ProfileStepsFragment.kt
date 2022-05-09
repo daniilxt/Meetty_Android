@@ -49,7 +49,7 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
                 ProfilePersonalInfoFragment.newInstance(),
                 ProfileUserEducationFragment.newInstance(),
                 ProfileProfessionalInterestsFragment.newInstance(),
-                ProfileUserAchievementsFragment.newInstance()
+                ProfileUserAchievementsFragment.newInstance(),
             )
         )
     }
@@ -64,7 +64,7 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requireActivity().setWindowTransparency { statusBarSize, navigationBarSize ->
-            binding.tvStepTitle.margin(top = statusBarSize.toFloat())
+            binding.tvStepTitle.margin(top = (statusBarSize / 1.5).toFloat())
         }
     }
 

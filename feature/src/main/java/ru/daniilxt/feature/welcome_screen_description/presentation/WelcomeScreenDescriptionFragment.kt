@@ -29,7 +29,6 @@ class WelcomeScreenDescriptionFragment :
         requireActivity().setStatusBarColor(R.color.white)
         requireView().clearLightStatusBar()
         requireActivity().setWindowTransparency { statusBarSize, navigationBarSize ->
-            // Проставление отступов
         }
         initButtons()
     }
