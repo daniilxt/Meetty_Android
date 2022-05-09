@@ -7,4 +7,8 @@ class OnboardingViewModel(private val router: FeatureRouter) : BaseViewModel() {
     fun openLoginFragment() {
         router.openLoginFragment()
     }
+
+    fun openProfileStepsFragment() {
+        router.openProfileStepsFragment()
+    }
 }

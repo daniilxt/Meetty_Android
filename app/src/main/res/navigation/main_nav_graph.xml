@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/profileStepsFragment">
+    app:startDestination="@id/welcomeScreenFragment">
 
     <fragment
         android:id="@+id/mainScreenFragment"
@@ -15,10 +15,21 @@
         android:id="@+id/onboardingFragment"
         android:name="ru.daniilxt.feature.onboarding.presentation.OnboardingFragment"
         android:label="OnboardingFragment"
-        tools:layout="@layout/fragment_onboarding" >
+        tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_onboardingFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
+        <action
+            android:id="@+id/action_onboardingFragment_to_profileStepsFragment"
+            app:destination="@id/profileStepsFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
     </fragment>
     <fragment
         android:id="@+id/welcomeScreenFragment"
@@ -26,7 +37,11 @@
         android:label="WelcomeScreenFragment">
         <action
             android:id="@+id/action_welcomeScreenFragment_to_welcomeScreenDescriptionFragment"
-            app:destination="@id/welcomeScreenDescriptionFragment" />
+            app:destination="@id/welcomeScreenDescriptionFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
     </fragment>
     <fragment
         android:id="@+id/welcomeScreenDescriptionFragment"
@@ -34,7 +49,11 @@
         android:label="WelcomeScreenDescriptionFragment">
         <action
             android:id="@+id/action_welcomeScreenDescriptionFragment_to_onboardingFragment"
-            app:destination="@id/onboardingFragment" />
+            app:destination="@id/onboardingFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"

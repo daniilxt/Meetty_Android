@@ -83,6 +83,7 @@
     <string name="Achievement">Достижение</string>
     <string name="naming">Название</string>
     <string name="description">Описание</string>
+    <string name="entrance">Вход</string>
 
 
     <string-array name="profile_steps">

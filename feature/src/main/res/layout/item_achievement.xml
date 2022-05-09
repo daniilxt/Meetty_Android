@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/sp_16"
         android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_20"
         android:backgroundTint="@color/background_fourth"
         app:cardCornerRadius="@dimen/dp_16"
         app:layout_constraintBottom_toBottomOf="parent">

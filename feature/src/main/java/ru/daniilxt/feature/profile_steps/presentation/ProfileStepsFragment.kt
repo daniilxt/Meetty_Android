@@ -7,10 +7,12 @@ import androidx.viewpager2.widget.ViewPager2
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.hideKeyboardWithDelay
+import ru.daniilxt.common.extensions.margin
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setNavigationBarColor
 import ru.daniilxt.common.extensions.setStatusBarColor
+import ru.daniilxt.common.extensions.setWindowTransparency
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentProfileStepsBinding
@@ -47,7 +49,7 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
                 ProfilePersonalInfoFragment.newInstance(),
                 ProfileUserEducationFragment.newInstance(),
                 ProfileProfessionalInterestsFragment.newInstance(),
-                ProfileUserAchievementsFragment.newInstance()
+                ProfileUserAchievementsFragment.newInstance(),
             )
         )
     }
@@ -59,8 +61,16 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireActivity().setWindowTransparency { statusBarSize, navigationBarSize ->
+            binding.tvStepTitle.margin(top = (statusBarSize / 1.5).toFloat())
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         requireActivity().setStatusBarColor(R.color.background_third)
         requireView().setLightStatusBar()
         requireActivity().setNavigationBarColor(R.color.white)
