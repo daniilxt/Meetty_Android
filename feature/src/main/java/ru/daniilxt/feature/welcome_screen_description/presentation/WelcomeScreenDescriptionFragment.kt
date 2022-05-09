@@ -7,6 +7,7 @@ import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.clearLightStatusBar
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setStatusBarColor
+import ru.daniilxt.common.extensions.setWindowTransparency
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentWelcomeScreenDescriptionBinding
@@ -27,6 +28,9 @@ class WelcomeScreenDescriptionFragment :
         super.onViewCreated(view, savedInstanceState)
         requireActivity().setStatusBarColor(R.color.white)
         requireView().clearLightStatusBar()
+        requireActivity().setWindowTransparency { statusBarSize, navigationBarSize ->
+            // Проставление отступов
+        }
         initButtons()
     }
 

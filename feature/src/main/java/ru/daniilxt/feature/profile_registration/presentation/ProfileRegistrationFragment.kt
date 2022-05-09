@@ -1,5 +1,6 @@
 package ru.daniilxt.feature.profile_registration.presentation
 
+import ru.daniilxt.common.base.BaseDelegate
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.viewBinding
@@ -7,7 +8,6 @@ import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentProfileRegistrationBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
-import ru.daniilxt.common.base.BaseDelegate
 import ru.daniilxt.feature.profile_steps.presentation.adapter.IValidateFragmentFields
 
 class ProfileRegistrationFragment :

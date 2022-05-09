@@ -24,7 +24,12 @@ class Navigator : FeatureRouter {
         private val TAG = Navigator::class.simpleName
     }
 
-    override fun openProfileFragment() {
+    override fun openProfileStepsFragment() {
+        when (navController?.currentDestination?.id) {
+            R.id.onboardingFragment -> {
+                navController?.navigate(R.id.action_onboardingFragment_to_profileStepsFragment)
+            }
+        }
     }
 
     override fun back() {
