@@ -2,6 +2,7 @@ package ru.daniilxt.feature.profile_personal_info.presentation
 
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
+import android.text.InputType
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
@@ -26,8 +27,14 @@ class InputFieldDelegate(
     }
 
     private fun initViews() {
-        binding.etLastName.setInputFormAttributes(hintText = context.getString(R.string.last_name))
-        binding.etFirstName.setInputFormAttributes(hintText = context.getString(R.string.first_name))
+        binding.etLastName.setInputFormAttributes(
+            hintText = context.getString(R.string.last_name),
+            inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS
+        )
+        binding.etFirstName.setInputFormAttributes(
+            hintText = context.getString(R.string.first_name),
+            inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS
+        )
         binding.etBirthDay.apply {
             setInputFormAttributes(
                 hintText = context.getString(R.string.birthd_day),

@@ -41,6 +41,7 @@
     <string name="confirm_password">Повторите пароль</string>
     <string name="password_error">Введите корректный пароль</string>
     <string name="passwords_not_match">Пароли не совпадают</string>
+    <string name="passwords_length_warning">Минимальная длина пароля 6 символов</string>
     <string name="email_incorrect">Введите корректный Email</string>
     <string name="field_cannot_be_empty">Поле не может быть пустым</string>
     <string name="phone_number_warning">Введите номер телефона</string>
@@ -65,7 +66,7 @@
     <string name="select_start_date">Выберите дату начала</string>
     <string name="end_date">Дата окончания</string>
     <string name="save">Сохранить</string>
-    <string name="event_date">Дата события</string>
+    <string name="event_date">Выберите дату</string>
     <string name="ok">ок</string>
     <string name="man">Мужской</string>
     <string name="woman">Женский</string>

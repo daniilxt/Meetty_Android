@@ -42,6 +42,13 @@ class InputFieldDelegate(
         }
         val password = binding.etPassword.textInputEt
         val confirmPassword = binding.etConfirmPassword.textInputEt
+
+        if (!viewModel.isPasswordValid(password.text.toString(), confirmPassword.text.toString())
+        ) {
+            password.error = context.getString(R.string.passwords_length_warning)
+            return false
+        }
+
         if (!viewModel.isPasswordsEqual(password.text.toString(), confirmPassword.text.toString())
         ) {
             confirmPassword.error = context.getString(R.string.passwords_not_match)
