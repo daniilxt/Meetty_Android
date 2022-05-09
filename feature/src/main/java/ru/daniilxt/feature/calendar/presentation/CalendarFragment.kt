@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
@@ -55,12 +57,16 @@ class CalendarFragment(
         setupFromArguments()
 
         binding.frgCalendarMbDone.setDebounceClickListener {
-            viewModel.selectRange(
-                CalendarDateRange(
-                    viewModel.getStartDate(),
-                    viewModel.getEndDate()
-                )
+            val range = CalendarDateRange(
+                viewModel.getStartDate(),
+                viewModel.getEndDate()
             )
+            viewModel.selectRange(range)
+
+            val bundle = bundleOf(
+                DATA_KEY to range
+            )
+            setFragmentResult(DATA_KEY, bundle)
             hide()
         }
         binding.frgCalendarIbBack.setDebounceClickListener {
@@ -191,9 +197,9 @@ class CalendarFragment(
     @SuppressLint("NewApi")
     private fun setDoneButtonIsClickable(calendarDateRange: CalendarDateRange) {
         if (calendarDateRange.endDate != null || (
-            calendarDateRange.startDate != null &&
-                viewModel.calendarMode == CalendarSelectionMode.SINGLE_DAY
-            )
+                    calendarDateRange.startDate != null &&
+                            viewModel.calendarMode == CalendarSelectionMode.SINGLE_DAY
+                    )
         ) {
             binding.frgCalendarMbDone.isEnabled = true
             binding.frgCalendarMbDone.setBackgroundColor(

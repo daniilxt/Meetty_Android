@@ -9,6 +9,7 @@ import dagger.multibindings.IntoMap
 import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
 import ru.daniilxt.feature.profile_user_achievements.presentation.ProfileUserAchievementsViewModel
 
 @Module(
@@ -22,10 +23,11 @@ class ProfileUserAchievementsModule {
     @IntoMap
     @ViewModelKey(ProfileUserAchievementsViewModel::class)
     fun provideViewModel(
-        navigator: FeatureRouter
+        navigator: FeatureRouter,
+        dataWrapper: ProfileDataWrapper
     ): ViewModel {
         return ProfileUserAchievementsViewModel(
-            navigator
+            navigator, dataWrapper
         )
     }
 
@@ -34,6 +36,9 @@ class ProfileUserAchievementsModule {
         fragment: Fragment,
         viewModelFactory: ViewModelProvider.Factory
     ): ProfileUserAchievementsViewModel {
-        return ViewModelProvider(fragment, viewModelFactory).get(ProfileUserAchievementsViewModel::class.java)
+        return ViewModelProvider(
+            fragment,
+            viewModelFactory
+        ).get(ProfileUserAchievementsViewModel::class.java)
     }
 }

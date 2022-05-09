@@ -3,7 +3,9 @@ package ru.daniilxt.common.extensions
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -38,4 +40,8 @@ fun Fragment.hideKeyboardWithDelay(delayDuration: Long = 100, callback: () -> Un
         delay(delayDuration)
         callback.invoke()
     }
+}
+
+fun FragmentManager.showDialog(dialogFragment: DialogFragment) {
+    dialogFragment.show(this, dialogFragment::class.java.simpleName)
 }

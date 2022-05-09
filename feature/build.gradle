@@ -90,6 +90,5 @@ dependencies {
     implementation rxAndroid3Dep
     implementation rxKotlin3Dep
 
-    implementation 'com.airbnb.android:paris:2.0.0'
-
+    implementation fragmentKtxDep
 }

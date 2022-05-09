@@ -31,9 +31,12 @@
     <string name="last_name">Фамилия</string>
 
     <string name="registration">Регистрация</string>
+
     <string name="fill_personal_info">Заполните личную информацию</string>
     <string name="fill_education_info">Заполните информацию о месте учебы</string>
     <string name="fill_interesting_categories">Выберите понравившиеся категории</string>
+    <string name="fill_achievements">Расскажите о ваших достижениях</string>
+
     <string name="password">Пароль</string>
     <string name="confirm_password">Повторите пароль</string>
     <string name="password_error">Введите корректный пароль</string>
@@ -42,10 +45,12 @@
     <string name="field_cannot_be_empty">Поле не может быть пустым</string>
     <string name="phone_number_warning">Введите номер телефона</string>
     <string name="birth_day_warning">Введите дату рождения</string>
+    <string name="date_warning">Введите дату</string>
     <string name="sim_hint">__________</string>
     <string name="sim_mask">+7 (###) ###-##-##</string>
     <string name="phone_number">Номер телефона</string>
     <string name="birthd_day">Дата рождения</string>
+    <string name="date">Дата</string>
     <string name="calendar_month_header">%s %s</string>
 
     <string name="monday_short">пн</string>
@@ -74,6 +79,9 @@
     <string name="student_book_warning">Необходимо прикрепить фото студенческого билета</string>
     <string name="choose_at_least_one_category">Выберите хотя бы одну категорию</string>
     <string name="add_achievement">Добавить достижение</string>
+    <string name="Achievement">Достижение</string>
+    <string name="naming">Название</string>
+    <string name="description">Описание</string>
 
 
     <string-array name="profile_steps">
@@ -81,5 +89,6 @@
         <item>@string/fill_personal_info</item>
         <item>@string/fill_education_info</item>
         <item>@string/fill_interesting_categories</item>
+        <item>@string/fill_achievements</item>
     </string-array>
 </resources>

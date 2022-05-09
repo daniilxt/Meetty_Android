@@ -14,14 +14,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_achievement"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_50"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/frg_task_edit__tv_add_question"
+            android:id="@+id/tv_add_achieve"
             style="@style/ImageButtonSelectable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

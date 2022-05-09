@@ -2,6 +2,7 @@ package ru.daniilxt.feature.data_wrapper
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import ru.daniilxt.feature.domain.model.ProfessionalInterest
+import ru.daniilxt.feature.domain.model.UserAchievement
 import java.io.File
 import java.time.LocalDate
 
@@ -25,6 +26,10 @@ class ProfileDataWrapper {
         _profileData.value = _profileData.value.copy(professionalInterest = professionalInterest)
     }
 
+    fun setUserAchievements(userAchievements: List<UserAchievement>) {
+        _profileData.value = _profileData.value.copy(userAchievements = userAchievements)
+    }
+
     fun getData() = _profileData.value
 }
 
@@ -32,7 +37,8 @@ data class ProfileData(
     val useCredentials: UserCredentials? = null,
     val userPersonalInfo: UserPersonalInfo? = null,
     val userEducationInfo: UserEducationInfo? = null,
-    val professionalInterest: List<ProfessionalInterest> = emptyList()
+    val professionalInterest: List<ProfessionalInterest> = emptyList(),
+    val userAchievements: List<UserAchievement> = emptyList()
 )
 
 data class UserCredentials(

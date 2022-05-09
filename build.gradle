@@ -80,6 +80,7 @@ buildscript {
         cardViewDep = "androidx.cardview:cardview:$cardViewVersion"
         recyclerViewDep = "androidx.recyclerview:recyclerview:$recyclerVersion"
         constraintDep = "androidx.constraintlayout:constraintlayout:$constraintVersion"
+        fragmentKtxDep = "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
         materialDep = "com.google.android.material:material:$materialVersion"
         timberDep = "com.jakewharton.timber:timber:$timberVersion"
 

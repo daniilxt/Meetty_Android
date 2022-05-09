@@ -43,11 +43,11 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         ViewPagerAdapter(
             this,
             listOf(
-                ProfileUserAchievementsFragment.newInstance(),
-                ProfileProfessionalInterestsFragment.newInstance(),
-                ProfileUserEducationFragment.newInstance(),
                 ProfileRegistrationFragment.newInstance(),
-                ProfilePersonalInfoFragment.newInstance()
+                ProfilePersonalInfoFragment.newInstance(),
+                ProfileUserEducationFragment.newInstance(),
+                ProfileProfessionalInterestsFragment.newInstance(),
+                ProfileUserAchievementsFragment.newInstance()
             )
         )
     }
@@ -90,8 +90,6 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
     }
 
     private fun initButtons() {
-        val radius = resources.getDimension(R.dimen.dp_50)
-
         binding.includeBottomStepMenu.mbNext.setDebounceClickListener {
             currentFragment?.let { frg ->
                 viewPagerAdapter.checkFragmentAlacrity(frg) { isFieldsFilled ->
