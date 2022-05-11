@@ -32,7 +32,11 @@ class MainScreenViewModel(
                 userAdditionalInfo = UserAdditionalInfo(
                     id = it.toLong(),
                     LocalDate.of(2000 + it, 1, 1),
-                    categories = listOf(UserCategory(it.toLong(), "Бизнес $it"))
+                    categories = listOf(
+                        UserCategory(it.toLong(), "Бизнес $it"),
+                        UserCategory(it.toLong(), "Прорграммирование $it"),
+                        UserCategory(it.toLong(), "Мвшиностроение $it")
+                    )
                 )
             )
         }

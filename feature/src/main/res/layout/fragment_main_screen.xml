@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -20,6 +21,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_greeting"
+            style="@style/TextView.PLainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_10"
+            android:ellipsize="end"
+            android:text="Приветствуем, Екатерина"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toBottomOf="@id/iv_profile"
+            app:layout_constraintEnd_toStartOf="@id/iv_menu"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/iv_profile"
+            app:layout_constraintTop_toTopOf="@id/iv_profile" />
+
         <ImageView
             android:id="@+id/iv_menu"
             android:layout_width="wrap_content"
@@ -33,11 +51,12 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/contentLayout"
-        android:paddingTop="@dimen/dp_4"
-        app:cardCornerRadius="@dimen/dp_16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp_4"
+        app:cardCornerRadius="@dimen/dp_16"
+        tools:paddingTop="@dimen/dp_50">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swiperefresh"
@@ -51,12 +70,12 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_user_cards"
-                    app:spanCount="2"
-                    android:paddingTop="@dimen/dp_24"
-                    android:clipToPadding="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+                    android:clipToPadding="true"
+                    android:paddingTop="@dimen/dp_24"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    app:spanCount="2" />
             </LinearLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </com.google.android.material.card.MaterialCardView>

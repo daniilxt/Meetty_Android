@@ -1,6 +1,7 @@
 package ru.daniilxt.feature.main_screen.presentation.adapter.view_holder
 
 import android.annotation.SuppressLint
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -19,13 +20,28 @@ class UserCardViewHolder(
             }
             tvFirstName.text = data.user.firstName
             tvLastName.text = data.user.lastName
-            userYear.text =
-                getAgeWithDeclination((LocalDate.now().year - data.userAdditionalInfo.birthDay.year))
+            tvUserYear.text =
+                getAgeFromNumber((LocalDate.now().year - data.userAdditionalInfo.birthDay.year))
+            val categories = data.userAdditionalInfo.categories
+            val count = when (categories.size) {
+                1 -> 1
+                2 -> 2
+                else -> 3
+            }
+            val views =
+                listOf(binding.tvCategory, binding.tvCategory2, binding.tvCategory3)
+            for (i in 0 until count) {
+                views[i].text = categories[i].name
+            }
         }
     }
 }
 
-fun getAgeWithDeclination(age: Int): String {
+fun fillCategories(views: List<TextView>, strs: List<String>) {
+    strs.forEach { }
+}
+
+fun getAgeFromNumber(age: Int): String {
     val result: String
     val units: List<Int> = listOf(2, 3, 4)
     val dozens: List<Int> = listOf(11, 12, 13, 14)
