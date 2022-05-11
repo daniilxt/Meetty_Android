@@ -1,12 +1,12 @@
 package ru.daniilxt.feature.template
 
-import ru.daniilxt.feature.domain.model.PhotoAttach
+import ru.daniilxt.feature.domain.model.UserCard
 
 fun main() {
     // GenerateFeatureModule("profile_professional_interests", "ProfileProfessionalInterests").main()
     GenerateRecyclerAdapter(
-        moduleName = "test",
-        adapterName = "UserTest",
-        dataClass = PhotoAttach::class.java,
+        moduleName = "main_screen",
+        adapterName = "UserCard",
+        dataClass = UserCard::class.java,
     ).main()
 }

@@ -34,6 +34,7 @@
     <color name="text_color_secondary">#FFFFFF</color>
     <color name="text_color_secondary_dark">#A3A3A3</color>
     <color name="text_color_third">#B2CBE4</color>
+    <color name="text_color_third_dark">#0C85B8</color>
     <color name="text_color_hint">#0C85B8</color>
     <color name="calendar_days_header_tint">#6D6D6D</color>
 
