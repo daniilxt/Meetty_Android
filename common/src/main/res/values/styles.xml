@@ -76,6 +76,10 @@
         <item name="colorControlHighlight">@color/highlight_color_primary</item>
     </style>
 
+    <style name="SelectableItemTheme2">
+        <item name="colorControlHighlight">@color/highlight_color_secondary</item>
+    </style>
+
     <style name="TextViewDescription">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/sp_16</item>
