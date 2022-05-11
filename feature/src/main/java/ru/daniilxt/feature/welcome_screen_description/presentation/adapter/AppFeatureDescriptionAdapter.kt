@@ -8,7 +8,6 @@ import ru.daniilxt.feature.databinding.ItemAppFeatureBinding
 import ru.daniilxt.feature.domain.model.FeatureDescription
 import ru.daniilxt.feature.welcome_screen_description.presentation.adapter.diffutil.AppFeatureDescriptionCallback
 import ru.daniilxt.feature.welcome_screen_description.presentation.adapter.view_holder.AppFeatureDescriptionViewHolder
-import timber.log.Timber
 
 class AppFeatureDescriptionAdapter : RecyclerView.Adapter<AppFeatureDescriptionViewHolder>() {
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
@@ -20,7 +19,6 @@ class AppFeatureDescriptionAdapter : RecyclerView.Adapter<AppFeatureDescriptionV
         AppFeatureDescriptionViewHolder(parent.viewBinding(ItemAppFeatureBinding::inflate))
 
     override fun onBindViewHolder(holder: AppFeatureDescriptionViewHolder, position: Int) {
-        Timber.i("${differ.currentList.get(position)}")
         holder.bind(differ.currentList[position])
     }
 
