@@ -1,4 +1,4 @@
-package ru.daniilxt.feature.main_screen.presentation.adapter.diffutil
+package ru.daniilxt.feature.main_screen_user_list.presentation.adapter.diffutil
 
 import androidx.recyclerview.widget.DiffUtil
 import ru.daniilxt.feature.domain.model.UserCard

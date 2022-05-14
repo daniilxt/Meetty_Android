@@ -27,4 +27,10 @@ class MainScreenNavigator : MainScreenRouter {
             R.id.open_main_screen_user_card_fragment
         )
     }
+
+    override fun openMainScreenUserListFragment() {
+        navController?.navigate(
+            R.id.open_main_screen_user_list_fragment
+        )
+    }
 }

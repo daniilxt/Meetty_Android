@@ -1,4 +1,4 @@
-package ru.daniilxt.feature.main_screen.presentation.adapter
+package ru.daniilxt.feature.main_screen_user_list.presentation.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.databinding.ItemUserCardBinding
 import ru.daniilxt.feature.domain.model.UserCard
-import ru.daniilxt.feature.main_screen.presentation.adapter.diffutil.UserCardCallback
-import ru.daniilxt.feature.main_screen.presentation.adapter.view_holder.UserCardViewHolder
+import ru.daniilxt.feature.main_screen_user_list.presentation.adapter.diffutil.UserCardCallback
+import ru.daniilxt.feature.main_screen_user_list.presentation.adapter.view_holder.UserCardViewHolder
 
 class UserCardAdapter(
     private val onItemClickListener: (data: UserCard) -> Unit,

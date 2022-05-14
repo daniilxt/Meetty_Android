@@ -2,9 +2,12 @@ package ru.daniilxt.feature.main_screen.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import coil.load
 import coil.transform.CircleCropTransformation
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.clearLightStatusBar
@@ -18,7 +21,6 @@ import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentMainScreenBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
-import ru.daniilxt.feature.main_screen.presentation.adapter.UserCardAdapter
 import ru.daniilxt.feature.navigation.MainScreenNavigator
 import javax.inject.Inject
 
@@ -27,11 +29,6 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
 
     @Inject
     lateinit var navigator: MainScreenNavigator
-
-    private val userCardsAdapter by lazy {
-        UserCardAdapter {
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,27 +42,31 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
 
         navigator.attach(navController)
 
+        var counter = 0
         binding.mbSwitch.setDebounceClickListener {
-            viewModel.openMainScreenUserCardFragment()
+            when (counter) {
+                0 -> {
+                    viewModel.openUserListFragment()
+                }
+                1 -> {
+                    viewModel.openMainScreenUserCardFragment()
+                }
+                else -> {
+                    viewModel.openMapFragment()
+                    counter = -1
+                }
+            }
+            counter++
+            lifecycleScope.launch {
+                delay(300L)
+                binding.ivMenu.performClick()
+            }
         }
     }
 
     override fun setupViews() {
         super.setupViews()
         initToolbar()
-        //  initBottomSheet()
-        initRecyclerView()
-    }
-
-    override fun setupViewModelSubscriber() {
-        super.setupViewModelSubscriber()
-        viewModel.userCards.observe {
-            userCardsAdapter.bind(it)
-        }
-    }
-
-    private fun initRecyclerView() {
-        //    binding.rvUserCards.adapter = userCardsAdapter
     }
 
     private fun initToolbar() {

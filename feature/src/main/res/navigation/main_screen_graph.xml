@@ -12,6 +12,9 @@
     <action
         android:id="@+id/open_main_screen_user_card_fragment"
         app:destination="@id/mainScreenUserCardFragment" />
+    <action
+        android:id="@+id/open_main_screen_user_list_fragment"
+        app:destination="@id/mainScreenUserListFragment" />
 
     <fragment
         android:id="@+id/mainScreenMapFragment"
@@ -22,4 +25,9 @@
         android:name="ru.daniilxt.feature.main_screen_user_card.presentation.MainScreenUserCardFragment"
         android:label="fragment_main_screen_user_card"
         tools:layout="@layout/fragment_main_screen_user_card" />
+    <fragment
+        android:id="@+id/mainScreenUserListFragment"
+        android:name="ru.daniilxt.feature.main_screen_user_list.presentation.MainScreenUserListFragment"
+        android:label="fragment_main_screen_user_list"
+        tools:layout="@layout/fragment_main_screen_user_list" />
 </navigation>

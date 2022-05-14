@@ -10,6 +10,7 @@ import ru.daniilxt.feature.login.di.LoginComponent
 import ru.daniilxt.feature.main_screen.di.MainScreenComponent
 import ru.daniilxt.feature.main_screen_map.di.MainScreenMapComponent
 import ru.daniilxt.feature.main_screen_user_card.di.MainScreenUserCardComponent
+import ru.daniilxt.feature.main_screen_user_list.di.MainScreenUserListComponent
 import ru.daniilxt.feature.onboarding.di.OnboardingComponent
 import ru.daniilxt.feature.profile_personal_info.di.ProfilePersonalInfoComponent
 import ru.daniilxt.feature.profile_professional_interests.di.ProfileProfessionalInterestsComponent
@@ -34,6 +35,10 @@ import ru.daniilxt.feature.welcome_screen_description.di.WelcomeScreenDescriptio
 interface FeatureComponent {
 
     fun mainScreenComponentFactory(): MainScreenComponent.Factory
+    fun mainScreenMapComponentFactory(): MainScreenMapComponent.Factory
+    fun mainScreenUserCardComponentFactory(): MainScreenUserCardComponent.Factory
+    fun mainScreenUserListComponentFactory(): MainScreenUserListComponent.Factory
+
     fun onboardingComponentFactory(): OnboardingComponent.Factory
     fun welcomeScreenComponentFactory(): WelcomeScreenComponent.Factory
     fun welcomeScreenDescriptionComponentFactory(): WelcomeScreenDescriptionComponent.Factory
@@ -45,8 +50,6 @@ interface FeatureComponent {
     fun profileRegistrationComponentFactory(): ProfileRegistrationComponent.Factory
     fun calendarComponentFactory(): CalendarComponent.Factory
     fun profileProfessionalInterestsComponentFactory(): ProfileProfessionalInterestsComponent.Factory
-    fun mainScreenMapComponentFactory(): MainScreenMapComponent.Factory
-    fun mainScreenUserCardComponentFactory(): MainScreenUserCardComponent.Factory
 
     @Component.Factory
     interface Factory {

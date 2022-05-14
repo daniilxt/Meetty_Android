@@ -1,4 +1,4 @@
-package ru.daniilxt.feature.main_screen.presentation.adapter.view_holder
+package ru.daniilxt.feature.main_screen_user_list.presentation.adapter.view_holder
 
 import android.annotation.SuppressLint
 import android.widget.TextView
