@@ -31,12 +31,23 @@
             android:text="Приветствуем, Екатерина"
             android:textColor="@color/white"
             android:textStyle="bold"
-
             app:layout_constraintBottom_toBottomOf="@id/iv_profile"
             app:layout_constraintEnd_toStartOf="@id/iv_menu"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/iv_profile"
             app:layout_constraintTop_toTopOf="@id/iv_profile" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mb_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_50"
+            android:backgroundTint="@color/button_toggle_tint"
+            android:text="switch"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_profile" />
 
         <ImageView
             android:id="@+id/iv_menu"

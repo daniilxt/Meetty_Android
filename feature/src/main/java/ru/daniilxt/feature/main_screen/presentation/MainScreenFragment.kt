@@ -34,10 +34,13 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
         requireView().clearLightStatusBar()
         requireActivity().setNavigationBarColor(R.color.white)
         binding.contentLayout.margin(top = requireContext().dpToPx(20F))
-/*
         val navHostFragment =
-           childFragmentManager.findFragmentById(R.id.main_screen_container) as NavHostFragment
-        val navController = navHostFragment.navController*/
+            childFragmentManager.findFragmentById(R.id.main_screen_container) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        binding.mbSwitch.setDebounceClickListener {
+            navController.navigate(R.id.open_main_screen_user_card_fragment)
+        }
     }
 
     override fun setupViews() {
@@ -55,7 +58,7 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
     }
 
     private fun initRecyclerView() {
-    //    binding.rvUserCards.adapter = userCardsAdapter
+        //    binding.rvUserCards.adapter = userCardsAdapter
     }
 
     private fun initToolbar() {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_primary"
+    tools:context=".main_screen_user_card.presentation.MainScreenUserCardFragment">
+
+    <TextView
+        android:id="@+id/et_start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="User cards"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_50" />
+</androidx.constraintlayout.widget.ConstraintLayout>
