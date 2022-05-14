@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/mainScreenFragment">
+    app:startDestination="@id/mainScreenMapFragment">
 
     <fragment
         android:id="@+id/mainScreenFragment"
@@ -63,4 +63,8 @@
         android:id="@+id/profileStepsFragment"
         android:name="ru.daniilxt.feature.profile_steps.presentation.ProfileStepsFragment"
         android:label="ProfileStepsFragment" />
+    <fragment
+        android:id="@+id/mainScreenMapFragment"
+        android:name="ru.daniilxt.feature.main_screen_map.presentation.MainScreenMapFragment"
+        android:label="MainScreenMapFragment" />
 </navigation>
