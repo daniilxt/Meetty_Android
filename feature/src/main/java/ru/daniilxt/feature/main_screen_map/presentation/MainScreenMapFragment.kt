@@ -24,8 +24,6 @@ class MainScreenMapFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().setStatusBarColor(R.color.white)
-        requireView().setLightStatusBar()
         binding.mapView.onCreate(savedInstanceState)
         binding.mapView.onResume()
     }

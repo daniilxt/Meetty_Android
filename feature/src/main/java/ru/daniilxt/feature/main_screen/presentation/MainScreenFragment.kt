@@ -2,6 +2,7 @@ package ru.daniilxt.feature.main_screen.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.NavHostFragment
 import coil.load
 import coil.transform.CircleCropTransformation
 import ru.daniilxt.common.base.BaseFragment
@@ -33,6 +34,10 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
         requireView().clearLightStatusBar()
         requireActivity().setNavigationBarColor(R.color.white)
         binding.contentLayout.margin(top = requireContext().dpToPx(20F))
+/*
+        val navHostFragment =
+           childFragmentManager.findFragmentById(R.id.main_screen_container) as NavHostFragment
+        val navController = navHostFragment.navController*/
     }
 
     override fun setupViews() {
@@ -50,7 +55,7 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
     }
 
     private fun initRecyclerView() {
-        binding.rvUserCards.adapter = userCardsAdapter
+    //    binding.rvUserCards.adapter = userCardsAdapter
     }
 
     private fun initToolbar() {
