@@ -10,6 +10,7 @@ import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.main_screen.presentation.MainScreenViewModel
+import ru.daniilxt.feature.navigation.interfaces.MainScreenRouter
 
 @Module(
     includes = [
@@ -22,10 +23,11 @@ class MainScreenModule {
     @IntoMap
     @ViewModelKey(MainScreenViewModel::class)
     fun provideViewModel(
-        navigator: FeatureRouter
+        navigator: FeatureRouter,
+        mainScreenRouter: MainScreenRouter
     ): ViewModel {
         return MainScreenViewModel(
-            navigator
+            navigator, mainScreenRouter
         )
     }
 

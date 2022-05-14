@@ -26,7 +26,8 @@ import ru.daniilxt.feature.welcome_screen_description.di.WelcomeScreenDescriptio
     ],
     modules = [
         FeatureModule::class,
-        FeatureDataModule::class
+        FeatureDataModule::class,
+        MainScreenNavigationModule::class
     ]
 )
 @FeatureScope

@@ -9,11 +9,14 @@ import ru.daniilxt.feature.domain.model.User
 import ru.daniilxt.feature.domain.model.UserAdditionalInfo
 import ru.daniilxt.feature.domain.model.UserCard
 import ru.daniilxt.feature.domain.model.UserCategory
+import ru.daniilxt.feature.navigation.interfaces.MainScreenRouter
+import timber.log.Timber
 import java.time.LocalDate
 
 @SuppressLint("NewApi")
 class MainScreenViewModel(
-    private val router: FeatureRouter
+    private val router: FeatureRouter,
+    private val mainScreenRouter: MainScreenRouter,
 ) : BaseViewModel() {
 
     private val _userCards: MutableStateFlow<List<UserCard>> = MutableStateFlow(emptyList())
@@ -40,5 +43,14 @@ class MainScreenViewModel(
                 )
             )
         }
+    }
+
+    fun openMapFragment() {
+        mainScreenRouter.openMainScreenMapFragment()
+    }
+
+    fun openMainScreenUserCardFragment() {
+        Timber.i("OPEN MAIN SCR 1")
+        mainScreenRouter.openMainScreenUserCardFragment()
     }
 }

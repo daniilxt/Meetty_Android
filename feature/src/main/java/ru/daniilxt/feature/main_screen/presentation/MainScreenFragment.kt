@@ -19,9 +19,14 @@ import ru.daniilxt.feature.databinding.FragmentMainScreenBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
 import ru.daniilxt.feature.main_screen.presentation.adapter.UserCardAdapter
+import ru.daniilxt.feature.navigation.MainScreenNavigator
+import javax.inject.Inject
 
 class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_main_screen) {
     override val binding: FragmentMainScreenBinding by viewBinding(FragmentMainScreenBinding::bind)
+
+    @Inject
+    lateinit var navigator: MainScreenNavigator
 
     private val userCardsAdapter by lazy {
         UserCardAdapter {
@@ -38,8 +43,10 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
             childFragmentManager.findFragmentById(R.id.main_screen_container) as NavHostFragment
         val navController = navHostFragment.navController
 
+        navigator.attach(navController)
+
         binding.mbSwitch.setDebounceClickListener {
-            navController.navigate(R.id.open_main_screen_user_card_fragment)
+            viewModel.openMainScreenUserCardFragment()
         }
     }
 
