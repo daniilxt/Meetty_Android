@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_screen_graph"
-    app:startDestination="@id/mainScreenMapFragment">
+    app:startDestination="@id/mainScreenUserListFragment">
 
     <action
         android:id="@+id/open_main_screen_map_fragment"

@@ -58,7 +58,8 @@ class BackdropViewAnimation(
             ObjectAnimator.ofFloat(
                 bottomSheet,
                 "translationY",
-                if (backdropShown) (positionY / 4).toFloat() else 0F
+               // if (backdropShown) (positionY / 4).toFloat() else 0F
+                if (backdropShown) (positionY / 6).toFloat() else 0F
             )
         animator.duration = 500
         animator.interpolator = interpolator

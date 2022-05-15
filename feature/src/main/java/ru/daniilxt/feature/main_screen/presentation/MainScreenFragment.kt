@@ -41,43 +41,57 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
         val navController = navHostFragment.navController
 
         navigator.attach(navController)
-
-        var counter = 0
-        binding.mbSwitch.setDebounceClickListener {
-            when (counter) {
-                0 -> {
-                    viewModel.openUserListFragment()
-                }
-                1 -> {
-                    viewModel.openMainScreenUserCardFragment()
-                }
-                else -> {
-                    viewModel.openMapFragment()
-                    counter = -1
-                }
-            }
-            counter++
-            lifecycleScope.launch {
-                delay(300L)
-                binding.ivMenu.performClick()
-            }
-        }
     }
 
     override fun setupViews() {
         super.setupViews()
         initToolbar()
+        initButtons()
+    }
+
+    private fun initButtons() {
+        with(binding.switcher) {
+            mbCards.isChecked = true
+            mbCards.setDebounceClickListener(delay = 0L) {
+                setButtonCheckStatus(cards = true)
+                viewModel.openUserListFragment()
+            }
+            mbLocation.setDebounceClickListener(delay = 0L) {
+                setButtonCheckStatus(location = true)
+                viewModel.openMapFragment()
+            }
+            mbRandom.setDebounceClickListener(delay = 0L) {
+                setButtonCheckStatus(random = true)
+                viewModel.openMainScreenUserCardFragment()
+            }
+        }
+    }
+
+    private fun setButtonCheckStatus(
+        cards: Boolean = false,
+        location: Boolean = false,
+        random: Boolean = false
+    ) {
+        with(binding.switcher) {
+            mbCards.isChecked = cards
+            mbLocation.isChecked = location
+            mbRandom.isChecked = random
+        }
+        lifecycleScope.launch {
+            delay(300)
+            binding.toolbar.ibMenu.performClick()
+        }
     }
 
     private fun initToolbar() {
-        binding.ivProfile.load("https://sun9-30.userapi.com/sun9-57/s/v1/if1/5uukGklSa12cTtzRaFAB6rnxSEy0078CECF4Bt80CEJibU979WejyH1haetd5cLfqPPvliyc.jpg?size=899x1280&quality=96&type=album") {
+        binding.toolbar.ibProfile.load("https://sun9-30.userapi.com/sun9-57/s/v1/if1/5uukGklSa12cTtzRaFAB6rnxSEy0078CECF4Bt80CEJibU979WejyH1haetd5cLfqPPvliyc.jpg?size=899x1280&quality=96&type=album") {
             transformations(CircleCropTransformation())
         }
         val backdropAnimation = BackdropViewAnimation(
             requireContext(), binding.backDrop, binding.contentLayout,
             R.drawable.ic_menu_2_24, R.drawable.ic_close_24, R.color.white
         )
-        binding.ivMenu.setDebounceClickListener { v -> backdropAnimation.toggle(v) }
+        binding.toolbar.ibMenu.setDebounceClickListener { v -> backdropAnimation.toggle(v) }
     }
 
     override fun inject() {
