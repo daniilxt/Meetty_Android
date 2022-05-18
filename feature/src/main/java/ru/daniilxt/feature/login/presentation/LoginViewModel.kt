@@ -8,5 +8,6 @@ class LoginViewModel(private val router: FeatureRouter) : BaseViewModel() {
     fun isEmailValid(email: String) = Patterns.EMAIL_ADDRESS.matcher(email).matches()
     fun fieldCorrect(field: String) = field.isNotBlank()
     fun login(login: String, password: String) {
+        router.openMainScreenFragment()
     }
 }
