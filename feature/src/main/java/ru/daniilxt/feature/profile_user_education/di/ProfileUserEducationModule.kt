@@ -10,6 +10,7 @@ import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
+import ru.daniilxt.feature.domain.usecase.GetEducationInstitutesUseCase
 import ru.daniilxt.feature.profile_user_education.presentation.ProfileUserEducationViewModel
 
 @Module(
@@ -24,10 +25,11 @@ class ProfileUserEducationModule {
     @ViewModelKey(ProfileUserEducationViewModel::class)
     fun provideViewModel(
         navigator: FeatureRouter,
-        dataWrapper: ProfileDataWrapper
+        dataWrapper: ProfileDataWrapper,
+        getEducationInstitutesUseCase: GetEducationInstitutesUseCase
     ): ViewModel {
         return ProfileUserEducationViewModel(
-            navigator, dataWrapper
+            navigator, dataWrapper, getEducationInstitutesUseCase
         )
     }
 

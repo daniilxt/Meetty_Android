@@ -45,9 +45,9 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         ViewPagerAdapter(
             this,
             listOf(
+                ProfileUserEducationFragment.newInstance(),
                 ProfileRegistrationFragment.newInstance(),
                 ProfilePersonalInfoFragment.newInstance(),
-                ProfileUserEducationFragment.newInstance(),
                 ProfileProfessionalInterestsFragment.newInstance(),
                 ProfileUserAchievementsFragment.newInstance(),
             )
