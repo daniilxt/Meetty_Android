@@ -3,7 +3,7 @@ package ru.daniilxt.feature.profile_registration.presentation
 import android.util.Patterns
 import ru.daniilxt.common.base.BaseViewModel
 import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
-import ru.daniilxt.feature.data_wrapper.UserCredentials
+import ru.daniilxt.feature.domain.model.UserCredentials
 
 class ProfileRegistrationViewModel(
     private val dataWrapper: ProfileDataWrapper

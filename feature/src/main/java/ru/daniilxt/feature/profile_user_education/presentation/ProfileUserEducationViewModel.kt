@@ -13,12 +13,12 @@ import ru.daniilxt.common.error.RequestResult
 import ru.daniilxt.common.model.ResponseError
 import ru.daniilxt.common.model.ResponseState
 import ru.daniilxt.feature.FeatureRouter
-import ru.daniilxt.feature.data_wrapper.City
-import ru.daniilxt.feature.data_wrapper.EducationInstitute
 import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
-import ru.daniilxt.feature.data_wrapper.UserEducationInfo
 import ru.daniilxt.feature.domain.model.AttachType
+import ru.daniilxt.feature.domain.model.City
+import ru.daniilxt.feature.domain.model.EducationInstitute
 import ru.daniilxt.feature.domain.model.PhotoAttach
+import ru.daniilxt.feature.domain.model.UserEducationInfo
 import ru.daniilxt.feature.domain.model.toPhotoAttach
 import ru.daniilxt.feature.domain.usecase.GetEducationInstitutesUseCase
 import ru.daniilxt.feature.files_helper.FilesHelper
@@ -63,7 +63,7 @@ class ProfileUserEducationViewModel(
                             _parentInstitutesList.value.map { city -> city.city }.distinct()
                     }
                     is RequestResult.Error -> {
-                        setEventState(ResponseState.Failure(it.error))
+                        setEventState(ResponseState.Failure(it.error as ResponseError))
                     }
                 }
             }, {

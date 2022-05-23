@@ -38,7 +38,7 @@ class ProfileProfessionalInterestsViewModel(
                         _interests.value = it.data
                     }
                     is RequestResult.Error -> {
-                        setEventState(ResponseState.Failure(it.error))
+                        setEventState(ResponseState.Failure(it.error as ResponseError))
                     }
                 }
             }, {

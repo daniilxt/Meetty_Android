@@ -10,6 +10,7 @@ import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
+import ru.daniilxt.feature.domain.usecase.SendRegistrationInfoUseCase
 import ru.daniilxt.feature.profile_steps.presentation.ProfileStepsViewModel
 
 @Module(
@@ -24,10 +25,11 @@ class ProfileStepsModule {
     @ViewModelKey(ProfileStepsViewModel::class)
     fun provideViewModel(
         navigator: FeatureRouter,
-        profileDataWrapper: ProfileDataWrapper
+        profileDataWrapper: ProfileDataWrapper,
+        sendRegistrationInfoUseCase: SendRegistrationInfoUseCase
     ): ViewModel {
         return ProfileStepsViewModel(
-            navigator, profileDataWrapper
+            navigator, profileDataWrapper, sendRegistrationInfoUseCase
         )
     }
 

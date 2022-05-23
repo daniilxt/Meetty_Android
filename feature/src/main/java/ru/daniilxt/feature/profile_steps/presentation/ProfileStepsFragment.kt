@@ -4,10 +4,12 @@ import android.animation.LayoutTransition
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
+import ru.daniilxt.common.error.RegistrationError
 import ru.daniilxt.common.extensions.hideKeyboardWithDelay
 import ru.daniilxt.common.extensions.margin
 import ru.daniilxt.common.extensions.setDebounceClickListener
@@ -85,6 +87,32 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         initButtons()
     }
 
+    override fun setupViewModelSubscriber() {
+        super.setupViewModelSubscriber()
+        viewModel.uiState.observe { handleUiState(it) }
+    }
+
+    private fun handleUiState(uiState: ProfileStepsViewModel.UiState) {
+        when (uiState) {
+            is ProfileStepsViewModel.UiState.Initial -> {}
+            is ProfileStepsViewModel.UiState.Processing -> {
+                binding.pbProgress.visibility = View.VISIBLE
+            }
+            is ProfileStepsViewModel.UiState.Success -> {
+                binding.pbProgress.visibility = View.GONE
+            }
+            is ProfileStepsViewModel.UiState.Error -> {
+                binding.pbProgress.visibility = View.GONE
+                when (uiState.errorEntity) {
+                    RegistrationError.UserAlreadyExists -> {
+                        Toast.makeText(requireContext(), "User already exist", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         // TODO why crash
@@ -150,7 +178,7 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
     }
 
     private fun handleProfileEndFilling() {
-        viewModel.getBundle()
+        viewModel.signUp()
     }
 
     override fun inject() {

@@ -71,8 +71,10 @@ dependencies {
     coreLibraryDesugaring coreLibDesugaringDep
 
     implementation okHttpDep
+    implementation okHttpLoggingDep
     implementation retrofitDep
     implementation retrofitAdapterDep
+
     implementation rxJavaDep
     implementation rxAndroidDep
     implementation rxKotlinDep

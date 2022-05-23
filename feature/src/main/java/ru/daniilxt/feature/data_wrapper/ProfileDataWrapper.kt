@@ -2,16 +2,18 @@ package ru.daniilxt.feature.data_wrapper
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import ru.daniilxt.feature.domain.model.ProfessionalInterest
+import ru.daniilxt.feature.domain.model.ProfileData
 import ru.daniilxt.feature.domain.model.UserAchievement
-import java.io.File
-import java.time.LocalDate
+import ru.daniilxt.feature.domain.model.UserCredentials
+import ru.daniilxt.feature.domain.model.UserEducationInfo
+import ru.daniilxt.feature.domain.model.UserPersonalInfo
 
 class ProfileDataWrapper {
     private val _profileData: MutableStateFlow<ProfileData> =
         MutableStateFlow(ProfileData())
 
     fun setUserCredentials(userCredentials: UserCredentials) {
-        _profileData.value = _profileData.value.copy(useCredentials = userCredentials)
+        _profileData.value = _profileData.value.copy(userCredentials = userCredentials)
     }
 
     fun setUserPersonalInfo(userPersonalInfo: UserPersonalInfo) {
@@ -32,41 +34,3 @@ class ProfileDataWrapper {
 
     fun getData() = _profileData.value
 }
-
-data class ProfileData(
-    val useCredentials: UserCredentials? = null,
-    val userPersonalInfo: UserPersonalInfo? = null,
-    val userEducationInfo: UserEducationInfo? = null,
-    val professionalInterest: List<ProfessionalInterest> = emptyList(),
-    val userAchievements: List<UserAchievement> = emptyList()
-)
-
-data class UserCredentials(
-    val email: String,
-    val password: String
-)
-
-data class UserPersonalInfo(
-    val firstName: String,
-    val lastName: String,
-    val birthDay: LocalDate,
-    val phoneNumber: String,
-    val sex: String
-)
-
-data class UserEducationInfo(
-    val city: City,
-    val institute: EducationInstitute,
-    val photos: List<File>
-)
-
-data class City(
-    val id: Long,
-    val cityName: String
-)
-
-data class EducationInstitute(
-    val id: Long,
-    val instituteName: String,
-    val city: City
-)

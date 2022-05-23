@@ -1,7 +1,7 @@
-package ru.daniilxt.feature.data.remote.model
+package ru.daniilxt.feature.data.remote.model.response
 
 import com.google.gson.annotations.SerializedName
-import ru.daniilxt.feature.data_wrapper.City
+import ru.daniilxt.feature.domain.model.City
 
 data class CityResponse(
     @SerializedName("id")

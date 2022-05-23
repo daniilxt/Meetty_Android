@@ -10,7 +10,7 @@ import com.google.android.material.textfield.TextInputLayout
 import ru.daniilxt.common.base.BaseDelegate
 import ru.daniilxt.common.extensions.setInputFormAttributes
 import ru.daniilxt.feature.R
-import ru.daniilxt.feature.data_wrapper.UserPersonalInfo
+import ru.daniilxt.feature.domain.model.UserPersonalInfo
 import ru.daniilxt.feature.databinding.FragmentProfilePersonalInfoBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
