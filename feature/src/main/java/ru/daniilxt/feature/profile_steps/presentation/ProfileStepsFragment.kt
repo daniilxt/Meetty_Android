@@ -1,7 +1,9 @@
 package ru.daniilxt.feature.profile_steps.presentation
 
+import android.animation.LayoutTransition
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import ru.daniilxt.common.base.BaseFragment
@@ -25,6 +27,7 @@ import ru.daniilxt.feature.profile_steps.presentation.adapter.ViewPagerAdapter
 import ru.daniilxt.feature.profile_user_achievements.presentation.ProfileUserAchievementsFragment
 import ru.daniilxt.feature.profile_user_education.presentation.ProfileUserEducationFragment
 
+
 class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragment_profile_steps) {
 
     override val binding: FragmentProfileStepsBinding by viewBinding(FragmentProfileStepsBinding::bind)
@@ -45,10 +48,10 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         ViewPagerAdapter(
             this,
             listOf(
-                ProfileProfessionalInterestsFragment.newInstance(),
-                ProfileUserEducationFragment.newInstance(),
                 ProfileRegistrationFragment.newInstance(),
                 ProfilePersonalInfoFragment.newInstance(),
+                ProfileUserEducationFragment.newInstance(),
+                ProfileProfessionalInterestsFragment.newInstance(),
                 ProfileUserAchievementsFragment.newInstance(),
             )
         )
@@ -63,13 +66,17 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requireActivity().setWindowTransparency { statusBarSize, navigationBarSize ->
+        requireActivity().setWindowTransparency { statusBarSize, _ ->
             binding.tvStepTitle.margin(top = (statusBarSize / 1.5).toFloat())
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val rootView = binding.root as ViewGroup
+        val layoutTransition = rootView.layoutTransition
+        layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
 
         requireActivity().setStatusBarColor(R.color.background_third)
         requireView().setLightStatusBar()
@@ -143,6 +150,7 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
     }
 
     private fun handleProfileEndFilling() {
+        viewModel.getBundle()
     }
 
     override fun inject() {

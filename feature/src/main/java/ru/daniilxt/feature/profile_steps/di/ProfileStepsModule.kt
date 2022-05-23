@@ -9,6 +9,7 @@ import dagger.multibindings.IntoMap
 import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
 import ru.daniilxt.feature.profile_steps.presentation.ProfileStepsViewModel
 
 @Module(
@@ -22,10 +23,11 @@ class ProfileStepsModule {
     @IntoMap
     @ViewModelKey(ProfileStepsViewModel::class)
     fun provideViewModel(
-        navigator: FeatureRouter
+        navigator: FeatureRouter,
+        profileDataWrapper: ProfileDataWrapper
     ): ViewModel {
         return ProfileStepsViewModel(
-            navigator
+            navigator, profileDataWrapper
         )
     }
 

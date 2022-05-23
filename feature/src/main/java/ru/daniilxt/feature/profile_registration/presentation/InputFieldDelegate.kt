@@ -1,6 +1,7 @@
 package ru.daniilxt.feature.profile_registration.presentation
 
 import android.text.InputType
+import android.view.inputmethod.EditorInfo
 import ru.daniilxt.common.base.BaseDelegate
 import ru.daniilxt.common.extensions.setInputFormAttributes
 import ru.daniilxt.feature.R
@@ -20,9 +21,9 @@ class InputFieldDelegate(
         binding.etEmail.setInputFormAttributes(
             hintText = context.getString(R.string.email),
             inputType = (
-                InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS or
-                    InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-                )
+                    InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS or
+                            InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                    )
         )
         binding.etPassword.setInputFormAttributes(
             hintText = context.getString(R.string.password),
@@ -32,6 +33,7 @@ class InputFieldDelegate(
             hintText = context.getString(R.string.confirm_password),
             inputType = (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
         )
+        binding.etConfirmPassword.textInputEt.imeOptions = EditorInfo.IME_ACTION_DONE
     }
 
     fun isFieldsCorrectAndPutToBundle(): Boolean {

@@ -17,7 +17,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "String", "ENDPOINT", "\"https://d151-95-27-42-57.eu.ngrok.io\""
+            buildConfigField "String", "ENDPOINT", "\"https://762e-95-27-42-57.eu.ngrok.io\""
         }
         release {
             buildConfigField "String", "ENDPOINT", "\"https://developerslife.ru\""
