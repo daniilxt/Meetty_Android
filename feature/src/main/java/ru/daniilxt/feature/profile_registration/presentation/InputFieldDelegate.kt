@@ -21,9 +21,9 @@ class InputFieldDelegate(
         binding.etEmail.setInputFormAttributes(
             hintText = context.getString(R.string.email),
             inputType = (
-                    InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS or
-                            InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-                    )
+                InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS or
+                    InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                )
         )
         binding.etPassword.setInputFormAttributes(
             hintText = context.getString(R.string.password),

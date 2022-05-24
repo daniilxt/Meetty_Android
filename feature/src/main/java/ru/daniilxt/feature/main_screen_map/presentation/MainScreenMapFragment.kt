@@ -8,8 +8,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
-import ru.daniilxt.common.extensions.setLightStatusBar
-import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentMainScreenMapBinding

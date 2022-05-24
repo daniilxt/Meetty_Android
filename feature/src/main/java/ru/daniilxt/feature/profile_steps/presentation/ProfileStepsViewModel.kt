@@ -28,7 +28,7 @@ class ProfileStepsViewModel(
     }
 
     fun openMainScreenFragment() {
-        //router.openMainScreenFragment()
+        router.openMainScreenFragment()
     }
 
     fun setCurrentSelectedPage(position: Int) {
@@ -52,7 +52,6 @@ class ProfileStepsViewModel(
                     }
                 }
             }, {
-
             }).addTo(disposable)
     }
 

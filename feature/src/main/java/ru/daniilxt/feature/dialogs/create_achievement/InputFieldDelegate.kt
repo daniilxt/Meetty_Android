@@ -39,8 +39,8 @@ class InputFieldDelegate(
     private fun addTextWatcher(et: TextInputEditText, btn: MaterialButton) {
         et.addTextChangedListener {
             btn.isEnabled = !binding.etTitle.textInputEt.text.isNullOrBlank() &&
-                    !binding.etDate.textInputEt.text.isNullOrBlank() &&
-                    !binding.etDescription.textInputEt.text.isNullOrBlank()
+                !binding.etDate.textInputEt.text.isNullOrBlank() &&
+                !binding.etDescription.textInputEt.text.isNullOrBlank()
         }
     }
 

@@ -55,18 +55,19 @@ class ProfileUserEducationViewModel(
         getEducationInstitutesUseCase.invoke()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                when (it) {
-                    is RequestResult.Success -> {
-                        _parentInstitutesList.value = it.data
-                        _citiesList.value =
-                            _parentInstitutesList.value.map { city -> city.city }.distinct()
+            .subscribe(
+                {
+                    when (it) {
+                        is RequestResult.Success -> {
+                            _parentInstitutesList.value = it.data
+                            _citiesList.value =
+                                _parentInstitutesList.value.map { city -> city.city }.distinct()
+                        }
+                        is RequestResult.Error -> {
+                            setEventState(ResponseState.Failure(it.error as ResponseError))
+                        }
                     }
-                    is RequestResult.Error -> {
-                        setEventState(ResponseState.Failure(it.error as ResponseError))
-                    }
-                }
-            }, {
+                }, {
                 setEventState(ResponseState.Failure(ResponseError.ConnectionError))
             }
             ).addTo(disposable)

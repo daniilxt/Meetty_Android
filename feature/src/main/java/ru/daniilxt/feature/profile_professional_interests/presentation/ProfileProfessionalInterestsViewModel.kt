@@ -32,16 +32,17 @@ class ProfileProfessionalInterestsViewModel(
         getProfessionalInterestUseCase.invoke()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                when (it) {
-                    is RequestResult.Success -> {
-                        _interests.value = it.data
+            .subscribe(
+                {
+                    when (it) {
+                        is RequestResult.Success -> {
+                            _interests.value = it.data
+                        }
+                        is RequestResult.Error -> {
+                            setEventState(ResponseState.Failure(it.error as ResponseError))
+                        }
                     }
-                    is RequestResult.Error -> {
-                        setEventState(ResponseState.Failure(it.error as ResponseError))
-                    }
-                }
-            }, {
+                }, {
                 setEventState(ResponseState.Failure(ResponseError.ConnectionError))
             }
             ).addTo(disposable)

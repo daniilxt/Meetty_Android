@@ -11,5 +11,4 @@ class DebounceClickListener @JvmOverloads constructor(
             onClickListener.onClick(v)
         }
     }
-
 }

@@ -15,7 +15,6 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import ru.daniilxt.common.extensions.screenValue
 import ru.daniilxt.feature.R
-import timber.log.Timber
 
 class BackdropViewAnimation(
     val context: Context,
@@ -58,7 +57,7 @@ class BackdropViewAnimation(
             ObjectAnimator.ofFloat(
                 bottomSheet,
                 "translationY",
-               // if (backdropShown) (positionY / 4).toFloat() else 0F
+                // if (backdropShown) (positionY / 4).toFloat() else 0F
                 if (backdropShown) (positionY / 6).toFloat() else 0F
             )
         animator.duration = 500

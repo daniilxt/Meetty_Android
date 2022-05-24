@@ -163,7 +163,7 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
     }
 
     private fun handleProfileEndFilling() {
-        //viewModel.openMainScreenFragment()
+        // viewModel.openMainScreenFragment()
         viewModel.signUp()
     }
 

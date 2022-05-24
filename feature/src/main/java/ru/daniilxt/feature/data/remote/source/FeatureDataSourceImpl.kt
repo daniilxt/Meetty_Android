@@ -15,7 +15,6 @@ import ru.daniilxt.feature.domain.model.ProfessionalInterest
 import ru.daniilxt.feature.domain.model.ProfileData
 import ru.daniilxt.feature.domain.model.Tokens
 import ru.daniilxt.feature.domain.model.toRegistrationInfoBody
-import timber.log.Timber
 import java.net.HttpURLConnection
 import javax.inject.Inject
 

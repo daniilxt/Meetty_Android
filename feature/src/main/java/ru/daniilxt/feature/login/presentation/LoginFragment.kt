@@ -15,7 +15,6 @@ import ru.daniilxt.feature.databinding.FragmentLoginBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
 
-
 class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
 
     override val binding: FragmentLoginBinding by viewBinding(FragmentLoginBinding::bind)

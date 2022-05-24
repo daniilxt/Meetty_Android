@@ -18,11 +18,13 @@ fun Fragment.statusBarHeight(): Int {
 
 fun Fragment.addBackPressedCallback(action: () -> Unit) {
     requireActivity().onBackPressedDispatcher.addCallback(
-        viewLifecycleOwner, object : OnBackPressedCallback(true) {
+        viewLifecycleOwner,
+        object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 action()
             }
-        })
+        }
+    )
 }
 
 /**
