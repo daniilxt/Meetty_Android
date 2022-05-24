@@ -3,48 +3,43 @@ package ru.daniilxt.feature.profile_user_education.presentation
 import android.content.Context
 import android.net.Uri
 import androidx.core.net.toUri
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import ru.daniilxt.common.base.BaseViewModel
+import ru.daniilxt.common.error.RequestResult
+import ru.daniilxt.common.model.ResponseError
+import ru.daniilxt.common.model.ResponseState
 import ru.daniilxt.feature.FeatureRouter
-import ru.daniilxt.feature.data_wrapper.City
-import ru.daniilxt.feature.data_wrapper.EducationInstitute
 import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
-import ru.daniilxt.feature.data_wrapper.UserEducationInfo
 import ru.daniilxt.feature.domain.model.AttachType
+import ru.daniilxt.feature.domain.model.City
+import ru.daniilxt.feature.domain.model.EducationInstitute
 import ru.daniilxt.feature.domain.model.PhotoAttach
+import ru.daniilxt.feature.domain.model.UserEducationInfo
 import ru.daniilxt.feature.domain.model.toPhotoAttach
+import ru.daniilxt.feature.domain.usecase.GetEducationInstitutesUseCase
 import ru.daniilxt.feature.files_helper.FilesHelper
 import timber.log.Timber
 import java.io.File
 
 class ProfileUserEducationViewModel(
     private val router: FeatureRouter,
-    private val profileDataWrapper: ProfileDataWrapper
+    private val profileDataWrapper: ProfileDataWrapper,
+    private val getEducationInstitutesUseCase: GetEducationInstitutesUseCase
 ) : BaseViewModel() {
+
     private val _photosList: MutableStateFlow<Set<PhotoAttach>> =
         MutableStateFlow(emptySet())
     val photosList: MutableStateFlow<Set<PhotoAttach>> get() = _photosList
 
-    // TODO CITIES WILL RETURNED FROM THE SERVER
-    val spb = City(1, "Санкт-Петербург")
-    val msk = City(2, "Москва")
-    val nsk = City(3, "Новосибирск")
-
-    private val _citiesList: MutableStateFlow<List<City>> = MutableStateFlow(
-        listOf(spb, msk, nsk)
-    )
+    private val _citiesList: MutableStateFlow<List<City>> = MutableStateFlow(emptyList())
     val citiesList: StateFlow<List<City>> get() = _citiesList
 
     private val _parentInstitutesList: MutableStateFlow<List<EducationInstitute>> =
-        MutableStateFlow(
-            listOf(
-                EducationInstitute(1, "Политех", spb),
-                EducationInstitute(4, "ИТМО", spb),
-                EducationInstitute(2, "НГУ", nsk),
-                EducationInstitute(3, "МФТИ", msk)
-            )
-        )
+        MutableStateFlow(emptyList())
     private val _institutesList: MutableStateFlow<List<EducationInstitute>> = MutableStateFlow(
         _parentInstitutesList.value
     )
@@ -53,6 +48,29 @@ class ProfileUserEducationViewModel(
 
     init {
         _photosList.value = addPhotoElement
+        getEducationInstitutes()
+    }
+
+    private fun getEducationInstitutes() {
+        getEducationInstitutesUseCase.invoke()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    when (it) {
+                        is RequestResult.Success -> {
+                            _parentInstitutesList.value = it.data
+                            _citiesList.value =
+                                _parentInstitutesList.value.map { city -> city.city }.distinct()
+                        }
+                        is RequestResult.Error -> {
+                            setEventState(ResponseState.Failure(it.error as ResponseError))
+                        }
+                    }
+                }, {
+                setEventState(ResponseState.Failure(ResponseError.ConnectionError))
+            }
+            ).addTo(disposable)
     }
 
     fun setPhotos(list: List<Uri>) {

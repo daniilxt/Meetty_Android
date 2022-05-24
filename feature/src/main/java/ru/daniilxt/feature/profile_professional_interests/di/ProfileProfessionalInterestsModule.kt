@@ -10,6 +10,7 @@ import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
+import ru.daniilxt.feature.domain.usecase.GetProfessionalInterestUseCase
 import ru.daniilxt.feature.profile_professional_interests.presentation.ProfileProfessionalInterestsViewModel
 
 @Module(
@@ -24,10 +25,11 @@ class ProfileProfessionalInterestsModule {
     @ViewModelKey(ProfileProfessionalInterestsViewModel::class)
     fun provideViewModel(
         navigator: FeatureRouter,
-        dataWrapper: ProfileDataWrapper
+        dataWrapper: ProfileDataWrapper,
+        getProfessionalInterestUseCase: GetProfessionalInterestUseCase
     ): ViewModel {
         return ProfileProfessionalInterestsViewModel(
-            navigator, dataWrapper
+            navigator, dataWrapper, getProfessionalInterestUseCase
         )
     }
 

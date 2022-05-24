@@ -1,6 +1,7 @@
 package ru.daniilxt.feature.profile_registration.presentation
 
 import android.text.InputType
+import android.view.inputmethod.EditorInfo
 import ru.daniilxt.common.base.BaseDelegate
 import ru.daniilxt.common.extensions.setInputFormAttributes
 import ru.daniilxt.feature.R
@@ -32,6 +33,7 @@ class InputFieldDelegate(
             hintText = context.getString(R.string.confirm_password),
             inputType = (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
         )
+        binding.etConfirmPassword.textInputEt.imeOptions = EditorInfo.IME_ACTION_DONE
     }
 
     fun isFieldsCorrectAndPutToBundle(): Boolean {

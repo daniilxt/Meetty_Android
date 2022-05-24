@@ -35,7 +35,7 @@ buildscript {
         metadataVersion = '0.3.0'
 
         retrofitVersion = '2.9.0'
-        okhttpVersion = '4.9.1'
+        okhttpVersion = '4.9.3'
         rxjavaVersion = '2.2.21'
         rxandroidVersion = '2.1.1'
         rxkotlinVersion = '2.3.0'
@@ -109,6 +109,7 @@ buildscript {
         coreLibDesugaringDep = "com.android.tools:desugar_jdk_libs:$coreLibDesugaringVersion"
 
         okHttpDep = "com.squareup.okhttp3:okhttp:$okhttpVersion"
+        okHttpLoggingDep = "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
         retrofitDep = "com.squareup.retrofit2:retrofit:$retrofitVersion"
         retrofitAdapterDep = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
         rxJavaDep = "io.reactivex.rxjava2:rxjava:$rxjavaVersion"

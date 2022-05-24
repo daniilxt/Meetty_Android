@@ -37,7 +37,6 @@ class ProfilePersonalInfoFragment :
     }
 
     private fun setButtons() {
-
         binding.etBirthDay.textInputEt.setDebounceClickListener {
             datePickerDialog.setSelectedDate(LocalDate.now())
             datePickerDialog.setOnDestroyListener { date ->
