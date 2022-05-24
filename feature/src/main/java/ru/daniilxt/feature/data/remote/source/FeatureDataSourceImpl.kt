@@ -40,7 +40,6 @@ class FeatureDataSourceImpl @Inject constructor(
     }
 
     override fun sendRegistrationInfoUseCase(registrationInfo: ProfileData): Single<RequestResult<Tokens>> {
-        Timber.i("DATA $registrationInfo")
         return featureApiService.sendRegistrationInfo(registrationInfo.toRegistrationInfoBody())
             .map { response ->
                 when {

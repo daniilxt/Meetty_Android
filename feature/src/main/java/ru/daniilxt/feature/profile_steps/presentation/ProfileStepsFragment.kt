@@ -94,12 +94,15 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
 
     private fun handleUiState(uiState: ProfileStepsViewModel.UiState) {
         when (uiState) {
-            is ProfileStepsViewModel.UiState.Initial -> {}
+            is ProfileStepsViewModel.UiState.Initial -> {
+                binding.pbProgress.visibility = View.GONE
+            }
             is ProfileStepsViewModel.UiState.Processing -> {
                 binding.pbProgress.visibility = View.VISIBLE
             }
             is ProfileStepsViewModel.UiState.Success -> {
                 binding.pbProgress.visibility = View.GONE
+                viewModel.openMainScreenFragment()
             }
             is ProfileStepsViewModel.UiState.Error -> {
                 binding.pbProgress.visibility = View.GONE

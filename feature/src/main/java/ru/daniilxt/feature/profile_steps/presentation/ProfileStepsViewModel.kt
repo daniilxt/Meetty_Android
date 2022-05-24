@@ -27,6 +27,10 @@ class ProfileStepsViewModel(
         router.back()
     }
 
+    fun openMainScreenFragment() {
+        //router.openMainScreenFragment()
+    }
+
     fun setCurrentSelectedPage(position: Int) {
         currentSelectedPage = position
     }
