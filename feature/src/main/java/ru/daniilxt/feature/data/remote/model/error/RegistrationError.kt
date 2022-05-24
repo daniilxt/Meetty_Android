@@ -1,4 +1,6 @@
-package ru.daniilxt.common.error
+package ru.daniilxt.feature.data.remote.model.error
+
+import ru.daniilxt.common.error.ErrorEntity
 
 sealed class RegistrationError : ErrorEntity {
     object UserAlreadyExists : RegistrationError()

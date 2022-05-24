@@ -2,10 +2,12 @@ package ru.daniilxt.feature.data.remote.source
 
 import io.reactivex.Single
 import retrofit2.Response
-import ru.daniilxt.common.error.RegistrationError
 import ru.daniilxt.common.error.RequestResult
 import ru.daniilxt.common.model.ResponseError
 import ru.daniilxt.feature.data.remote.api.FeatureApiService
+import ru.daniilxt.feature.data.remote.model.body.LoginCredentialsBody
+import ru.daniilxt.feature.data.remote.model.error.LoginError
+import ru.daniilxt.feature.data.remote.model.error.RegistrationError
 import ru.daniilxt.feature.data.remote.model.response.toEducationInstitute
 import ru.daniilxt.feature.data.remote.model.response.toProfessionalInterest
 import ru.daniilxt.feature.data.remote.model.response.toTokens
@@ -55,6 +57,33 @@ class FeatureDataSourceImpl @Inject constructor(
                     }
                     else -> {
                         RequestResult.Error(ResponseError.UnknownError)
+                    }
+                }
+            }
+    }
+
+    override fun auth(email: String, password: String): Single<RequestResult<Tokens>> {
+        return featureApiService.auth(LoginCredentialsBody(email, password))
+            .map {
+                when {
+                    it.isSuccessful -> {
+                        val access = it.body()?.accessToken
+                        val refresh = it.body()?.refreshToken
+                        if (access == null || refresh == null) {
+                            //  Timber.tag(TAG).e("One of tokens is null, response=$it")
+                            RequestResult.Error(LoginError.Unknown)
+                        } else {
+                            RequestResult.Success(Tokens(access, refresh))
+                        }
+                    }
+                    it.code() == HttpURLConnection.HTTP_FORBIDDEN -> {
+                        RequestResult.Error(LoginError.NotActivatedAccount)
+                    }
+                    it.code() == HttpURLConnection.HTTP_UNAUTHORIZED -> {
+                        RequestResult.Error(LoginError.InvalidCredentials)
+                    }
+                    else -> {
+                        RequestResult.Error(LoginError.Unknown)
                     }
                 }
             }

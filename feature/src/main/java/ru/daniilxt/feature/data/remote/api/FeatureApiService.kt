@@ -5,6 +5,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import ru.daniilxt.feature.data.remote.model.body.LoginCredentialsBody
 import ru.daniilxt.feature.data.remote.model.body.RegistrationInfoBody
 import ru.daniilxt.feature.data.remote.model.response.EducationInstituteResponse
 import ru.daniilxt.feature.data.remote.model.response.ProfessionalInterestResponse
@@ -21,4 +22,7 @@ interface FeatureApiService {
     fun sendRegistrationInfo(
         @Body registrationInfoBody: RegistrationInfoBody
     ): Single<Response<TokensResponse>>
+
+    @POST("/api/v1/auth/login")
+    fun auth(@Body loginCredentialsBody: LoginCredentialsBody): Single<Response<TokensResponse>>
 }

@@ -11,4 +11,5 @@ interface FeatureDataSource {
     fun getEducationInstitutes(): Single<RequestResult<List<EducationInstitute>>>
     fun getProfessionalInterests(): Single<RequestResult<List<ProfessionalInterest>>>
     fun sendRegistrationInfoUseCase(registrationInfo: ProfileData): Single<RequestResult<Tokens>>
+    fun auth(email: String, password: String): Single<RequestResult<Tokens>>
 }

@@ -23,4 +23,8 @@ class FeatureRepositoryImpl @Inject constructor(private val featureDataSource: F
     override fun sendRegistrationInfoUseCase(registrationInfo: ProfileData): Single<RequestResult<Tokens>> {
         return featureDataSource.sendRegistrationInfoUseCase(registrationInfo)
     }
+
+    override fun auth(email: String, password: String): Single<RequestResult<Tokens>> {
+        return featureDataSource.auth(email, password)
+    }
 }
