@@ -58,9 +58,21 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="ru.daniilxt.feature.login.presentation.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileStepsFragment"
         android:name="ru.daniilxt.feature.profile_steps.presentation.ProfileStepsFragment"
-        android:label="ProfileStepsFragment" />
+        android:label="ProfileStepsFragment" >
+        <action
+            android:id="@+id/action_profileStepsFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainScreenMapFragment"
+        android:name="ru.daniilxt.feature.main_screen_map.presentation.MainScreenMapFragment"
+        android:label="MainScreenMapFragment" />
 </navigation>

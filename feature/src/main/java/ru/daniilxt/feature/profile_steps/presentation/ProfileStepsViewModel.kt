@@ -15,6 +15,10 @@ class ProfileStepsViewModel(private val router: FeatureRouter) : BaseViewModel()
         currentSelectedPage = position
     }
 
+    fun openMainScreenFragment() {
+        router.openMainScreenFragment()
+    }
+
     companion object {
         const val INITIAL_PAGE = 0
     }

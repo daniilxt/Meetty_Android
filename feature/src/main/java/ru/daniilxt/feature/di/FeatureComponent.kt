@@ -8,6 +8,9 @@ import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.calendar.di.CalendarComponent
 import ru.daniilxt.feature.login.di.LoginComponent
 import ru.daniilxt.feature.main_screen.di.MainScreenComponent
+import ru.daniilxt.feature.main_screen_map.di.MainScreenMapComponent
+import ru.daniilxt.feature.main_screen_user_card.di.MainScreenUserCardComponent
+import ru.daniilxt.feature.main_screen_user_list.di.MainScreenUserListComponent
 import ru.daniilxt.feature.onboarding.di.OnboardingComponent
 import ru.daniilxt.feature.profile_personal_info.di.ProfilePersonalInfoComponent
 import ru.daniilxt.feature.profile_professional_interests.di.ProfileProfessionalInterestsComponent
@@ -24,13 +27,18 @@ import ru.daniilxt.feature.welcome_screen_description.di.WelcomeScreenDescriptio
     ],
     modules = [
         FeatureModule::class,
-        FeatureDataModule::class
+        FeatureDataModule::class,
+        MainScreenNavigationModule::class
     ]
 )
 @FeatureScope
 interface FeatureComponent {
 
     fun mainScreenComponentFactory(): MainScreenComponent.Factory
+    fun mainScreenMapComponentFactory(): MainScreenMapComponent.Factory
+    fun mainScreenUserCardComponentFactory(): MainScreenUserCardComponent.Factory
+    fun mainScreenUserListComponentFactory(): MainScreenUserListComponent.Factory
+
     fun onboardingComponentFactory(): OnboardingComponent.Factory
     fun welcomeScreenComponentFactory(): WelcomeScreenComponent.Factory
     fun welcomeScreenDescriptionComponentFactory(): WelcomeScreenDescriptionComponent.Factory

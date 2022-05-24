@@ -4,12 +4,12 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import ru.daniilxt.common.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.daniilxt.common.BuildConfig
 import ru.daniilxt.common.di.scope.ApplicationScope
 import java.util.concurrent.TimeUnit
 
@@ -21,8 +21,7 @@ class NetworkModule {
 
     @Provides
     @ApplicationScope
-    internal fun provideRestInterceptor(
-    ): Interceptor =
+    internal fun provideRestInterceptor(): Interceptor =
         Interceptor { chain ->
             val original = chain.request()
             val requestBuilder = original.newBuilder()
@@ -42,7 +41,6 @@ class NetworkModule {
             .addInterceptor(restInterceptor)
         return builder.build()
     }
-
 
     @Provides
     @ApplicationScope

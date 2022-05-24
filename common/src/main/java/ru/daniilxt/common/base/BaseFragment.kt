@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import studio.clapp.common.model.EventState
 import javax.inject.Inject
 
-
 abstract class BaseFragment<T : BaseViewModel>(@LayoutRes fragmentLayoutId: Int) :
     Fragment(fragmentLayoutId) {
 

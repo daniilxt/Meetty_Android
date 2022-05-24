@@ -1,9 +1,7 @@
 package ru.daniilxt.feature.template
 
 import android.annotation.SuppressLint
-import java.io.File
-import java.nio.file.Files
-import java.nio.file.Paths
+import ru.daniilxt.feature.template.Utils.toSnakeCase
 
 @SuppressLint("NewApi")
 class GenerateFeatureModule(private val moduleName: String, private val className: String) {
@@ -11,53 +9,42 @@ class GenerateFeatureModule(private val moduleName: String, private val classNam
     var directoryPath = "feature/src/main/java/ru/daniilxt/feature/"
     var directoryLayoutPath = "feature/src/main/res/layout/"
 
-    private fun String.toSnakeCase() = this.map {
-        if (it.isUpperCase()) "_${it.toLowerCase()}" else "$it"
-    }.joinToString(separator = "")
-
     fun main() {
-        createFile(
+        Utils.createFile(
             "$directoryPath/$moduleName/di",
             "${className}Component.kt",
             generateDiComponent()
         )
-        createFile(
+        Utils.createFile(
             "$directoryPath/$moduleName/di",
             "${className}Module.kt",
             generateDiModule()
         )
-        createFile(
+        Utils.createFile(
             "$directoryPath/$moduleName/presentation",
             "${className}Fragment.kt",
             generateFragment()
         )
-        createFile(
+        Utils.createFile(
             "$directoryPath/$moduleName/presentation",
             "${className}ViewModel.kt",
             generateViewModel()
         )
-        createFile(
+        Utils.createFile(
             directoryLayoutPath,
             "fragment${className.toSnakeCase()}.xml",
             generateFragmentXmlLayout()
         )
     }
 
-    private fun createFile(path: String, fileName: String, func: String) {
-        Files.createDirectories(Paths.get(path))
-        File("${path}/${fileName}").printWriter().use { out ->
-            out.println(func)
-        }
-    }
-
     private fun generateDiComponent() =
         """
-            package ${packageName}.feature.${moduleName}.di
+            package $packageName.feature.$moduleName.di
             import androidx.fragment.app.Fragment
             import dagger.BindsInstance
             import dagger.Subcomponent
-            import ${packageName}.common.di.scope.ScreenScope
-            import ${packageName}.feature.${moduleName}.presentation.${className}Fragment
+            import $packageName.common.di.scope.ScreenScope
+            import $packageName.feature.$moduleName.presentation.${className}Fragment
 
             @Subcomponent(
                 modules = [
@@ -78,7 +65,7 @@ class GenerateFeatureModule(private val moduleName: String, private val classNam
 
     private fun generateDiModule() =
         """
-            package ${packageName}.feature.${moduleName}.di
+            package $packageName.feature.$moduleName.di
 
             import androidx.fragment.app.Fragment
             import androidx.lifecycle.ViewModel
@@ -86,10 +73,10 @@ class GenerateFeatureModule(private val moduleName: String, private val classNam
             import dagger.Module
             import dagger.Provides
             import dagger.multibindings.IntoMap
-            import ${packageName}.common.di.viewmodel.ViewModelKey
-            import ${packageName}.common.di.viewmodel.ViewModelModule
-            import ${packageName}.feature.FeatureRouter
-            import ${packageName}.feature.${moduleName}.presentation.${className}ViewModel
+            import $packageName.common.di.viewmodel.ViewModelKey
+            import $packageName.common.di.viewmodel.ViewModelModule
+            import $packageName.feature.FeatureRouter
+            import $packageName.feature.$moduleName.presentation.${className}ViewModel
 
             @Module(
                 includes = [
@@ -119,21 +106,21 @@ class GenerateFeatureModule(private val moduleName: String, private val classNam
             }
         """.trimIndent()
 
-    fun generateFragment() =
+    private fun generateFragment() =
         """
-            package ${packageName}.feature.${moduleName}.presentation
+            package $packageName.feature.$moduleName.presentation
 
             import android.os.Bundle
             import android.view.View
-            import ${packageName}.common.base.BaseFragment
-            import ${packageName}.common.di.FeatureUtils
-            import ${packageName}.common.extensions.setLightStatusBar
-            import ${packageName}.common.extensions.setStatusBarColor
-            import ${packageName}.common.extensions.viewBinding
-            import ${packageName}.feature.R
-            import ${packageName}.feature.databinding.Fragment${className}Binding
-            import ${packageName}.feature.di.FeatureApi
-            import ${packageName}.feature.di.FeatureComponent
+            import $packageName.common.base.BaseFragment
+            import $packageName.common.di.FeatureUtils
+            import $packageName.common.extensions.setLightStatusBar
+            import $packageName.common.extensions.setStatusBarColor
+            import $packageName.common.extensions.viewBinding
+            import $packageName.feature.R
+            import $packageName.feature.databinding.Fragment${className}Binding
+            import $packageName.feature.di.FeatureApi
+            import $packageName.feature.di.FeatureComponent
 
             class ${className}Fragment : BaseFragment<${className}ViewModel>(R.layout.fragment${className.toSnakeCase()}) {
 
@@ -154,17 +141,17 @@ class GenerateFeatureModule(private val moduleName: String, private val classNam
             }
         """.trimIndent()
 
-    fun generateViewModel() =
+    private fun generateViewModel() =
         """
-            package ${packageName}.feature.${moduleName}.presentation
+            package $packageName.feature.$moduleName.presentation
 
-            import ${packageName}.common.base.BaseViewModel
-            import ${packageName}.feature.FeatureRouter
+            import $packageName.common.base.BaseViewModel
+            import $packageName.feature.FeatureRouter
 
             class ${className}ViewModel(private val router: FeatureRouter) : BaseViewModel()
         """.trimIndent()
 
-    fun generateFragmentXmlLayout() =
+    private fun generateFragmentXmlLayout() =
         """
             <?xml version="1.0" encoding="utf-8"?>
             <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -172,7 +159,7 @@ class GenerateFeatureModule(private val moduleName: String, private val classNam
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/background_primary"
-                tools:context=".${moduleName}.presentation.${className}Fragment">
+                tools:context=".$moduleName.presentation.${className}Fragment">
 
                 <TextView
                     android:id="@+id/et_start"
