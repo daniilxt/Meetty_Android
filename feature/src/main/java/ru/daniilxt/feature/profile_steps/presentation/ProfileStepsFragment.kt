@@ -2,6 +2,7 @@ package ru.daniilxt.feature.profile_steps.presentation
 
 import android.animation.LayoutTransition
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -17,7 +18,6 @@ import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setNavigationBarColor
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.setWindowTransparency
-import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentProfileStepsBinding
 import ru.daniilxt.feature.di.FeatureApi
@@ -29,10 +29,10 @@ import ru.daniilxt.feature.profile_steps.presentation.adapter.ViewPagerAdapter
 import ru.daniilxt.feature.profile_user_achievements.presentation.ProfileUserAchievementsFragment
 import ru.daniilxt.feature.profile_user_education.presentation.ProfileUserEducationFragment
 
-
 class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragment_profile_steps) {
 
-    override val binding: FragmentProfileStepsBinding by viewBinding(FragmentProfileStepsBinding::bind)
+    private var _binding: FragmentProfileStepsBinding? = null
+    override val binding get() = requireNotNull(_binding)
 
     private val currentFragment: Fragment?
         get() {
@@ -66,23 +66,28 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        requireActivity().setWindowTransparency { statusBarSize, _ ->
-            binding.tvStepTitle.margin(top = (statusBarSize / 1.5).toFloat())
-        }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentProfileStepsBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        requireActivity().setStatusBarColor(R.color.background_third)
+        requireView().setLightStatusBar()
+        requireActivity().setNavigationBarColor(R.color.white)
+        requireActivity().setWindowTransparency { statusBarSize, _ ->
+            binding.tvStepTitle.margin(top = (statusBarSize / 1.5).toFloat())
+        }
         val rootView = binding.root as ViewGroup
         val layoutTransition = rootView.layoutTransition
         layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
 
-        requireActivity().setStatusBarColor(R.color.background_third)
-        requireView().setLightStatusBar()
-        requireActivity().setNavigationBarColor(R.color.white)
         initViewPager()
         initButtons()
     }
@@ -92,34 +97,11 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
         viewModel.uiState.observe { handleUiState(it) }
     }
 
-    private fun handleUiState(uiState: ProfileStepsViewModel.UiState) {
-        when (uiState) {
-            is ProfileStepsViewModel.UiState.Initial -> {
-                binding.pbProgress.visibility = View.GONE
-            }
-            is ProfileStepsViewModel.UiState.Processing -> {
-                binding.pbProgress.visibility = View.VISIBLE
-            }
-            is ProfileStepsViewModel.UiState.Success -> {
-                binding.pbProgress.visibility = View.GONE
-                viewModel.openMainScreenFragment()
-            }
-            is ProfileStepsViewModel.UiState.Error -> {
-                binding.pbProgress.visibility = View.GONE
-                when (uiState.errorEntity) {
-                    RegistrationError.UserAlreadyExists -> {
-                        Toast.makeText(requireContext(), "User already exist", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                }
-            }
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         // TODO why crash
-//        binding.viewPager.unregisterOnPageChangeCallback(viewPagerCallback)
+        binding.viewPager.unregisterOnPageChangeCallback(viewPagerCallback)
+        _binding = null
     }
 
     private fun initViewPager() {
@@ -181,7 +163,32 @@ class ProfileStepsFragment : BaseFragment<ProfileStepsViewModel>(R.layout.fragme
     }
 
     private fun handleProfileEndFilling() {
+        //viewModel.openMainScreenFragment()
         viewModel.signUp()
+    }
+
+    private fun handleUiState(uiState: ProfileStepsViewModel.UiState) {
+        when (uiState) {
+            is ProfileStepsViewModel.UiState.Initial -> {
+                binding.pbProgress.visibility = View.GONE
+            }
+            is ProfileStepsViewModel.UiState.Processing -> {
+                binding.pbProgress.visibility = View.VISIBLE
+            }
+            is ProfileStepsViewModel.UiState.Success -> {
+                binding.pbProgress.visibility = View.GONE
+                viewModel.openMainScreenFragment()
+            }
+            is ProfileStepsViewModel.UiState.Error -> {
+                binding.pbProgress.visibility = View.GONE
+                when (uiState.errorEntity) {
+                    RegistrationError.UserAlreadyExists -> {
+                        Toast.makeText(requireContext(), "User already exist", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
+        }
     }
 
     override fun inject() {

@@ -73,6 +73,10 @@ buildscript {
         rxJava3Version = '3.0.7'
         rxKotlin3Version = '3.0.0'
 
+        googleMapKitVersion = '17.0.1'
+        googleLocationServicesVersion = '18.0.0'
+
+
         kotlinDep = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
         androidxCoreDep = "androidx.core:core-ktx:$coreVersion"
@@ -140,6 +144,9 @@ buildscript {
         rxAndroid3Dep = "io.reactivex.rxjava3:rxandroid:$rxAndroid3Version"
         rxJava3Dep = "io.reactivex.rxjava3:rxjava:$rxJava3Version"
         rxKotlin3Dep = "io.reactivex.rxjava3:rxkotlin:$rxKotlin3Version"
+
+        googleMapKitDep = "com.google.android.gms:play-services-maps:$googleMapKitVersion"
+        googleLocationServicesDep = "com.google.android.gms:play-services-location:$googleLocationServicesVersion"
     }
 
     ext.kotlin_version = "1.5.30"
@@ -151,6 +158,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.google.gms:google-services:$googleServicesVersion"
+        classpath 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

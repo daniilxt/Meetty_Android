@@ -22,8 +22,7 @@ class NetworkModule {
 
     @Provides
     @ApplicationScope
-    internal fun provideRestInterceptor(
-    ): Interceptor =
+    internal fun provideRestInterceptor(): Interceptor =
         Interceptor { chain ->
             val original = chain.request()
             val requestBuilder = original.newBuilder()
@@ -53,7 +52,6 @@ class NetworkModule {
             .addInterceptor(loggingInterceptor)
         return builder.build()
     }
-
 
     @Provides
     @ApplicationScope

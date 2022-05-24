@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import ru.daniilxt.common.model.ResponseState
 import javax.inject.Inject
 
-
 abstract class BaseFragment<T : BaseViewModel>(@LayoutRes fragmentLayoutId: Int) :
     Fragment(fragmentLayoutId) {
 

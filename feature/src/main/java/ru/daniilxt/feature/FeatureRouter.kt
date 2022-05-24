@@ -6,4 +6,5 @@ interface FeatureRouter {
     fun openOnboarding()
     fun openLoginFragment()
     fun openProfileStepsFragment()
+    fun openMainScreenFragment()
 }

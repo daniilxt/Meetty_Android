@@ -88,4 +88,6 @@ dependencies {
     implementation rxAndroid3Dep
     implementation rxKotlin3Dep
 
+    implementation googleMapKitDep
+    implementation googleLocationServicesDep
 }

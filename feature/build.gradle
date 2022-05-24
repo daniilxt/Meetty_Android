@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
-
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -52,6 +52,8 @@ dependencies {
     implementation lifecycleLiveDataDep
     implementation lifecycleVMDep
     implementation lifecycleRuntimeDep
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
     kapt daggerKapt
 
     implementation coroutinesDep
@@ -93,4 +95,7 @@ dependencies {
     implementation rxKotlin3Dep
 
     implementation fragmentKtxDep
+
+    implementation googleMapKitDep
+    implementation googleLocationServicesDep
 }

@@ -87,6 +87,28 @@ object InsetUtil {
         }
     }
 
+    fun setSystemInsets(view: View, listener: OnSystemInsetsChangedListener) {
+        ViewCompat.setOnApplyWindowInsetsListener(view) { _, insets ->
+
+            val desiredBottomInset = calculateDesiredBottomInset(
+                view,
+                insets.systemWindowInsetTop,
+                insets.systemWindowInsetBottom,
+                listener
+            )
+
+            ViewCompat.onApplyWindowInsets(
+                view,
+                insets.inset(
+                    0,
+                    insets.systemWindowInsetTop,
+                    0,
+                    insets.systemWindowInsetBottom,
+                )
+            )
+        }
+    }
+
     /**
      * Calculates desired bottom inset in pixels to make NavigationBar transparent,
      * or to show the keyboard on the screen.
@@ -116,6 +138,14 @@ fun Activity.setWindowTransparency(
     listener: OnSystemInsetsChangedListener = { _, _ -> }
 ) {
     InsetUtil.removeSystemInsets(window.decorView, listener)
+    window.navigationBarColor = Color.TRANSPARENT
+    window.statusBarColor = Color.TRANSPARENT
+}
+
+fun Activity.setWindowInsets(
+    listener: OnSystemInsetsChangedListener = { _, _ -> }
+) {
+    InsetUtil.setSystemInsets(window.decorView, listener)
     window.navigationBarColor = Color.TRANSPARENT
     window.statusBarColor = Color.TRANSPARENT
 }

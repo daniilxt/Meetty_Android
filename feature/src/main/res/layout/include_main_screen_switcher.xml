@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dp_10"
+    android:layout_marginTop="@dimen/dp_24"
+    android:background="@drawable/bg_rounded_buttons"
+    android:orientation="horizontal">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mb_cards"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/button_bg_icon_toggle_tint"
+        android:checkable="true"
+        android:stateListAnimator="@null"
+        app:icon="@drawable/ic_card_avatar_30"
+        app:iconTint="@color/button_icon_toggle_tint"
+        app:rippleColor="@android:color/transparent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mb_location"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/button_bg_icon_toggle_tint"
+        android:checkable="true"
+        android:stateListAnimator="@null"
+        app:icon="@drawable/ic_map_30"
+        app:iconTint="@color/button_icon_toggle_tint"
+        app:rippleColor="@android:color/transparent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mb_random"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/button_bg_icon_toggle_tint"
+        android:checkable="true"
+        android:stateListAnimator="@null"
+        app:icon="@drawable/ic_dice_30"
+        app:iconTint="@color/button_icon_toggle_tint"
+        app:rippleColor="@android:color/transparent" />
+
+</LinearLayout>
