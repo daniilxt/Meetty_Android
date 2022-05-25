@@ -26,11 +26,11 @@
             android:id="@+id/bottom_nav_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:shapeAppearanceOverlay="@style/RoundedTopCorners"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="#cbcbcb"
             app:cardCornerRadius="@dimen/dp_16"
-            app:cardElevation="@dimen/dp_16"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:cardElevation="@dimen/dp_8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedTopCorners">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -40,22 +40,25 @@
 
                 <ImageView
                     android:id="@+id/ib_messages"
+                    style="@style/ImageButtonSelectable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginEnd="@dimen/dp_20"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:padding="@dimen/dp_8"
                     android:src="@drawable/ic_message_24" />
 
                 <ImageView
                     android:id="@+id/ib_home"
+                    style="@style/ImageButtonSelectable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
+                    android:layout_marginStart="@dimen/dp_20"
                     android:clickable="true"
                     android:focusable="true"
-                    style="@style/ImageButtonSelectable"
-                    android:layout_marginStart="@dimen/dp_20"
                     android:padding="@dimen/dp_8"
                     android:src="@drawable/ic_home_24" />
             </FrameLayout>
@@ -63,10 +66,10 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/imageView2"
-            android:backgroundTint="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardElevation="@dimen/dp_16"
+            android:backgroundTint="#cbcbcb"
+            app:cardElevation="@dimen/dp_10"
             app:layout_constraintBottom_toTopOf="@+id/bottom_nav_wrapper"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,11 +77,13 @@
             app:shapeAppearanceOverlay="@style/MaterialCardView.Circle">
 
             <ImageView
-                android:padding="@dimen/dp_4"
                 android:id="@+id/imageView3"
+                style="@style/ImageButtonSelectable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:elevation="@dimen/dp_1"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/dp_4"
                 android:src="@drawable/ic_search_metty_60" />
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

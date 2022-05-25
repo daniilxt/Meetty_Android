@@ -7,9 +7,11 @@ import coil.load
 import coil.transform.BlurTransformation
 import coil.transform.CircleCropTransformation
 import com.google.android.material.chip.Chip
+import ru.daniilxt.common.extensions.getAgeFromNumber
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.ItemSwipedUserCardBinding
 import ru.daniilxt.feature.domain.model.SwipedUserCard
+import java.time.LocalDate
 
 class SwipedUserCardViewHolder(
     private val binding: ItemSwipedUserCardBinding
@@ -26,15 +28,17 @@ class SwipedUserCardViewHolder(
                     )
                 )
             }
+            tvUserYear.text =
+                "".getAgeFromNumber((LocalDate.now().year - data.userAdditionalInfo.birthDay.year))
             tvUsername.text = data.name
             chipGroupInterests.removeAllViews()
-            for (item in data.professionalInterest) {
+            for (item in data.userAdditionalInfo.categories) {
                 val layoutInflater = LayoutInflater.from(binding.root.context)
                 val chip = (layoutInflater.inflate(R.layout.item_chip, null) as Chip).apply {
                     id = View.generateViewId()
                     isChecked = true
                     isClickable = false
-                    text = item.interestName
+                    text = item.name
                 }
                 binding.chipGroupInterests.addView(chip)
             }
