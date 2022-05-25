@@ -76,6 +76,8 @@ buildscript {
         googleMapKitVersion = '17.0.1'
         googleLocationServicesVersion = '18.0.0'
 
+        kolodaCardViewVersion = 'v0.0.2-alpha'
+
 
         kotlinDep = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
@@ -147,6 +149,8 @@ buildscript {
 
         googleMapKitDep = "com.google.android.gms:play-services-maps:$googleMapKitVersion"
         googleLocationServicesDep = "com.google.android.gms:play-services-location:$googleLocationServicesVersion"
+
+        kolodaCardViewDep = "com.github.Yalantis:Koloda-Android:$kolodaCardViewVersion"
     }
 
     ext.kotlin_version = "1.5.30"

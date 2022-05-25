@@ -9,6 +9,7 @@ import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentMainScreenUserCardBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
+import ru.daniilxt.feature.main_screen_user_card.presentation.adapter.KolodaSampleAdapter
 
 class MainScreenUserCardFragment :
     BaseFragment<MainScreenUserCardViewModel>(R.layout.fragment_main_screen_user_card) {
@@ -17,8 +18,20 @@ class MainScreenUserCardFragment :
         FragmentMainScreenUserCardBinding::bind
     )
 
+    private val userCardsAdapter by lazy {
+        KolodaSampleAdapter(requireContext(), emptyList())
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.koloda.adapter = userCardsAdapter
+    }
+
+    override fun setupViewModelSubscriber() {
+        super.setupViewModelSubscriber()
+        viewModel.userCards.observe {
+            userCardsAdapter.setData(it)
+        }
     }
 
     override fun inject() {

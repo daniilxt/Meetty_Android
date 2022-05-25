@@ -16,6 +16,7 @@ import ru.daniilxt.common.extensions.margin
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setNavigationBarColor
 import ru.daniilxt.common.extensions.setStatusBarColor
+import ru.daniilxt.common.extensions.setWindowTransparency
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentMainScreenBinding
@@ -36,8 +37,10 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
         requireView().clearLightStatusBar()
         requireActivity().setNavigationBarColor(R.color.white)
 
-        binding.contentLayout.margin(top = requireContext().dpToPx(40F))
-        binding.toolbar.root.margin(top = requireContext().dpToPx(20F))
+        requireActivity().setWindowTransparency { statusBarSize, navigationBarSize ->
+            binding.contentLayout.margin(top = requireContext().dpToPx(40F))
+            binding.toolbar.root.margin(top = requireContext().dpToPx(20F))
+        }
 
         val navHostFragment =
             childFragmentManager.findFragmentById(R.id.main_screen_container) as NavHostFragment
