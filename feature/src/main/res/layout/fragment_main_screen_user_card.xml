@@ -7,9 +7,12 @@
     android:background="@color/background_primary"
     tools:context=".main_screen_user_card.presentation.MainScreenUserCardFragment">
 
-    <com.yalantis.library.Koloda
-        android:id="@+id/koloda"
+    <com.yuyakaido.android.cardstackview.CardStackView
+        android:id="@+id/stack_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:koloda_card_layout="@layout/item_user_full_card" />
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_swiped_user_card" />
 </androidx.constraintlayout.widget.ConstraintLayout>

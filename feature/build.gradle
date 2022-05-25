@@ -99,5 +99,5 @@ dependencies {
     implementation googleMapKitDep
     implementation googleLocationServicesDep
 
-    implementation kolodaCardViewDep
+    implementation swipableCardViewDep
 }
