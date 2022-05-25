@@ -98,4 +98,6 @@ dependencies {
 
     implementation googleMapKitDep
     implementation googleLocationServicesDep
+
+    implementation swipableCardViewDep
 }

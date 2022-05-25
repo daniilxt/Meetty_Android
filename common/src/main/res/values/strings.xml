@@ -84,6 +84,7 @@
     <string name="naming">Название</string>
     <string name="description">Описание</string>
     <string name="entrance">Вход</string>
+    <string name="professional_interests">Профессиональные интересы</string>
 
 
     <string-array name="profile_steps">

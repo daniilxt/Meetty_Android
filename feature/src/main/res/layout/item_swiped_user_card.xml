@@ -1,0 +1,129 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/dp_8"
+        app:cardCornerRadius="@dimen/dp_16"
+        app:cardElevation="@dimen/dp_10"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/iv_avatar_blured"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@drawable/profile_info_frg_bg"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="16:10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/iv_avatar_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/dp_10"
+                app:layout_constraintBottom_toTopOf="@+id/tv_username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/iv_avatar_blured"
+                app:layout_constraintTop_toBottomOf="@+id/iv_avatar_blured"
+                app:shapeAppearanceOverlay="@style/MaterialCardView.Circle"
+                app:strokeColor="@color/white"
+                app:strokeWidth="@dimen/dp_1">
+
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_100"
+                    app:srcCompat="@drawable/avatar_default" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/user_year_wrapper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_4"
+                app:cardCornerRadius="@dimen/dp_40"
+                app:layout_constraintBottom_toBottomOf="@id/iv_avatar_wrapper"
+                app:layout_constraintStart_toEndOf="@id/iv_avatar_wrapper"
+                app:layout_constraintTop_toTopOf="@id/iv_avatar_wrapper"
+                app:strokeColor="@color/text_color_third_dark"
+                app:strokeWidth="@dimen/dp_2">
+
+                <TextView
+                    android:id="@+id/tv_user_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingHorizontal="@dimen/dp_10"
+                    android:paddingVertical="@dimen/dp_6"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color_third_dark"
+                    android:textSize="@dimen/sp_14" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tv_username"
+                style="@style/TextView.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/tv_university"
+                app:layout_constraintEnd_toEndOf="@+id/iv_avatar_wrapper"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/iv_avatar_wrapper"
+                app:layout_constraintTop_toBottomOf="@+id/iv_avatar_wrapper"
+                tools:text="Firsov Daniil Anatolievich" />
+
+            <TextView
+                android:id="@+id/tv_university"
+                style="@style/TextViewDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_linear_gradient"
+                android:text="Санкт-Петербургский Политехнический Университет Пектра Великого"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/iv_avatar_blured"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_username"
+                app:layout_constraintWidth_percent="0.8" />
+
+            <TextView
+                android:id="@+id/tv_interests"
+                style="@style/TextView.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/professional_interests"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_avatar_blured" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_interests"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_interests" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

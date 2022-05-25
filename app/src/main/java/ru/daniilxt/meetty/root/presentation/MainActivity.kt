@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import ru.daniilxt.common.di.FeatureUtils
+import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.meetty.R
 import ru.daniilxt.meetty.databinding.ActivityMainBinding
 import ru.daniilxt.meetty.navigation.Navigator
@@ -30,6 +31,20 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
         val navController = navHostFragment.navController
         navigator.attach(navController, this)
+
+        setupNavigationButtons()
+    }
+
+    private fun setupNavigationButtons() {
+        binding.ibMessages.setDebounceClickListener {
+            activityViewModel.openMessagesFragment()
+        }
+        binding.ibHome.setDebounceClickListener {
+            activityViewModel.openHome()
+        }
+        binding.ibSearch.setDebounceClickListener {
+            activityViewModel.search()
+        }
     }
 
     override fun onDestroy() {
