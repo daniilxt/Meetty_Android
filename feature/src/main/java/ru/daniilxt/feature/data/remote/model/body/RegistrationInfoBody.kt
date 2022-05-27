@@ -12,5 +12,5 @@ data class RegistrationInfoBody(
     @SerializedName("professionalInterest")
     val professionalInterest: List<ProfessionalInterestBody>,
     @SerializedName("userAchievements")
-    val userAchievements: List<UserAchievementsBody>
+    val userAchievements: List<UserAchievementBody>
 )

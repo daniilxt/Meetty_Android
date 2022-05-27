@@ -2,6 +2,7 @@ package ru.daniilxt.meetty.root.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.setDebounceClickListener
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigationButtons() {
+        setBottomNavVisibility()
         binding.ibMessages.setDebounceClickListener {
             activityViewModel.openMessagesFragment()
         }
@@ -45,6 +47,11 @@ class MainActivity : AppCompatActivity() {
         binding.ibSearch.setDebounceClickListener {
             activityViewModel.search()
         }
+    }
+
+    private fun setBottomNavVisibility(isVisible: Boolean = false) {
+        binding.ibSearch.isVisible = isVisible
+        binding.bottomNavWrapper.isVisible = isVisible
     }
 
     override fun onDestroy() {

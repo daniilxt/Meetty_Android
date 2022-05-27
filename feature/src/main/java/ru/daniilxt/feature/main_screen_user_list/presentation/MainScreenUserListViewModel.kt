@@ -5,10 +5,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import ru.daniilxt.common.base.BaseViewModel
 import ru.daniilxt.feature.FeatureRouter
-import ru.daniilxt.feature.domain.model.User
+import ru.daniilxt.feature.domain.model.SimpleUserInfo
 import ru.daniilxt.feature.domain.model.UserAdditionalInfo
 import ru.daniilxt.feature.domain.model.UserCard
-import ru.daniilxt.feature.domain.model.UserCategory
+import ru.daniilxt.feature.domain.model.ProfessionalInterest
 import java.time.LocalDate
 
 @SuppressLint("NewApi")
@@ -21,7 +21,7 @@ class MainScreenUserListViewModel(private val router: FeatureRouter) : BaseViewM
         _userCards.value = List(100) {
             UserCard(
                 id = it.toLong(),
-                user = User(
+                user = SimpleUserInfo(
                     id = it.toLong(),
                     firstName = "Екатерина $it",
                     lastName = "Иванова $it",
@@ -31,9 +31,9 @@ class MainScreenUserListViewModel(private val router: FeatureRouter) : BaseViewM
                     id = it.toLong(),
                     LocalDate.of(2000 + it, 1, 1),
                     categories = listOf(
-                        UserCategory(it.toLong(), "Бизнес $it"),
-                        UserCategory(it.toLong(), "Прорграммирование $it"),
-                        UserCategory(it.toLong(), "Мвшиностроение $it")
+                        ProfessionalInterest(it.toLong(), "Бизнес $it"),
+                        ProfessionalInterest(it.toLong(), "Прорграммирование $it"),
+                        ProfessionalInterest(it.toLong(), "Мвшиностроение $it")
                     )
                 )
             )

@@ -9,6 +9,7 @@ import ru.daniilxt.feature.data.remote.model.body.RegistrationInfoBody
 import ru.daniilxt.feature.data.remote.model.response.EducationInstituteResponse
 import ru.daniilxt.feature.data.remote.model.response.ProfessionalInterestResponse
 import ru.daniilxt.feature.data.remote.model.response.TokensResponse
+import ru.daniilxt.feature.data.remote.model.response.UserProfileInfoResponse
 
 interface FeatureApiService {
     @GET("/api/v1/regsteps/edu")
@@ -21,4 +22,7 @@ interface FeatureApiService {
     fun sendRegistrationInfo(
         @Body registrationInfoBody: RegistrationInfoBody
     ): Single<Response<TokensResponse>>
+
+    @GET("/api/v1/users/match")
+    fun getUsersProfileInfo(): Single<Response<List<UserProfileInfoResponse>>>
 }

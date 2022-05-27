@@ -9,11 +9,13 @@ import ru.daniilxt.feature.data.remote.api.FeatureApiService
 import ru.daniilxt.feature.data.remote.model.response.toEducationInstitute
 import ru.daniilxt.feature.data.remote.model.response.toProfessionalInterest
 import ru.daniilxt.feature.data.remote.model.response.toTokens
+import ru.daniilxt.feature.data.remote.model.response.toUserCardInfo
 import ru.daniilxt.feature.data.source.FeatureDataSource
 import ru.daniilxt.feature.domain.model.EducationInstitute
 import ru.daniilxt.feature.domain.model.ProfessionalInterest
 import ru.daniilxt.feature.domain.model.ProfileData
 import ru.daniilxt.feature.domain.model.Tokens
+import ru.daniilxt.feature.domain.model.UserCardInfo
 import ru.daniilxt.feature.domain.model.toRegistrationInfoBody
 import java.net.HttpURLConnection
 import javax.inject.Inject
@@ -38,7 +40,8 @@ class FeatureDataSourceImpl @Inject constructor(
         }
     }
 
-    override fun sendRegistrationInfoUseCase(registrationInfo: ProfileData): Single<RequestResult<Tokens>> {
+    override fun sendRegistrationInfoUseCase(registrationInfo: ProfileData):
+        Single<RequestResult<Tokens>> {
         return featureApiService.sendRegistrationInfo(registrationInfo.toRegistrationInfoBody())
             .map { response ->
                 when {
@@ -58,6 +61,14 @@ class FeatureDataSourceImpl @Inject constructor(
                     }
                 }
             }
+    }
+
+    override fun getUsersCardInfo(): Single<RequestResult<List<UserCardInfo>>> {
+        return featureApiService.getUsersProfileInfo().map { response ->
+            getSingleCollectionData(response) {
+                response.body()!!.map { it.toUserCardInfo() }
+            }
+        }
     }
 
     private fun <T, U> getSingleData(

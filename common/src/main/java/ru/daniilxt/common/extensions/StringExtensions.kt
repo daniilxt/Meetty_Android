@@ -1,5 +1,9 @@
 package ru.daniilxt.common.extensions
 
+import android.annotation.SuppressLint
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 fun String.getAgeFromNumber(age: Int): String {
     val result: String
     val units: List<Int> = listOf(2, 3, 4)
@@ -13,3 +17,7 @@ fun String.getAgeFromNumber(age: Int): String {
     }
     return result
 }
+
+@SuppressLint("NewApi")
+fun String.parseLocalDate(): LocalDate =
+    LocalDate.parse(this, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
