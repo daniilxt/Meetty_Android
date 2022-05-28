@@ -98,6 +98,7 @@ dependencies {
 
     implementation googleMapKitDep
     implementation googleLocationServicesDep
+    implementation 'com.google.maps.android:maps-utils-ktx:3.4.0'
 
     implementation swipableCardViewDep
 }

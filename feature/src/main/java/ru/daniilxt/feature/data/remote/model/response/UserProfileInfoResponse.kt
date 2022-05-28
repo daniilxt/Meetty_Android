@@ -18,6 +18,6 @@ data class UserProfileInfoResponse(
 fun UserProfileInfoResponse.toUserCardInfo() = UserCardInfo(
     userInfo = userInfo.toSimpleUser(),
     userAdditionalInfo = userAdditionalInfo.toUserAdditionalInfo(),
-    userEducationInfo = userEducationInfo.toEducationInstitute(),
+    userEducationInfo = userEducationInfo.toEducationInfo(),
     lastActivity = lastActivity,
 )

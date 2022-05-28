@@ -5,4 +5,11 @@ data class EducationInfo(
     val name: String,
     val location: LocationInfo,
     val logoLink: String = ""
+) {
+}
+
+fun EducationInfo.toEducationInfo(): EducationInstitute = EducationInstitute(
+    id = id,
+    instituteName = name,
+    city = City(0, location.city)
 )
