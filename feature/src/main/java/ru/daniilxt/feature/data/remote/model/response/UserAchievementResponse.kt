@@ -8,8 +8,8 @@ import java.time.LocalDate
 data class UserAchievementResponse(
     @SerializedName("title")
     val title: String,
-    @SerializedName("achievementDescription")
-    val achievementDescription: String,
+    @SerializedName("description")
+    val achievementDescription: String = "",
     @SerializedName("date")
     val date: String?
 )

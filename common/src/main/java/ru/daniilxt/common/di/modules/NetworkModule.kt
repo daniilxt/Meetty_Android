@@ -25,7 +25,12 @@ class NetworkModule {
     internal fun provideRestInterceptor(): Interceptor =
         Interceptor { chain ->
             val original = chain.request()
+            val accessToken =
+                "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwtZmlyc292QG1haWwucnUiLCJpYXQiOjE2NTM3MzUyNTksImV4cCI6MTY1Mzc1MzI1OX0.8-4F3d_oKBnbslzzH01a0GtZnD_66_PEKajIQ1SqWx4"
             val requestBuilder = original.newBuilder()
+            if (!accessToken.isNullOrEmpty() && !original.url.toString().contains("auth")) {
+                requestBuilder.addHeader(AUTHORIZATION, BEARER + accessToken)
+            }
             val request = requestBuilder.build()
             val response = chain.proceed(request)
             response
@@ -62,4 +67,10 @@ class NetworkModule {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
+
+    companion object {
+        private val TAG = NetworkModule::class.simpleName
+        private const val BEARER = "Bearer "
+        private const val AUTHORIZATION = "Authorization"
+    }
 }

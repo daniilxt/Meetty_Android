@@ -17,6 +17,7 @@ import ru.daniilxt.feature.domain.model.ProfileData
 import ru.daniilxt.feature.domain.model.Tokens
 import ru.daniilxt.feature.domain.model.UserCardInfo
 import ru.daniilxt.feature.domain.model.toRegistrationInfoBody
+import timber.log.Timber
 import java.net.HttpURLConnection
 import javax.inject.Inject
 
@@ -65,6 +66,8 @@ class FeatureDataSourceImpl @Inject constructor(
 
     override fun getUsersCardInfo(): Single<RequestResult<List<UserCardInfo>>> {
         return featureApiService.getUsersProfileInfo().map { response ->
+            Timber.i("?????? ${response.body()}")
+
             getSingleCollectionData(response) {
                 response.body()!!.map { it.toUserCardInfo() }
             }

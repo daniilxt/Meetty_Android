@@ -7,6 +7,16 @@
     android:background="@color/background_primary"
     tools:context=".main_screen_user_card.presentation.MainScreenUserCardFragment">
 
+    <ProgressBar
+        android:id="@+id/pb_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/dp_10"
+        android:indeterminateTint="@color/button_tint_primary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/stack_view"
         android:layout_width="match_parent"

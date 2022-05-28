@@ -10,7 +10,7 @@ data class UserProfileInfoResponse(
     @SerializedName("userAdditionalInfo")
     val userAdditionalInfo: UserAdditionalInfoResponse,
     @SerializedName("userAchievements")
-    val userAchievements: List<UserAchievementResponse>,
+    val userAchievements: List<UserAchievementResponse> = emptyList(),
     @SerializedName("lastActivity")
     val lastActivity: LocalDateTime?
 )

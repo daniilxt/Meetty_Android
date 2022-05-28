@@ -13,6 +13,7 @@ import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.domain.model.SwipedUserCard
 import ru.daniilxt.feature.domain.model.toSwipesUserCard
 import ru.daniilxt.feature.domain.usecase.GetUsersInfoUseCase
+import timber.log.Timber
 
 class MainScreenUserCardViewModel(
     private val router: FeatureRouter,
@@ -22,11 +23,7 @@ class MainScreenUserCardViewModel(
     private val _userCards: MutableStateFlow<List<SwipedUserCard>> = MutableStateFlow(emptyList())
     val userCards: StateFlow<List<SwipedUserCard>> get() = _userCards
 
-    init {
-        getUsers()
-    }
-
-    private fun getUsers() {
+    fun getUsers() {
         setEventState(ResponseState.Progress)
         getUsersInfoUseCase.invoke()
             .subscribeOn(Schedulers.io())
@@ -38,10 +35,13 @@ class MainScreenUserCardViewModel(
                         setEventState(ResponseState.Success)
                     }
                     is RequestResult.Error -> {
+                        Timber.i("Error ${it.error}")
                         setEventState(ResponseState.Failure(it.error as ResponseError))
                     }
                 }
             }, {
+                Timber.i(" Throwable error $it")
+                setEventState(ResponseState.Failure(ResponseError.ConnectionError))
             }).addTo(disposable)
     }
 }

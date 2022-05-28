@@ -94,7 +94,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_linear_gradient"
-                android:text="Санкт-Петербургский Политехнический Университет Пектра Великого"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/iv_avatar_blured"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -125,5 +124,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_interests" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/left_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_black">
+
+            <ImageView
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_message_cancelled_24"
+                app:tint="@android:color/darker_gray" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/right_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_black">
+
+            <ImageView
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_message_24"
+                app:tint="@android:color/holo_green_dark" />
+        </FrameLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

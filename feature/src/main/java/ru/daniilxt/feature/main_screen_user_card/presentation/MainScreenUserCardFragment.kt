@@ -2,16 +2,19 @@ package ru.daniilxt.feature.main_screen_user_card.presentation
 
 import android.os.Bundle
 import android.view.View
-import android.view.animation.LinearInterpolator
+import android.view.animation.OvershootInterpolator
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
+import com.yuyakaido.android.cardstackview.StackFrom
 import com.yuyakaido.android.cardstackview.SwipeableMethod
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.viewBinding
+import ru.daniilxt.common.model.ResponseState
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentMainScreenUserCardBinding
 import ru.daniilxt.feature.di.FeatureApi
@@ -33,8 +36,10 @@ class MainScreenUserCardFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager = CardStackLayoutManager(requireContext(), this).apply {
+            setStackFrom(StackFrom.None)
+            setVisibleCount(3)
             setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
-            setOverlayInterpolator(LinearInterpolator())
+            setOverlayInterpolator(OvershootInterpolator())
         }
 
         binding.stackView.layoutManager = layoutManager
@@ -44,12 +49,30 @@ class MainScreenUserCardFragment :
                 supportsChangeAnimations = false
             }
         }
+        viewModel.getUsers()
     }
 
     override fun setupViewModelSubscriber() {
         super.setupViewModelSubscriber()
         viewModel.userCards.observe {
             userCardsAdapter.bind(it)
+        }
+    }
+
+    override fun handleEventState(eventState: ResponseState) {
+        when (eventState) {
+            is ResponseState.Initial -> {
+                binding.pbProgress.isVisible = false
+            }
+            is ResponseState.Progress -> {
+                binding.pbProgress.isVisible = true
+            }
+            is ResponseState.Success -> {
+                binding.pbProgress.isVisible = false
+            }
+            is ResponseState.Failure -> {
+                binding.pbProgress.isVisible = false
+            }
         }
     }
 
