@@ -9,8 +9,8 @@ data class UserProfileInfoResponse(
     val userInfo: SimpleUserResponse,
     @SerializedName("userAdditionalInfo")
     val userAdditionalInfo: UserAdditionalInfoResponse,
-    @SerializedName("userAchievements")
-    val userAchievements: List<UserAchievementResponse> = emptyList(),
+    @SerializedName("userEducation")
+    val userEducationInfo: EducationInstituteResponse,
     @SerializedName("lastActivity")
     val lastActivity: LocalDateTime?
 )
@@ -18,6 +18,6 @@ data class UserProfileInfoResponse(
 fun UserProfileInfoResponse.toUserCardInfo() = UserCardInfo(
     userInfo = userInfo.toSimpleUser(),
     userAdditionalInfo = userAdditionalInfo.toUserAdditionalInfo(),
-    userAchievements = userAchievements.map { it.toUserAchievement() },
+    userEducationInfo = userEducationInfo.toEducationInstitute(),
     lastActivity = lastActivity,
 )

@@ -33,6 +33,7 @@ class SwipedUserCardViewHolder(
             tvUserYear.text =
                 "".getAgeFromNumber((LocalDate.now().year - data.userAdditionalInfo.birthDay.year))
             tvUsername.text = data.userInfo.getFullUserName()
+            tvUniversity.text = data.userEducationInfo.instituteName
             chipGroupInterests.removeAllViews()
             for (item in data.userAdditionalInfo.categories) {
                 val layoutInflater = LayoutInflater.from(binding.root.context)

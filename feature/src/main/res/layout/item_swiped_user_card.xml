@@ -94,6 +94,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_linear_gradient"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/iv_avatar_blured"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -121,6 +122,7 @@
                 android:layout_marginHorizontal="@dimen/dp_10"
                 android:layout_marginTop="@dimen/dp_10"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_min="@dimen/dp_100"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_interests" />
         </androidx.constraintlayout.widget.ConstraintLayout>

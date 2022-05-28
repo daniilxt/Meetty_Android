@@ -1,8 +1,8 @@
 package ru.daniilxt.feature.domain.model
 
-data class EducationInstitution(
+data class EducationInfo(
     val id: Long,
     val name: String,
     val location: LocationInfo,
-    val logoUri: String = ""
+    val logoLink: String = ""
 )

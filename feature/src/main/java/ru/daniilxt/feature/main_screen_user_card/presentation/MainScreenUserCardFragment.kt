@@ -36,7 +36,7 @@ class MainScreenUserCardFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager = CardStackLayoutManager(requireContext(), this).apply {
-            setStackFrom(StackFrom.None)
+            setStackFrom(StackFrom.Top)
             setVisibleCount(3)
             setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
             setOverlayInterpolator(OvershootInterpolator())
