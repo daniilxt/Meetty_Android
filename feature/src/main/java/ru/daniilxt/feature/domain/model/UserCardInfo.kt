@@ -14,3 +14,9 @@ fun UserCardInfo.toSwipesUserCard() = SwipedUserCard(
     userAdditionalInfo = userAdditionalInfo,
     userEducationInfo = userEducationInfo
 )
+
+fun UserCardInfo.toUserCard() = UserCard(
+    id = userInfo.id,
+    user = userInfo,
+    userAdditionalInfo = userAdditionalInfo,
+)

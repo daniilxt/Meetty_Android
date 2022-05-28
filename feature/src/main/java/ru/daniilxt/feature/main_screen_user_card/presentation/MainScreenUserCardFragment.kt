@@ -36,7 +36,7 @@ class MainScreenUserCardFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager = CardStackLayoutManager(requireContext(), this).apply {
-            setStackFrom(StackFrom.Top)
+            setStackFrom(StackFrom.Bottom)
             setVisibleCount(3)
             setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
             setOverlayInterpolator(OvershootInterpolator())
@@ -104,5 +104,8 @@ class MainScreenUserCardFragment :
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
+        if (position == userCardsAdapter.itemCount - 1) {
+            Toast.makeText(requireContext(), "Last item", Toast.LENGTH_SHORT).show()
+        }
     }
 }
