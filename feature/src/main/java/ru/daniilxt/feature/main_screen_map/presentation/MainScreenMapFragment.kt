@@ -8,10 +8,12 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.ClusterManager
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
+import ru.daniilxt.common.extensions.loadIcon
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentMainScreenMapBinding
@@ -39,12 +41,19 @@ class MainScreenMapFragment :
 
     private fun pinEducationOnMap(eduList: List<MapEducation>) {
         eduList.forEach {
-            map.addMarker(MarkerOptions().position(it.edu.location.coordinates.latLng))
+            val edu = it.edu
+            map.addMarker(MarkerOptions().position(edu.location.coordinates.latLng)).apply {
+                this?.title = edu.name
+                this?.loadIcon(requireContext(), edu.logoLink)
+            }
         }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
+        googleMap.setMapStyle(
+            MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.google_map_style)
+        )
         map.moveCamera(
             CameraUpdateFactory.newLatLngZoom(
                 spb,
