@@ -50,30 +50,18 @@
                     app:srcCompat="@drawable/avatar_default" />
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/user_year_wrapper"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tv_user_year"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_4"
-                app:cardCornerRadius="@dimen/dp_40"
+                android:textColor="@color/text_color_third_dark"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeColor="@color/text_color_third_dark"
+                app:chipStrokeWidth="@dimen/dp_2"
                 app:layout_constraintBottom_toBottomOf="@id/iv_avatar_wrapper"
                 app:layout_constraintStart_toEndOf="@id/iv_avatar_wrapper"
-                app:layout_constraintTop_toTopOf="@id/iv_avatar_wrapper"
-                app:strokeColor="@color/text_color_third_dark"
-                app:strokeWidth="@dimen/dp_2">
-
-                <TextView
-                    android:id="@+id/tv_user_year"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:paddingHorizontal="@dimen/dp_10"
-                    android:paddingVertical="@dimen/dp_6"
-                    android:textAlignment="center"
-                    android:textColor="@color/text_color_third_dark"
-                    android:textSize="@dimen/sp_14" />
-            </com.google.android.material.card.MaterialCardView>
+                app:layout_constraintTop_toTopOf="@id/iv_avatar_wrapper" />
 
             <TextView
                 android:id="@+id/tv_username"

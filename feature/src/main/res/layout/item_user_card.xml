@@ -27,69 +27,60 @@
         <TextView
             android:id="@+id/tv_last_name"
             style="@style/TextView.PLainText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_6"
             android:layout_marginTop="@dimen/dp_4"
-            android:ellipsize="end"
             android:lines="1"
+            android:textAlignment="textStart"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/iv_avatar"
             app:layout_constraintTop_toTopOf="@id/iv_avatar"
             tools:text="Иванова" />
 
         <TextView
             android:id="@+id/tv_first_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_2"
-            android:ellipsize="end"
             android:lines="1"
+            android:textAlignment="textStart"
             android:textColor="@color/text_color_third_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@id/tv_last_name"
             app:layout_constraintTop_toBottomOf="@id/tv_last_name"
             tools:text="Екатерина" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/user_year_wrapper"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/tv_user_year"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_4"
-            app:cardCornerRadius="@dimen/dp_40"
-            android:layout_marginHorizontal="@dimen/dp_10"
+            android:includeFontPadding="false"
+            android:textAlignment="center"
+            android:textColor="@color/text_color_third_dark"
+            android:textSize="@dimen/sp_12"
+            app:chipBackgroundColor="@color/white"
+            app:chipStrokeColor="@color/text_color_third_dark"
+            app:chipStrokeWidth="@dimen/dp_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_avatar"
-            app:layout_constraintTop_toBottomOf="@id/tv_first_name"
-            app:strokeColor="@color/text_color_third_dark"
-            app:strokeWidth="@dimen/dp_2">
-
-            <TextView
-                android:id="@+id/tv_user_year"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:ellipsize="end"
-                android:lines="1"
-                android:paddingHorizontal="@dimen/dp_2"
-                android:paddingVertical="@dimen/dp_4"
-                android:textAlignment="center"
-                android:textColor="@color/text_color_third_dark"
-                android:textSize="@dimen/sp_14" />
-        </com.google.android.material.card.MaterialCardView>
+            app:layout_constraintTop_toBottomOf="@id/tv_first_name" />
 
         <TextView
             android:id="@+id/tv_category"
             style="@style/TextView.PLainText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_2"
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:lines="1"
             android:textAlignment="textStart"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_year_wrapper"
+            app:layout_constraintTop_toBottomOf="@id/tv_user_year"
             tools:text="Бизнес" />
 
         <TextView
