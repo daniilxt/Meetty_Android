@@ -9,6 +9,7 @@ import dagger.multibindings.IntoMap
 import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.domain.usecase.GetUsersInfoUseCase
 import ru.daniilxt.feature.main_screen_user_list.presentation.MainScreenUserListViewModel
 
 @Module(
@@ -22,10 +23,11 @@ class MainScreenUserListModule {
     @IntoMap
     @ViewModelKey(MainScreenUserListViewModel::class)
     fun provideViewModel(
-        navigator: FeatureRouter
+        navigator: FeatureRouter,
+        getUsersInfoUseCase: GetUsersInfoUseCase
     ): ViewModel {
         return MainScreenUserListViewModel(
-            navigator
+            navigator, getUsersInfoUseCase
         )
     }
 
@@ -34,6 +36,9 @@ class MainScreenUserListModule {
         fragment: Fragment,
         viewModelFactory: ViewModelProvider.Factory
     ): MainScreenUserListViewModel {
-        return ViewModelProvider(fragment, viewModelFactory).get(MainScreenUserListViewModel::class.java)
+        return ViewModelProvider(
+            fragment,
+            viewModelFactory
+        ).get(MainScreenUserListViewModel::class.java)
     }
 }

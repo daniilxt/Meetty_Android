@@ -1,42 +1,48 @@
 package ru.daniilxt.feature.main_screen_user_list.presentation
 
 import android.annotation.SuppressLint
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import ru.daniilxt.common.base.BaseViewModel
+import ru.daniilxt.common.error.RequestResult
+import ru.daniilxt.common.model.ResponseState
 import ru.daniilxt.feature.FeatureRouter
-import ru.daniilxt.feature.domain.model.User
-import ru.daniilxt.feature.domain.model.UserAdditionalInfo
 import ru.daniilxt.feature.domain.model.UserCard
-import ru.daniilxt.feature.domain.model.UserCategory
-import java.time.LocalDate
+import ru.daniilxt.feature.domain.model.toUserCard
+import ru.daniilxt.feature.domain.usecase.GetUsersInfoUseCase
+import timber.log.Timber
 
 @SuppressLint("NewApi")
-class MainScreenUserListViewModel(private val router: FeatureRouter) : BaseViewModel() {
+class MainScreenUserListViewModel(
+    private val router: FeatureRouter,
+    private val getUsersInfoUseCase: GetUsersInfoUseCase
+) : BaseViewModel() {
 
     private val _userCards: MutableStateFlow<List<UserCard>> = MutableStateFlow(emptyList())
     val userCards: StateFlow<List<UserCard>> get() = _userCards
 
     init {
-        _userCards.value = List(100) {
-            UserCard(
-                id = it.toLong(),
-                user = User(
-                    id = it.toLong(),
-                    firstName = "Екатерина $it",
-                    lastName = "Иванова $it",
-                    avatarUri = "https://sun9-30.userapi.com/sun9-57/s/v1/if1/5uukGklSa12cTtzRaFAB6rnxSEy0078CECF4Bt80CEJibU979WejyH1haetd5cLfqPPvliyc.jpg?size=899x1280&quality=96&type=album"
-                ),
-                userAdditionalInfo = UserAdditionalInfo(
-                    id = it.toLong(),
-                    LocalDate.of(2000 + it, 1, 1),
-                    categories = listOf(
-                        UserCategory(it.toLong(), "Бизнес $it"),
-                        UserCategory(it.toLong(), "Прорграммирование $it"),
-                        UserCategory(it.toLong(), "Мвшиностроение $it")
-                    )
-                )
-            )
-        }
+        loadUsers()
+    }
+
+    fun loadUsers() {
+        setEventState(ResponseState.Progress)
+        getUsersInfoUseCase.invoke()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                when (it) {
+                    is RequestResult.Success -> {
+                        _userCards.value = it.data.map { item -> item.toUserCard() }
+                    }
+                    is RequestResult.Error -> {
+                    }
+                }
+            }, {
+                Timber.i("??? data $it")
+            }).addTo(disposable)
     }
 }

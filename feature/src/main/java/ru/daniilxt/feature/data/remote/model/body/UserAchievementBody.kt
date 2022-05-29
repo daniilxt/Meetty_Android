@@ -2,7 +2,7 @@ package ru.daniilxt.feature.data.remote.model.body
 
 import com.google.gson.annotations.SerializedName
 
-data class UserAchievementsBody(
+data class UserAchievementBody(
     @SerializedName("title")
     val title: String,
     @SerializedName("achievementDescription")

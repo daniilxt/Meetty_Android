@@ -1,5 +1,6 @@
 package ru.daniilxt.feature.main_screen_user_card.presentation.adapter.view_holder
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -16,12 +17,13 @@ import java.time.LocalDate
 class SwipedUserCardViewHolder(
     private val binding: ItemSwipedUserCardBinding
 ) : RecyclerView.ViewHolder(binding.root) {
+    @SuppressLint("NewApi")
     fun bind(data: SwipedUserCard) {
         with(binding) {
-            ivAvatar.load(data.photoUri) {
+            ivAvatar.load(data.userInfo.avatarUri) {
                 transformations(CircleCropTransformation())
             }
-            ivAvatarBlured.load(data.photoUri) {
+            ivAvatarBlured.load(data.userInfo.avatarUri) {
                 transformations(
                     BlurTransformation(
                         binding.root.context, 25F, 1F
@@ -30,7 +32,8 @@ class SwipedUserCardViewHolder(
             }
             tvUserYear.text =
                 "".getAgeFromNumber((LocalDate.now().year - data.userAdditionalInfo.birthDay.year))
-            tvUsername.text = data.name
+            tvUsername.text = data.userInfo.getFullUserName()
+            tvUniversity.text = data.userEducationInfo.instituteName
             chipGroupInterests.removeAllViews()
             for (item in data.userAdditionalInfo.categories) {
                 val layoutInflater = LayoutInflater.from(binding.root.context)
@@ -38,7 +41,7 @@ class SwipedUserCardViewHolder(
                     id = View.generateViewId()
                     isChecked = true
                     isClickable = false
-                    text = item.name
+                    text = item.interestName
                 }
                 binding.chipGroupInterests.addView(chip)
             }

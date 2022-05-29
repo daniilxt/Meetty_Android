@@ -3,7 +3,7 @@ package ru.daniilxt.feature.domain.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import ru.daniilxt.common.extensions.toSendDateString
-import ru.daniilxt.feature.data.remote.model.body.UserAchievementsBody
+import ru.daniilxt.feature.data.remote.model.body.UserAchievementBody
 import java.time.LocalDate
 
 @Parcelize
@@ -13,7 +13,7 @@ data class UserAchievement(
     val date: LocalDate
 ) : Parcelable
 
-fun UserAchievement.toUserAchievementBody() = UserAchievementsBody(
+fun UserAchievement.toUserAchievementBody() = UserAchievementBody(
     title = title,
     achievementDescription = achievementDescription,
     date = date.toSendDateString()

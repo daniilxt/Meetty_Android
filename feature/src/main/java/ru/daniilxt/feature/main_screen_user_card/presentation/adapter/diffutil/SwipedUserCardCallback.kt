@@ -8,13 +8,14 @@ class SwipedUserCardCallback : DiffUtil.ItemCallback<SwipedUserCard>() {
         oldItem: SwipedUserCard,
         newItem: SwipedUserCard
     ): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.userInfo == newItem.userInfo
     }
 
     override fun areContentsTheSame(
         oldItem: SwipedUserCard,
         newItem: SwipedUserCard
     ): Boolean {
-        return oldItem.name == newItem.name && oldItem.photoUri == newItem.photoUri
+        return oldItem.userInfo == newItem.userInfo &&
+            oldItem.userAdditionalInfo == newItem.userAdditionalInfo
     }
 }

@@ -33,6 +33,8 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as INavigation).showNavigation(true)
+
         requireActivity().setStatusBarColor(R.color.background_primary_dark)
         requireView().clearLightStatusBar()
         requireActivity().setNavigationBarColor(R.color.white)
@@ -41,7 +43,6 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
             binding.contentLayout.margin(top = requireContext().dpToPx(40F))
             binding.toolbar.root.margin(top = requireContext().dpToPx(20F))
         }
-
         val navHostFragment =
             childFragmentManager.findFragmentById(R.id.main_screen_container) as NavHostFragment
         val navController = navHostFragment.navController

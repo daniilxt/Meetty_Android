@@ -31,7 +31,7 @@ class UserCardViewHolder(
             val views =
                 listOf(binding.tvCategory, binding.tvCategory2, binding.tvCategory3)
             for (i in 0 until count) {
-                views[i].text = categories[i].name
+                views[i].text = categories[i].interestName
             }
         }
     }

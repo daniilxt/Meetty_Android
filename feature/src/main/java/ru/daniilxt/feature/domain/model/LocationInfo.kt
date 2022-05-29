@@ -1,7 +1,7 @@
 package ru.daniilxt.feature.domain.model
 
-data class LocationInfoDto(
+data class LocationInfo(
     val city: String,
     val address: String,
-    val coordinates: CoordinatesDto
+    val coordinates: Coordinates
 )

@@ -22,7 +22,6 @@ import ru.daniilxt.feature.domain.model.UserEducationInfo
 import ru.daniilxt.feature.domain.model.toPhotoAttach
 import ru.daniilxt.feature.domain.usecase.GetEducationInstitutesUseCase
 import ru.daniilxt.feature.files_helper.FilesHelper
-import timber.log.Timber
 import java.io.File
 
 class ProfileUserEducationViewModel(
@@ -93,7 +92,6 @@ class ProfileUserEducationViewModel(
                 photos = emptyList()
             )
             profileDataWrapper.setUserEducationInfo(userEducationInfo)
-            Timber.i("???? $userEducationInfo")
         }
     }
 

@@ -1,7 +1,6 @@
 package ru.daniilxt.feature.domain.model
 
-data class UserCard(
-    val id: Long,
-    val user: SimpleUserInfo,
+data class MapSimpleUser(
+    val userInfo: SimpleUserInfo,
     val userAdditionalInfo: UserAdditionalInfo
 )

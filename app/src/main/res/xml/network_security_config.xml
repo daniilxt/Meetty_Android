@@ -3,5 +3,6 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">developerslife.ru</domain>
         <domain includeSubdomains="true">static.devli.ru</domain>
+        <domain includeSubdomains="true">votuchebar.nichost.ru</domain>
     </domain-config>
 </network-security-config>
