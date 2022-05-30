@@ -85,6 +85,10 @@
     <string name="description">Описание</string>
     <string name="entrance">Вход</string>
     <string name="professional_interests">Профессиональные интересы</string>
+    <string name="overview">Обзор</string>
+    <string name="achievements">Достижения</string>
+    <string name="profile_info">Информация профиля</string>
+    <string name="unknown_phone">Неизвестен</string>
 
 
     <string-array name="profile_steps">

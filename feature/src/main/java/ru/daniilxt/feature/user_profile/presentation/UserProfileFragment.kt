@@ -2,6 +2,7 @@ package ru.daniilxt.feature.user_profile.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.addBackPressedCallback
@@ -15,10 +16,16 @@ import ru.daniilxt.feature.databinding.FragmentUserProfileBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
 import ru.daniilxt.feature.main_screen.presentation.INavigation
+import ru.daniilxt.feature.profile_user_achievements.presentation.adapter.UserAchievementAdapter
 
 class UserProfileFragment : BaseFragment<UserProfileViewModel>(R.layout.fragment_user_profile) {
 
     override val binding: FragmentUserProfileBinding by viewBinding(FragmentUserProfileBinding::bind)
+
+    private val achieveAdapter by lazy {
+        UserAchievementAdapter(onDeleteAchieveClickListener = {
+        }, isDeletable = false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,18 +43,38 @@ class UserProfileFragment : BaseFragment<UserProfileViewModel>(R.layout.fragment
     override fun setupViews() {
         super.setupViews()
         setupButtons()
+        initRecyclerAdapter()
+    }
+
+    override fun setupViewModelSubscriber() {
+        super.setupViewModelSubscriber()
+        viewModel.userAchievements.observe {
+            achieveAdapter.bind(it)
+        }
     }
 
     private fun setupButtons() {
-        binding.mbInfo.isChecked = true
-        binding.mbInfo.setDebounceClickListener(delay = 0L) {
-            binding.mbInfo.isChecked = true
-            binding.mbAchievements.isChecked = false
+        setSwitcherChildViewsVisibility(true)
+        binding.profileSwitcher.mbInfo.setDebounceClickListener(delay = 0L) {
+            setSwitcherChildViewsVisibility(true)
         }
-        binding.mbAchievements.setDebounceClickListener(delay = 0L) {
-            binding.mbInfo.isChecked = false
-            binding.mbAchievements.isChecked = true
+        binding.profileSwitcher.mbAchievements.setDebounceClickListener(delay = 0L) {
+            setSwitcherChildViewsVisibility(false)
         }
+    }
+
+    private fun setSwitcherChildViewsVisibility(isVisible: Boolean) {
+        // set switcher position
+        binding.profileSwitcher.mbInfo.isChecked = isVisible
+        binding.profileSwitcher.mbAchievements.isChecked = !isVisible
+
+        // change layout visibility by switcher
+        binding.includeProfileInfo.root.isVisible = isVisible
+        binding.includeRvAchievements.root.isVisible = !isVisible
+    }
+
+    private fun initRecyclerAdapter() {
+        binding.includeRvAchievements.rvAchievements.adapter = achieveAdapter
     }
 
     override fun inject() {

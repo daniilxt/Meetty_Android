@@ -48,7 +48,7 @@ class ProfileUserAchievementsFragment :
     }
 
     private fun initRecyclerAdapter() {
-        binding.rvAchievement.adapter = achieveAdapter
+        binding.includeRv.rvAchievements.adapter = achieveAdapter
     }
 
     override fun setupViewModelSubscriber() {
