@@ -1,8 +1,10 @@
 package ru.daniilxt.feature.user_profile.presentation
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
+import com.google.android.material.chip.Chip
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.addBackPressedCallback
@@ -15,6 +17,7 @@ import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentUserProfileBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
+import ru.daniilxt.feature.domain.model.ProfessionalInterest
 import ru.daniilxt.feature.main_screen.presentation.INavigation
 import ru.daniilxt.feature.profile_user_achievements.presentation.adapter.UserAchievementAdapter
 
@@ -49,11 +52,31 @@ class UserProfileFragment : BaseFragment<UserProfileViewModel>(R.layout.fragment
     override fun setupViewModelSubscriber() {
         super.setupViewModelSubscriber()
         viewModel.userAchievements.observe {
+            initUserInfo()
             achieveAdapter.bind(it)
         }
     }
 
+    private fun initUserInfo() {
+        val data = List(10) {
+            ProfessionalInterest(it.toLong(), "Программирование $it")
+        }
+        for (item in data) {
+            val layoutInflater = LayoutInflater.from(binding.root.context)
+            val chip = (layoutInflater.inflate(R.layout.item_chip, null) as Chip).apply {
+                id = View.generateViewId()
+                isChecked = true
+                isClickable = false
+                text = item.interestName
+            }
+            binding.includeProfileInfo.chipGroupInterests.addView(chip)
+        }
+    }
+
     private fun setupButtons() {
+        binding.ibBack.setDebounceClickListener {
+            viewModel.back()
+        }
         setSwitcherChildViewsVisibility(true)
         binding.profileSwitcher.mbInfo.setDebounceClickListener(delay = 0L) {
             setSwitcherChildViewsVisibility(true)
