@@ -1,7 +1,7 @@
 package ru.daniilxt.feature.data.remote.model.response
 
 import com.google.gson.annotations.SerializedName
-import ru.daniilxt.feature.domain.model.UserCardInfo
+import ru.daniilxt.feature.domain.model.UserProfileInfo
 import java.time.LocalDateTime
 
 data class UserProfileInfoResponse(
@@ -11,13 +11,16 @@ data class UserProfileInfoResponse(
     val userAdditionalInfo: UserAdditionalInfoResponse,
     @SerializedName("userEducation")
     val userEducationInfo: EducationInstituteResponse,
+    @SerializedName("userAchievements")
+    val userAchievements: List<UserAchievementResponse>? = null,
     @SerializedName("lastActivity")
     val lastActivity: LocalDateTime?
 )
 
-fun UserProfileInfoResponse.toUserCardInfo() = UserCardInfo(
+fun UserProfileInfoResponse.toUserProfileInfo() = UserProfileInfo(
     userInfo = userInfo.toSimpleUser(),
     userAdditionalInfo = userAdditionalInfo.toUserAdditionalInfo(),
     userEducationInfo = userEducationInfo.toEducationInfo(),
-    lastActivity = lastActivity,
+    userAchievements = userAchievements?.map { it.toUserAchievement() } ?: emptyList(),
+    lastActivity = lastActivity
 )

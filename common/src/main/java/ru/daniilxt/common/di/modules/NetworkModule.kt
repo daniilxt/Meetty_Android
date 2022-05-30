@@ -26,7 +26,7 @@ class NetworkModule {
         Interceptor { chain ->
             val original = chain.request()
             val accessToken =
-                "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwtZmlyc292QG1haWwucnUiLCJpYXQiOjE2NTM5MTA3OTcsImV4cCI6MTY1MzkyODc5N30.uwxlaa4JAU4pzNjs0pmtMzmuA5pheOKZQ6h4LGY3jMQ"
+                "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwtZmlyc292QG1haWwucnUiLCJpYXQiOjE2NTM5MzMyNjcsImV4cCI6MTY1Mzk1MTI2N30.G5CIQQlWS2PLw0XrzMQb2vK0TilG3rSG2iCL04y9lOU"
             val requestBuilder = original.newBuilder()
             if (!accessToken.isNullOrEmpty() && !original.url.toString().contains("auth")) {
                 requestBuilder.addHeader(AUTHORIZATION, BEARER + accessToken)

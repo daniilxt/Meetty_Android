@@ -73,7 +73,7 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
             }
         }
         binding.toolbar.ibProfile.setDebounceClickListener {
-            viewModel.openUserProfile(true, 1)
+            viewModel.openUserProfile(true, -1)
         }
     }
 

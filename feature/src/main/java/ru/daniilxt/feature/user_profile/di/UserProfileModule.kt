@@ -9,6 +9,7 @@ import dagger.multibindings.IntoMap
 import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.domain.usecase.GetProfileUserInfoUseCase
 import ru.daniilxt.feature.user_profile.presentation.UserProfileViewModel
 
 @Module(
@@ -22,10 +23,11 @@ class UserProfileModule {
     @IntoMap
     @ViewModelKey(UserProfileViewModel::class)
     fun provideViewModel(
-        navigator: FeatureRouter
+        navigator: FeatureRouter,
+        getProfileUserInfoUseCase: GetProfileUserInfoUseCase
     ): ViewModel {
         return UserProfileViewModel(
-            navigator
+            navigator, getProfileUserInfoUseCase
         )
     }
 
