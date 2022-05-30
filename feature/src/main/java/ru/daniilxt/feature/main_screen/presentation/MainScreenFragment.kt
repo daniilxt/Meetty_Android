@@ -72,6 +72,9 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
                 viewModel.openMainScreenUserCardFragment()
             }
         }
+        binding.toolbar.ibProfile.setDebounceClickListener {
+            viewModel.openUserProfile(true, 1)
+        }
     }
 
     private fun setButtonCheckStatus(

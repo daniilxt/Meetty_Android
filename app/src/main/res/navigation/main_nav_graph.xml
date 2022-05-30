@@ -9,7 +9,15 @@
         android:id="@+id/mainScreenFragment"
         android:name="ru.daniilxt.feature.main_screen.presentation.MainScreenFragment"
         android:label="MainScreenFragment"
-        tools:layout="@layout/fragment_main_screen" />
+        tools:layout="@layout/fragment_main_screen">
+        <action
+            android:id="@+id/action_mainScreenFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/onboardingFragment"
@@ -69,10 +77,18 @@
         android:label="ProfileStepsFragment">
         <action
             android:id="@+id/action_profileStepsFragment_to_mainScreenFragment"
-            app:destination="@id/mainScreenFragment" />
+            app:destination="@id/mainScreenFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
     </fragment>
     <fragment
         android:id="@+id/mainScreenMapFragment"
         android:name="ru.daniilxt.feature.main_screen_map.presentation.MainScreenMapFragment"
         android:label="MainScreenMapFragment" />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="ru.daniilxt.feature.user_profile.presentation.UserProfileFragment"
+        android:label="UserProfileFragment" />
 </navigation>

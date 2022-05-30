@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_primary"
+    tools:context=".user_profile.presentation.UserProfileFragment">
+
+    <ImageView
+        android:id="@+id/iv_avatar_blured"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/profile_info_frg_bg"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="16:10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:text="Daniil Firsov"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_avatar_blured"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:backgroundTint="@color/white"
+        android:orientation="vertical"
+        app:cardCornerRadius="@dimen/dp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_username">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_30">
+
+            <TextView
+                android:id="@+id/tv_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:textColor="@color/black"
+                android:text="Информация профиля"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/sp_12"
+                android:layout_marginTop="@dimen/dp_24"
+                android:background="@drawable/bg_rounded_switcher_primary"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/dp_10"
+                app:layout_constraintTop_toBottomOf="@id/tv_text">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mb_info"
+                    style="@style/Button.Enter.Filled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:backgroundTint="@color/button_toggle_tint_second"
+                    android:checkable="true"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:stateListAnimator="@null"
+                    android:text="@string/man"
+                    android:textColor="@color/button_text_toggle_tint_second"
+                    android:textSize="@dimen/sp_16"
+                    app:cornerRadius="@dimen/dp_40"
+                    app:rippleColor="@android:color/transparent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mb_achievements"
+                    style="@style/Button.Enter.Filled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:backgroundTint="@color/button_toggle_tint_second"
+                    android:checkable="true"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:stateListAnimator="@null"
+                    android:text="@string/woman"
+                    android:textColor="@color/button_text_toggle_tint_second"
+                    android:textSize="@dimen/sp_16"
+                    app:cornerRadius="@dimen/dp_40"
+                    app:rippleColor="@android:color/transparent" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

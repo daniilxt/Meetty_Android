@@ -15,6 +15,7 @@
     <color name="background_third">#F8F9FB</color>
     <color name="background_third_dark">#A3A2A7</color>
     <color name="background_fourth">#eff0f6</color>
+    <color name="background_fourth_dark">#ebebeb</color>
 
     <color name="button_tint_primary">#4385F6</color>
     <color name="button_tint_secondary">#FFFFFF</color>

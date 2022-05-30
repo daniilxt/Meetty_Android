@@ -21,4 +21,8 @@ class MainScreenViewModel(
     fun openUserListFragment() {
         mainScreenRouter.openMainScreenUserListFragment()
     }
+
+    fun openUserProfile(isMy: Boolean, userId: Long) {
+        router.openUserProfile(isMy, userId)
+    }
 }
