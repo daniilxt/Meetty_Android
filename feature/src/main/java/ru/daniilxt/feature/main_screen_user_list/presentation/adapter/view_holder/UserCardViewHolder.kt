@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
 import ru.daniilxt.common.extensions.getAgeFromNumber
+import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.feature.databinding.ItemUserCardBinding
 import ru.daniilxt.feature.domain.model.UserCard
 import java.time.LocalDate
@@ -33,6 +34,9 @@ class UserCardViewHolder(
             for (i in 0 until count) {
                 views[i].text = categories[i].interestName
             }
+        }
+        itemView.setDebounceClickListener {
+            onItemClickListener(data)
         }
     }
 }

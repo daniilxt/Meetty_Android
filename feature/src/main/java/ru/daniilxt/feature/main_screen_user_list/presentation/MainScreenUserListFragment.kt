@@ -17,6 +17,7 @@ class MainScreenUserListFragment :
     )
     private val userCardsAdapter by lazy {
         UserCardAdapter {
+            viewModel.openUserProfile(it.user.id)
         }
     }
 

@@ -45,4 +45,8 @@ class MainScreenUserListViewModel(
                 Timber.i("??? data $it")
             }).addTo(disposable)
     }
+
+    fun openUserProfile(userId: Long) {
+        router.openUserProfile(userId = userId)
+    }
 }
