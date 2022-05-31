@@ -48,7 +48,6 @@ class UserProfileFragment : BaseFragment<UserProfileViewModel>(R.layout.fragment
     override fun setupFromArguments(args: Bundle) {
         super.setupFromArguments(args)
         val isMy = args.getBoolean(DATA_KEY_IS_MY, false)
-        Timber.i("IIIIIIIIIIIIIIIIIIIIIIIII $isMy")
         val userId = args.getLong(DATA_KEY_USER_ID, -1)
         viewModel.loadUserProfile(isMy, userId)
     }
@@ -70,7 +69,9 @@ class UserProfileFragment : BaseFragment<UserProfileViewModel>(R.layout.fragment
 
     private fun initUserInfo(data: UserProfileInfo) {
         binding.tvUsername.text = data.userInfo.getFullUserName()
-        binding.ivUserAvatar.load(data.userInfo.avatarUri)
+        binding.ivUserAvatar.load(data.userInfo.avatarBitmap) {
+            this.error(R.drawable.ic_in_progress_24)
+        }
 
         binding.includeProfileInfo.tvGender.text = data.userInfo.sex
         binding.includeProfileInfo.tvBirthday.text = data.userAdditionalInfo.birthDay.toString()

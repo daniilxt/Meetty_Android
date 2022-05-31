@@ -42,7 +42,7 @@ class FeatureDataSourceImpl @Inject constructor(
     }
 
     override fun sendRegistrationInfoUseCase(registrationInfo: ProfileData):
-            Single<RequestResult<Tokens>> {
+        Single<RequestResult<Tokens>> {
         return featureApiService.sendRegistrationInfo(registrationInfo.toRegistrationInfoBody())
             .map { response ->
                 when {
@@ -76,13 +76,13 @@ class FeatureDataSourceImpl @Inject constructor(
         isMy: Boolean,
         userId: Long
     ): Single<RequestResult<UserProfileInfo>> {
-        Timber.i("?? is $isMy")
         val single = if (isMy) {
             featureApiService.getUserProfileInfo()
         } else {
             featureApiService.getUserProfileInfoById(userId)
         }
         return single.map { response ->
+            Timber.i("!!!!! ERROR PARSE? ${response.body()}  \n ${response.isSuccessful} ${response.errorBody()}")
             getSingleData(response) {
                 response.body()!!.toUserProfileInfo()
             }

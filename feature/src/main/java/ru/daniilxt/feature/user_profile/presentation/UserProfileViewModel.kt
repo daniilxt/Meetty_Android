@@ -32,17 +32,19 @@ class UserProfileViewModel(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Timber.i("??? $it")
                 when (it) {
                     is RequestResult.Success -> {
+                        Timber.i("!!!ERROR IS1 $it")
                         _userInfo.value = listOf(it.data)
                         setEventState(ResponseState.Success)
                     }
                     is RequestResult.Error -> {
+                        Timber.i("!!!ERROR IS2 $it")
                         setEventState(ResponseState.Failure(it.error as ResponseError))
                     }
                 }
             }, {
+                Timber.i("!!!ERROR IS3 ${it.stackTrace} ${it.cause} ${it.message}")
                 setEventState(ResponseState.Failure(ResponseError.ConnectionError))
             }).addTo(disposable)
     }

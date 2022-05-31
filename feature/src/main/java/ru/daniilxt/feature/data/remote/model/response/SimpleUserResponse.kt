@@ -1,7 +1,12 @@
 package ru.daniilxt.feature.data.remote.model.response
 
+import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import com.google.gson.annotations.SerializedName
+import okio.ByteString.Companion.decodeBase64
 import ru.daniilxt.feature.domain.model.SimpleUserInfo
+import timber.log.Timber
 
 data class SimpleUserResponse(
     @SerializedName("id")
@@ -10,16 +15,22 @@ data class SimpleUserResponse(
     val firstName: String,
     @SerializedName("lastName")
     val lastName: String,
-    @SerializedName("avatarLink")
-    val avatarLink: String,
+    @SerializedName("avatarFile")
+    val avatarFile: String,
     @SerializedName("sex")
     val sex: String
 )
 
+@SuppressLint("NewApi")
 fun SimpleUserResponse.toSimpleUser() = SimpleUserInfo(
     id = id,
     firstName = firstName,
     lastName = lastName,
-    avatarUri = avatarLink.ifEmpty { "https://sun9-west.userapi.com/sun9-50/s/v1/if2/NTo9XA_NKv1OIl1J12FYJcNpKHPOLmWblmIFWS-BymD33CRS8GCybjFlLan2qbN-QldyPhvc5_aaq9sFhqR22K9D.jpg?size=604x453&quality=95&type=album" },
+    avatarBitmap = if (!avatarFile.isNullOrEmpty()) avatarFile.getBitmapByStringByteArray() else null,
     sex = sex,
 )
+
+fun String.getBitmapByStringByteArray(): Bitmap {
+    val byteArray = this.decodeBase64()!!.toByteArray()
+    return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+}

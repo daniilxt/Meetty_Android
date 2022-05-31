@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.webkit.MimeTypeMap
+import okhttp3.ResponseBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -48,6 +49,26 @@ object FilesHelper {
         if (createdFile.exists()) {
             createdFileCallback(createdFile)
         }
+    }
+
+    fun createFileFromResultBody(
+        parentPath: String = "",
+        fileNameWithExtension: String,
+        body: ResponseBody
+    ): File {
+        val file = File(fileNameWithExtension)
+        body.byteStream().use { inputStream ->
+            FileOutputStream(file).use { outputStream ->
+                val data = ByteArray(8192)
+                var read: Int
+                var progress = 0L
+                while (inputStream.read(data).also { read = it } != -1) {
+                    outputStream.write(data, 0, read)
+                    progress += read
+                }
+            }
+        }
+        return file
     }
 
     fun copyFile() {

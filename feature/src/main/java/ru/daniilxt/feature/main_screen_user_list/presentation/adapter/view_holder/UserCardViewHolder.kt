@@ -16,7 +16,7 @@ class UserCardViewHolder(
     @SuppressLint("NewApi")
     fun bind(data: UserCard, onItemClickListener: (data: UserCard) -> Unit) {
         with(binding) {
-            ivAvatar.load(data.user.avatarUri) {
+            ivAvatar.load(data.user.avatarBitmap) {
                 transformations(CircleCropTransformation())
             }
             tvFirstName.text = data.user.firstName

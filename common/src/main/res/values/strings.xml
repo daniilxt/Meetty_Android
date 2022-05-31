@@ -89,6 +89,8 @@
     <string name="achievements">Достижения</string>
     <string name="profile_info">Информация профиля</string>
     <string name="unknown_phone">Неизвестен</string>
+    <string name="personal_info">Личная информация</string>
+    <string name="institute">Институт</string>
 
 
     <string-array name="profile_steps">
