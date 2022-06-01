@@ -11,6 +11,7 @@ import ru.daniilxt.feature.profile_user_achievements.presentation.adapter.view_h
 
 class UserAchievementAdapter(
     private val onDeleteAchieveClickListener: (userAchieve: UserAchievement) -> Unit,
+    private val isDeletable: Boolean = true
 ) : RecyclerView.Adapter<UserAchievementViewHolder>() {
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
 
@@ -23,7 +24,7 @@ class UserAchievementAdapter(
     override fun onBindViewHolder(holder: UserAchievementViewHolder, position: Int) {
         holder.bind(
             differ.currentList[position],
-            this.onDeleteAchieveClickListener,
+            this.onDeleteAchieveClickListener, isDeletable
         )
     }
 

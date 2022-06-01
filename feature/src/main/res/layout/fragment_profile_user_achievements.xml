@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_achievement"
+        <include
+            android:id="@+id/include_rv"
+            layout="@layout/include_achievements"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_50"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_10"
             android:background="?selectableItemBackground"
             android:clickable="true"
             android:drawablePadding="@dimen/dp_16"
@@ -38,6 +37,6 @@
             android:textSize="@dimen/sp_16"
             app:drawableStartCompat="@drawable/ic_plus_circle_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_achievement" />
+            app:layout_constraintTop_toBottomOf="@+id/include_rv" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

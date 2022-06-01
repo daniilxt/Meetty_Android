@@ -7,7 +7,7 @@ import ru.daniilxt.feature.domain.model.EducationInstitute
 import ru.daniilxt.feature.domain.model.ProfessionalInterest
 import ru.daniilxt.feature.domain.model.ProfileData
 import ru.daniilxt.feature.domain.model.Tokens
-import ru.daniilxt.feature.domain.model.UserCardInfo
+import ru.daniilxt.feature.domain.model.UserProfileInfo
 import ru.daniilxt.feature.domain.repository.FeatureRepository
 import javax.inject.Inject
 
@@ -25,7 +25,14 @@ class FeatureRepositoryImpl @Inject constructor(private val featureDataSource: F
         return featureDataSource.sendRegistrationInfoUseCase(registrationInfo)
     }
 
-    override fun getUsersCardInfo(): Single<RequestResult<List<UserCardInfo>>> {
+    override fun getUsersCardInfo(): Single<RequestResult<List<UserProfileInfo>>> {
         return featureDataSource.getUsersCardInfo()
+    }
+
+    override fun getUserProfileInfo(
+        isMy: Boolean,
+        userId: Long
+    ): Single<RequestResult<UserProfileInfo>> {
+        return featureDataSource.getUserProfileInfo(isMy, userId)
     }
 }

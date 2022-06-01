@@ -79,6 +79,10 @@ class InputFieldDelegate(
             Toast.makeText(context, R.string.phone_number_warning, Toast.LENGTH_SHORT).show()
             return false
         }
+        if (viewModel.userPhoto == null) {
+            Toast.makeText(context, R.string.select_avatar_waning, Toast.LENGTH_SHORT).show()
+            return false
+        }
 
         viewModel.putRegistrationData(
             UserPersonalInfo(
@@ -86,7 +90,8 @@ class InputFieldDelegate(
                 lastName = lastName.text.toString(),
                 birthDay = LocalDate.parse(birthDay.text.toString(), format),
                 phoneNumber = phoneNumber.text.toString(),
-                sex = getActiveButtonText()
+                sex = getActiveButtonText(),
+                profilePicture = requireNotNull(viewModel.userPhoto)
             )
         )
         return true

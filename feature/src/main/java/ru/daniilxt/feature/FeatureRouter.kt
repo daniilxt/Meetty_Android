@@ -7,4 +7,5 @@ interface FeatureRouter {
     fun openLoginFragment()
     fun openProfileStepsFragment()
     fun openMainScreenFragment()
+    fun openUserProfile(isMy: Boolean = false, userId: Long)
 }

@@ -18,6 +18,7 @@ import ru.daniilxt.feature.profile_registration.di.ProfileRegistrationComponent
 import ru.daniilxt.feature.profile_steps.di.ProfileStepsComponent
 import ru.daniilxt.feature.profile_user_achievements.di.ProfileUserAchievementsComponent
 import ru.daniilxt.feature.profile_user_education.di.ProfileUserEducationComponent
+import ru.daniilxt.feature.user_profile.di.UserProfileComponent
 import ru.daniilxt.feature.welcome_screen.di.WelcomeScreenComponent
 import ru.daniilxt.feature.welcome_screen_description.di.WelcomeScreenDescriptionComponent
 
@@ -50,6 +51,7 @@ interface FeatureComponent {
     fun profileRegistrationComponentFactory(): ProfileRegistrationComponent.Factory
     fun calendarComponentFactory(): CalendarComponent.Factory
     fun profileProfessionalInterestsComponentFactory(): ProfileProfessionalInterestsComponent.Factory
+    fun userProfileComponentFactory(): UserProfileComponent.Factory
 
     @Component.Factory
     interface Factory {

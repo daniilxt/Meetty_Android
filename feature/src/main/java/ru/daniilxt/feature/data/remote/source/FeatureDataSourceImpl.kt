@@ -9,13 +9,13 @@ import ru.daniilxt.feature.data.remote.api.FeatureApiService
 import ru.daniilxt.feature.data.remote.model.response.toEducationInstitute
 import ru.daniilxt.feature.data.remote.model.response.toProfessionalInterest
 import ru.daniilxt.feature.data.remote.model.response.toTokens
-import ru.daniilxt.feature.data.remote.model.response.toUserCardInfo
+import ru.daniilxt.feature.data.remote.model.response.toUserProfileInfo
 import ru.daniilxt.feature.data.source.FeatureDataSource
 import ru.daniilxt.feature.domain.model.EducationInstitute
 import ru.daniilxt.feature.domain.model.ProfessionalInterest
 import ru.daniilxt.feature.domain.model.ProfileData
 import ru.daniilxt.feature.domain.model.Tokens
-import ru.daniilxt.feature.domain.model.UserCardInfo
+import ru.daniilxt.feature.domain.model.UserProfileInfo
 import ru.daniilxt.feature.domain.model.toRegistrationInfoBody
 import timber.log.Timber
 import java.net.HttpURLConnection
@@ -64,12 +64,27 @@ class FeatureDataSourceImpl @Inject constructor(
             }
     }
 
-    override fun getUsersCardInfo(): Single<RequestResult<List<UserCardInfo>>> {
+    override fun getUsersCardInfo(): Single<RequestResult<List<UserProfileInfo>>> {
         return featureApiService.getUsersProfileInfo().map { response ->
-            Timber.i("?????? ${response.body()}")
-
             getSingleCollectionData(response) {
-                response.body()!!.map { it.toUserCardInfo() }
+                response.body()!!.map { it.toUserProfileInfo() }
+            }
+        }
+    }
+
+    override fun getUserProfileInfo(
+        isMy: Boolean,
+        userId: Long
+    ): Single<RequestResult<UserProfileInfo>> {
+        val single = if (isMy) {
+            featureApiService.getUserProfileInfo()
+        } else {
+            featureApiService.getUserProfileInfoById(userId)
+        }
+        return single.map { response ->
+            Timber.i("!!!!! ERROR PARSE? ${response.body()}  \n ${response.isSuccessful} ${response.errorBody()}")
+            getSingleData(response) {
+                response.body()!!.toUserProfileInfo()
             }
         }
     }

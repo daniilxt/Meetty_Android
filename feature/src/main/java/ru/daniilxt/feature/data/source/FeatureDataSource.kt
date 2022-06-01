@@ -6,11 +6,12 @@ import ru.daniilxt.feature.domain.model.EducationInstitute
 import ru.daniilxt.feature.domain.model.ProfessionalInterest
 import ru.daniilxt.feature.domain.model.ProfileData
 import ru.daniilxt.feature.domain.model.Tokens
-import ru.daniilxt.feature.domain.model.UserCardInfo
+import ru.daniilxt.feature.domain.model.UserProfileInfo
 
 interface FeatureDataSource {
     fun getEducationInstitutes(): Single<RequestResult<List<EducationInstitute>>>
     fun getProfessionalInterests(): Single<RequestResult<List<ProfessionalInterest>>>
     fun sendRegistrationInfoUseCase(registrationInfo: ProfileData): Single<RequestResult<Tokens>>
-    fun getUsersCardInfo(): Single<RequestResult<List<UserCardInfo>>>
+    fun getUsersCardInfo(): Single<RequestResult<List<UserProfileInfo>>>
+    fun getUserProfileInfo(isMy: Boolean, userId: Long): Single<RequestResult<UserProfileInfo>>
 }

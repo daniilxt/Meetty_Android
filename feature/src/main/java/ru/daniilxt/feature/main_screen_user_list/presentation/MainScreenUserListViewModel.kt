@@ -42,7 +42,11 @@ class MainScreenUserListViewModel(
                     }
                 }
             }, {
-                Timber.i("??? data $it")
+                Timber.i("Error $it")
             }).addTo(disposable)
+    }
+
+    fun openUserProfile(userId: Long) {
+        router.openUserProfile(userId = userId)
     }
 }

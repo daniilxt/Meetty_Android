@@ -8,11 +8,14 @@ data class UserAdditionalInfoResponse(
     @SerializedName("professionalInterests")
     val professionalInterests: List<ProfessionalInterestResponse>,
     @SerializedName("userBirthday")
-    val userBirthday: String
+    val userBirthday: String,
+    @SerializedName("userPhone")
+    val userPhone: String?
 )
 
 fun UserAdditionalInfoResponse.toUserAdditionalInfo() = UserAdditionalInfo(
     id = -1,
     birthDay = userBirthday.parseLocalDate(),
-    categories = professionalInterests.map { it.toProfessionalInterest() }
+    categories = professionalInterests.map { it.toProfessionalInterest() },
+    userPhone = if (userPhone.isNullOrEmpty()) "" else userPhone
 )

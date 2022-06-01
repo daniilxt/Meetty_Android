@@ -2,26 +2,27 @@ package ru.daniilxt.feature.domain.model
 
 import java.time.LocalDateTime
 
-data class UserCardInfo(
+data class UserProfileInfo(
     val userInfo: SimpleUserInfo,
     val userAdditionalInfo: UserAdditionalInfo,
     val userEducationInfo: EducationInfo,
+    val userAchievements: List<UserAchievement> = emptyList(),
     val lastActivity: LocalDateTime?
 )
 
-fun UserCardInfo.toSwipesUserCard() = SwipedUserCard(
+fun UserProfileInfo.toSwipesUserCard() = SwipedUserCard(
     userInfo = userInfo,
     userAdditionalInfo = userAdditionalInfo,
     userEducationInfo = userEducationInfo.toEducationInfo()
 )
 
-fun UserCardInfo.toUserCard() = UserCard(
+fun UserProfileInfo.toUserCard() = UserCard(
     id = userInfo.id,
     user = userInfo,
     userAdditionalInfo = userAdditionalInfo,
 )
 
-fun UserCardInfo.toMapSimpleUser() = MapSimpleUser(
+fun UserProfileInfo.toMapSimpleUser() = MapSimpleUser(
     userInfo = userInfo,
     userAdditionalInfo = userAdditionalInfo
 )

@@ -4,7 +4,7 @@ data class SimpleUserInfo(
     val id: Long,
     val firstName: String,
     val lastName: String,
-    val avatarUri: String,
+    val avatarLink: String,
     val sex: String = ""
 ) {
     fun getFullUserName() = "$firstName $lastName"

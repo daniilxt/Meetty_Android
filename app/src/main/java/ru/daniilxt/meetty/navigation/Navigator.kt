@@ -3,6 +3,7 @@ package ru.daniilxt.meetty.navigation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.user_profile.presentation.UserProfileFragment
 import ru.daniilxt.meetty.R
 
 class Navigator : FeatureRouter {
@@ -75,6 +76,17 @@ class Navigator : FeatureRouter {
             R.id.onboardingFragment -> {
                 navController?.navigate(
                     R.id.action_onboardingFragment_to_loginFragment
+                )
+            }
+        }
+    }
+
+    override fun openUserProfile(isMy: Boolean, userId: Long) {
+        when (navController?.currentDestination?.id) {
+            R.id.mainScreenFragment -> {
+                val bundle = UserProfileFragment.makeBundle(isMy, userId)
+                navController?.navigate(
+                    R.id.action_mainScreenFragment_to_userProfileFragment, bundle
                 )
             }
         }
