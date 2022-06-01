@@ -8,7 +8,9 @@ import okhttp3.ResponseBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
+import java.text.DecimalFormat
 import java.time.LocalDateTime
+import kotlin.math.pow
 
 object FilesHelper {
     const val CHILD_DIR = "uploads"
@@ -72,5 +74,14 @@ object FilesHelper {
     }
 
     fun copyFile() {
+    }
+
+    fun getReadableFileSize(size: Long): String {
+        if (size <= 0) {
+            return "0"
+        }
+        val units = arrayOf("B", "KB", "MB", "GB", "TB")
+        val digitGroups = (kotlin.math.log10(size.toDouble()) / kotlin.math.log10(1024.0)).toInt()
+        return DecimalFormat("#,##0.#").format(size / 1024.0.pow(digitGroups.toDouble())) + " " + units[digitGroups]
     }
 }

@@ -3,10 +3,12 @@ package ru.daniilxt.feature.data.remote.model.response
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Base64.DEFAULT
 import com.google.gson.annotations.SerializedName
 import okio.ByteString.Companion.decodeBase64
 import ru.daniilxt.feature.domain.model.SimpleUserInfo
 import timber.log.Timber
+import java.lang.Byte.decode
 
 data class SimpleUserResponse(
     @SerializedName("id")

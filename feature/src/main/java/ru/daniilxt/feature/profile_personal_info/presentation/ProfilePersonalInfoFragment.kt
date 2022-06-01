@@ -1,11 +1,24 @@
 package ru.daniilxt.feature.profile_personal_info.presentation
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.os.Bundle
+import android.view.View
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import coil.load
+import coil.transform.CircleCropTransformation
+import com.zhihu.matisse.Matisse
+import com.zhihu.matisse.MimeType
+import com.zhihu.matisse.ui.MatisseActivity
 import ru.daniilxt.common.base.BaseDelegate
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.viewBinding
+import ru.daniilxt.common.utils.CoilImageEngine
+import ru.daniilxt.common.utils.PermissionUtils
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.calendar_dialog.dialogs.DatePickerDialogFragment
 import ru.daniilxt.feature.databinding.FragmentProfilePersonalInfoBinding
@@ -14,6 +27,7 @@ import ru.daniilxt.feature.di.FeatureComponent
 import ru.daniilxt.feature.profile_steps.presentation.adapter.IValidateFragmentFields
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 @SuppressLint("NewApi")
 class ProfilePersonalInfoFragment :
@@ -28,6 +42,23 @@ class ProfilePersonalInfoFragment :
     }
     private val datePickerDialog: DatePickerDialogFragment by lazy {
         DatePickerDialogFragment()
+    }
+
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode != 0) {
+                    val res = Matisse.obtainResult(result.data)
+                    viewModel.setPhoto(requireContext(), res.first())
+
+                    binding.ivUserAvatar.load(res.first()) {
+                        transformations(CircleCropTransformation())
+                    }
+                }
+            }
+        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun setupViews() {
@@ -59,6 +90,9 @@ class ProfilePersonalInfoFragment :
             binding.mbMan.isChecked = false
             binding.mbWoman.isChecked = true
         }
+        binding.ivUserAvatar.setDebounceClickListener {
+            requestAndSelectPhoto()
+        }
     }
 
     override fun isFieldsFilled(callback: (isFilled: Boolean) -> Unit) {
@@ -75,6 +109,32 @@ class ProfilePersonalInfoFragment :
 
     private fun addNewDelegate(etDelegate: BaseDelegate) {
         etDelegate.loadDelegate()
+    }
+
+    private fun requestAndSelectPhoto() {
+        PermissionUtils.checkStoragePermissions(this) {
+            Matisse.from(this)
+                .choose(
+                    EnumSet.of(
+                        MimeType.JPEG,
+                        MimeType.PNG,
+                        MimeType.BMP,
+                        MimeType.WEBP
+                    )
+                )
+                .countable(true)
+                .maxSelectable(1)
+                .gridExpectedSize(resources.getDimensionPixelSize(R.dimen.grid_expected_size))
+                .showSingleMediaType(true)
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                .thumbnailScale(1f)
+                .imageEngine(CoilImageEngine())
+                .theme(R.style.Theme_Matisse)
+
+            val intent = Intent(requireContext(), MatisseActivity::class.java)
+
+            resultLauncher.launch(intent)
+        }
     }
 
     companion object {

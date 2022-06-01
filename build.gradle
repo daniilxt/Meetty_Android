@@ -78,6 +78,8 @@ buildscript {
 
         swipableCardViewVersion = '2.3.4'
 
+        imageCompressorVersion = '3.0.1'
+
 
         kotlinDep = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
@@ -151,6 +153,8 @@ buildscript {
         googleLocationServicesDep = "com.google.android.gms:play-services-location:$googleLocationServicesVersion"
 
         swipableCardViewDep = "com.yuyakaido.android:card-stack-view:$swipableCardViewVersion"
+
+        imageCompressorDep = "id.zelory:compressor:$imageCompressorVersion"
     }
 
     ext.kotlin_version = "1.5.30"
