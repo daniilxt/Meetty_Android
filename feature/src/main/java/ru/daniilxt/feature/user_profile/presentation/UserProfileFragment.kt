@@ -71,6 +71,10 @@ class UserProfileFragment : BaseFragment<UserProfileViewModel>(R.layout.fragment
         binding.tvUsername.text = data.userInfo.getFullUserName()
         binding.ivUserAvatar.load(data.userInfo.avatarLink) {
             this.error(R.drawable.ic_in_progress_24)
+            this.listener(onSuccess = { request, metadata ->
+                binding.ivUserAvatarShimmer.stopLoading()
+                binding.ivUserAvatarShimmer.isVisible = false
+            })
         }
 
         binding.includeProfileInfo.tvGender.text = data.userInfo.sex

@@ -13,8 +13,8 @@
         android:layout_marginStart="@dimen/sp_16"
         android:layout_marginTop="@dimen/dp_48"
         android:backgroundTint="@color/white"
-        app:cardElevation="@dimen/dp_8"
         android:elevation="@dimen/dp_8"
+        app:cardElevation="@dimen/dp_8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/MaterialCardView.Circle">
@@ -22,15 +22,26 @@
         <ImageView
             android:id="@+id/ib_back"
             style="@style/ImageButtonSelectable"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:padding="@dimen/dp_8"
             android:src="@drawable/ic_back_arrow_2_24" />
     </com.google.android.material.card.MaterialCardView>
 
     <ImageView
         android:id="@+id/iv_user_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/profile_info_frg_bg"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="16:12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <aglibs.loading.skeleton.view.SkeletonImageView
+        android:id="@+id/iv_user_avatar_shimmer"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:background="@drawable/profile_info_frg_bg"

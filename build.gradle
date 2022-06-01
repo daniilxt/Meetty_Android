@@ -75,10 +75,13 @@ buildscript {
 
         googleMapKitVersion = '17.0.1'
         googleLocationServicesVersion = '18.0.0'
+        googleMapKitUtilsVersion = '3.4.0'
 
         swipableCardViewVersion = '2.3.4'
 
         imageCompressorVersion = '3.0.1'
+
+        skeletonLoadingVersion = '1.2'
 
 
         kotlinDep = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
@@ -151,10 +154,14 @@ buildscript {
 
         googleMapKitDep = "com.google.android.gms:play-services-maps:$googleMapKitVersion"
         googleLocationServicesDep = "com.google.android.gms:play-services-location:$googleLocationServicesVersion"
+        googleMapKitUtilsDep = "com.google.maps.android:maps-utils-ktx:$googleMapKitUtilsVersion"
+
 
         swipableCardViewDep = "com.yuyakaido.android:card-stack-view:$swipableCardViewVersion"
 
         imageCompressorDep = "id.zelory:compressor:$imageCompressorVersion"
+
+        skeletonLoadingDep = "com.github.AgnaldoNP:AGSkeletonLoading:$skeletonLoadingVersion"
     }
 
     ext.kotlin_version = "1.5.30"

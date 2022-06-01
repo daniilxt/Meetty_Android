@@ -97,10 +97,12 @@ dependencies {
     implementation fragmentKtxDep
 
     implementation googleMapKitDep
+    implementation googleMapKitUtilsDep
     implementation googleLocationServicesDep
-    implementation 'com.google.maps.android:maps-utils-ktx:3.4.0'
 
     implementation swipableCardViewDep
 
     implementation imageCompressorDep
+
+    implementation skeletonLoadingDep
 }
