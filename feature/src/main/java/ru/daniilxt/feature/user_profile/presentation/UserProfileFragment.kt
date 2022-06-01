@@ -69,7 +69,7 @@ class UserProfileFragment : BaseFragment<UserProfileViewModel>(R.layout.fragment
 
     private fun initUserInfo(data: UserProfileInfo) {
         binding.tvUsername.text = data.userInfo.getFullUserName()
-        binding.ivUserAvatar.load(data.userInfo.avatarBitmap) {
+        binding.ivUserAvatar.load(data.userInfo.avatarLink) {
             this.error(R.drawable.ic_in_progress_24)
         }
 

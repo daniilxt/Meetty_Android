@@ -20,10 +20,10 @@ class SwipedUserCardViewHolder(
     @SuppressLint("NewApi")
     fun bind(data: SwipedUserCard) {
         with(binding) {
-            ivAvatar.load(data.userInfo.avatarBitmap) {
+            ivAvatar.load(data.userInfo.avatarLink) {
                 transformations(CircleCropTransformation())
             }
-            ivAvatarBlured.load(data.userInfo.avatarBitmap) {
+            ivAvatarBlured.load(data.userInfo.avatarLink) {
                 transformations(
                     BlurTransformation(
                         binding.root.context, 25F, 1F

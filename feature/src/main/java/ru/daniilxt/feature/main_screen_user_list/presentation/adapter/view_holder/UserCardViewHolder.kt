@@ -8,8 +8,6 @@ import ru.daniilxt.common.extensions.getAgeFromNumber
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.feature.databinding.ItemUserCardBinding
 import ru.daniilxt.feature.domain.model.UserCard
-import ru.daniilxt.feature.files_helper.FilesHelper
-import timber.log.Timber
 import java.time.LocalDate
 
 class UserCardViewHolder(
@@ -18,10 +16,7 @@ class UserCardViewHolder(
     @SuppressLint("NewApi")
     fun bind(data: UserCard, onItemClickListener: (data: UserCard) -> Unit) {
         with(binding) {
-           val str = data.user.avatarBitmap?.allocationByteCount?.let { FilesHelper.getReadableFileSize(it.toLong()) }
-           val str2 = data.user.avatarBitmap?.allocationByteCount
-            Timber.i("COMPRESSED $str  ${data.user.id}  $str2")
-            ivAvatar.load(data.user.avatarBitmap) {
+            ivAvatar.load(data.user.avatarLink) {
                 transformations(CircleCropTransformation())
             }
             tvFirstName.text = data.user.firstName
