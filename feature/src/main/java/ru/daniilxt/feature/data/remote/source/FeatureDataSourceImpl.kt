@@ -25,6 +25,34 @@ class FeatureDataSourceImpl @Inject constructor(
     private val featureApiService: FeatureApiService
 ) :
     FeatureDataSource {
+
+    override fun auth(email: String, password: String): Single<RequestResult<Tokens>> {
+        return featureApiService.auth(LoginCredentialsBody(email, password))
+            .map {
+                when {
+                    it.isSuccessful -> {
+                        val access = it.body()?.accessToken
+                        val refresh = it.body()?.refreshToken
+                        if (access == null || refresh == null) {
+                            //  Timber.tag(TAG).e("One of tokens is null, response=$it")
+                            RequestResult.Error(LoginError.Unknown)
+                        } else {
+                            RequestResult.Success(Tokens(access, refresh))
+                        }
+                    }
+                    it.code() == HttpURLConnection.HTTP_FORBIDDEN -> {
+                        RequestResult.Error(LoginError.NotActivatedAccount)
+                    }
+                    it.code() == HttpURLConnection.HTTP_UNAUTHORIZED -> {
+                        RequestResult.Error(LoginError.InvalidCredentials)
+                    }
+                    else -> {
+                        RequestResult.Error(LoginError.Unknown)
+                    }
+                }
+            }
+    }
+
     override fun getEducationInstitutes(): Single<RequestResult<List<EducationInstitute>>> {
         return featureApiService.getEducationInstitutes().map { response ->
             getSingleCollectionData(response) {

@@ -38,7 +38,7 @@ class InputFieldDelegate(
         }
         val password = binding.etPassword.textInputEt
 
-        if (!viewModel.fieldCorrect(password.text.toString())
+        if (!viewModel.isFieldCorrect(password.text.toString())
         ) {
             password.error = context.getString(R.string.field_cannot_be_empty)
             return false

@@ -13,6 +13,10 @@ import javax.inject.Inject
 
 class FeatureRepositoryImpl @Inject constructor(private val featureDataSource: FeatureDataSource) :
     FeatureRepository {
+    override fun auth(email: String, password: String): Single<RequestResult<Tokens>> {
+        return featureDataSource.auth(email, password)
+    }
+
     override fun getEducationInstitutes(): Single<RequestResult<List<EducationInstitute>>> {
         return featureDataSource.getEducationInstitutes()
     }

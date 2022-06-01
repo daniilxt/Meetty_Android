@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
-import ru.daniilxt.common.error.RegistrationError
+import ru.daniilxt.feature.data.remote.model.error.RegistrationError
 import ru.daniilxt.common.extensions.hideKeyboardWithDelay
 import ru.daniilxt.common.extensions.margin
 import ru.daniilxt.common.extensions.setDebounceClickListener

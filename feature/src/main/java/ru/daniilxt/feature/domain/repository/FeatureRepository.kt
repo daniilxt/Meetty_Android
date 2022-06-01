@@ -9,6 +9,7 @@ import ru.daniilxt.feature.domain.model.Tokens
 import ru.daniilxt.feature.domain.model.UserProfileInfo
 
 interface FeatureRepository {
+    fun auth(email: String, password: String): Single<RequestResult<Tokens>>
     fun getEducationInstitutes(): Single<RequestResult<List<EducationInstitute>>>
     fun getProfessionalInterests(): Single<RequestResult<List<ProfessionalInterest>>>
     fun sendRegistrationInfoUseCase(registrationInfo: ProfileData): Single<RequestResult<Tokens>>
