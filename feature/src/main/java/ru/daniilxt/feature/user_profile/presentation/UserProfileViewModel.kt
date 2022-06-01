@@ -12,7 +12,6 @@ import ru.daniilxt.common.model.ResponseState
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.domain.model.UserProfileInfo
 import ru.daniilxt.feature.domain.usecase.GetProfileUserInfoUseCase
-import timber.log.Timber
 
 class UserProfileViewModel(
     private val router: FeatureRouter,
@@ -34,17 +33,14 @@ class UserProfileViewModel(
             .subscribe({
                 when (it) {
                     is RequestResult.Success -> {
-                        Timber.i("!!!ERROR IS1 $it")
                         _userInfo.value = listOf(it.data)
                         setEventState(ResponseState.Success)
                     }
                     is RequestResult.Error -> {
-                        Timber.i("!!!ERROR IS2 $it")
                         setEventState(ResponseState.Failure(it.error as ResponseError))
                     }
                 }
             }, {
-                Timber.i("!!!ERROR IS3 ${it.stackTrace} ${it.cause} ${it.message}")
                 setEventState(ResponseState.Failure(ResponseError.ConnectionError))
             }).addTo(disposable)
     }

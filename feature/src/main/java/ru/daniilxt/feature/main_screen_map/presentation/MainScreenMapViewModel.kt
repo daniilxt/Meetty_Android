@@ -38,10 +38,10 @@ class MainScreenMapViewModel(
                                 )
                             }
                     }
-                    is RequestResult.Error -> {}
+                    is RequestResult.Error -> {
+                    }
                 }
             }, {
-
             }).addTo(disposable)
     }
 }

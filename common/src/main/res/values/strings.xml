@@ -92,6 +92,7 @@
     <string name="personal_info">Личная информация</string>
     <string name="institute">Институт</string>
     <string name="select_avatar_waning">Выберите фото профиля</string>
+    <string name="toolbar_user_profile_name">Приветствуем, %s</string>
 
 
     <string-array name="profile_steps">

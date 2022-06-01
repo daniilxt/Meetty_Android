@@ -76,35 +76,7 @@ class MainScreenMapFragment :
             Toast.makeText(requireContext(), "Clicked ${it.position}", Toast.LENGTH_SHORT).show()
             true
         }
-        addItems()
     }
-
-    // todo delete
-    private fun addItems() {
-
-        // Set some lat/lng coordinates to start with.
-        var lat = 59.986505
-        var lng = 30.348305
-
-        // Add ten cluster items in close proximity, for purposes of this example.
-        for (i in 0..9) {
-            val offset = i / 60.0
-            /*       lat += offset
-                   lng += offset*/
-            val offsetItem = EduMapItem(LatLng(lat, lng), "Title $i", "Snippet $i")
-            clusterManager.addItem(offsetItem)
-        }
-        lat = 59.976505
-        lng = 30.548305
-        for (i in 0..20) {
-            val offset = i / 60.0
-            /*       lat += offset
-                   lng += offset*/
-            val offsetItem = EduMapItem(LatLng(lat, lng), "Title $i", "Snippet $i")
-            clusterManager.addItem(offsetItem)
-        }
-    }
-
 
     override fun inject() {
         FeatureUtils.getFeature<FeatureComponent>(this, FeatureApi::class.java)

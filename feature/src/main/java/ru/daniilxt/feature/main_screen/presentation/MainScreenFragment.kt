@@ -22,6 +22,7 @@ import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentMainScreenBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
+import ru.daniilxt.feature.domain.model.UserProfileInfo
 import ru.daniilxt.feature.navigation.MainScreenNavigator
 import javax.inject.Inject
 
@@ -39,7 +40,7 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
         requireView().clearLightStatusBar()
         requireActivity().setNavigationBarColor(R.color.white)
 
-        requireActivity().setWindowTransparency { statusBarSize, navigationBarSize ->
+        requireActivity().setWindowTransparency { _, _ ->
             binding.contentLayout.margin(top = requireContext().dpToPx(40F))
             binding.toolbar.root.margin(top = requireContext().dpToPx(20F))
         }
@@ -48,6 +49,23 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
         val navController = navHostFragment.navController
 
         navigator.attach(navController)
+    }
+
+    override fun setupViewModelSubscriber() {
+        super.setupViewModelSubscriber()
+        viewModel.userIfo.observe {
+            if (it.isNotEmpty()) {
+                initUserInfo(it.first())
+            }
+        }
+    }
+
+    private fun initUserInfo(userProfileInfo: UserProfileInfo) {
+        binding.toolbar.ibProfile.load(userProfileInfo.userInfo.avatarLink) {
+            transformations(CircleCropTransformation())
+        }
+        binding.toolbar.tvGreeting.text =
+            getString(R.string.toolbar_user_profile_name, userProfileInfo.userInfo.firstName)
     }
 
     override fun setupViews() {
@@ -94,9 +112,6 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
     }
 
     private fun initToolbar() {
-        binding.toolbar.ibProfile.load("https://sun9-30.userapi.com/sun9-57/s/v1/if1/5uukGklSa12cTtzRaFAB6rnxSEy0078CECF4Bt80CEJibU979WejyH1haetd5cLfqPPvliyc.jpg?size=899x1280&quality=96&type=album") {
-            transformations(CircleCropTransformation())
-        }
         val backdropAnimation = BackdropViewAnimation(
             requireContext(), binding.backDrop, binding.contentLayout,
             R.drawable.ic_menu_2_24, R.drawable.ic_close_24, R.color.white
