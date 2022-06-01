@@ -2,10 +2,12 @@ package ru.daniilxt.feature.data.remote.source
 
 import io.reactivex.Single
 import retrofit2.Response
-import ru.daniilxt.common.error.RegistrationError
 import ru.daniilxt.common.error.RequestResult
 import ru.daniilxt.common.model.ResponseError
 import ru.daniilxt.feature.data.remote.api.FeatureApiService
+import ru.daniilxt.feature.data.remote.model.body.LoginCredentialsBody
+import ru.daniilxt.feature.data.remote.model.error.LoginError
+import ru.daniilxt.feature.data.remote.model.error.RegistrationError
 import ru.daniilxt.feature.data.remote.model.response.toEducationInstitute
 import ru.daniilxt.feature.data.remote.model.response.toProfessionalInterest
 import ru.daniilxt.feature.data.remote.model.response.toTokens

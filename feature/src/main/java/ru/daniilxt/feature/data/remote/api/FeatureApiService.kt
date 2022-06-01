@@ -6,6 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import ru.daniilxt.feature.data.remote.model.body.LoginCredentialsBody
 import ru.daniilxt.feature.data.remote.model.body.RegistrationInfoBody
 import ru.daniilxt.feature.data.remote.model.response.EducationInstituteResponse
 import ru.daniilxt.feature.data.remote.model.response.ProfessionalInterestResponse
