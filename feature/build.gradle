@@ -103,4 +103,11 @@ dependencies {
     implementation swipableCardViewDep
 
     implementation imageCompressorDep
+
+    testImplementation jUnitDep
+    testImplementation jUnitParamsDep
+    testRuntimeOnly jUnitEngineDep
+
+    testImplementation mockitoDep
+    testImplementation mockitoExt
 }
