@@ -3,22 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/userDialogsFragment">
+    app:startDestination="@id/mainScreenFragment">
 
     <fragment
         android:id="@+id/mainScreenFragment"
         android:name="ru.daniilxt.feature.main_screen.presentation.MainScreenFragment"
         android:label="MainScreenFragment"
-        tools:layout="@layout/fragment_main_screen" />
+        tools:layout="@layout/fragment_main_screen">
+        <action
+            android:id="@+id/action_mainScreenFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/onboardingFragment"
         android:name="ru.daniilxt.feature.onboarding.presentation.OnboardingFragment"
         android:label="OnboardingFragment"
-        tools:layout="@layout/fragment_onboarding" >
+        tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_onboardingFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
+        <action
+            android:id="@+id/action_onboardingFragment_to_profileStepsFragment"
+            app:destination="@id/profileStepsFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
     </fragment>
     <fragment
         android:id="@+id/welcomeScreenFragment"
@@ -26,7 +45,11 @@
         android:label="WelcomeScreenFragment">
         <action
             android:id="@+id/action_welcomeScreenFragment_to_welcomeScreenDescriptionFragment"
-            app:destination="@id/welcomeScreenDescriptionFragment" />
+            app:destination="@id/welcomeScreenDescriptionFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
     </fragment>
     <fragment
         android:id="@+id/welcomeScreenDescriptionFragment"
@@ -34,16 +57,44 @@
         android:label="WelcomeScreenDescriptionFragment">
         <action
             android:id="@+id/action_welcomeScreenDescriptionFragment_to_onboardingFragment"
-            app:destination="@id/onboardingFragment" />
+            app:destination="@id/onboardingFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="ru.daniilxt.feature.login.presentation.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_loginFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileStepsFragment"
+        android:name="ru.daniilxt.feature.profile_steps.presentation.ProfileStepsFragment"
+        android:label="ProfileStepsFragment">
+        <action
+            android:id="@+id/action_profileStepsFragment_to_mainScreenFragment"
+            app:destination="@id/mainScreenFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainScreenMapFragment"
+        android:name="ru.daniilxt.feature.main_screen_map.presentation.MainScreenMapFragment"
+        android:label="MainScreenMapFragment" />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="ru.daniilxt.feature.user_profile.presentation.UserProfileFragment"
+        android:label="UserProfileFragment" />
     <fragment
         android:id="@+id/userDialogsFragment"
         android:name="ru.daniilxt.feature.user_dialogs.presentation.UserDialogsFragment"
-        android:label="UserDialogsFragment" >
+        android:label="UserDialogsFragment">
         <action
             android:id="@+id/action_userDialogsFragment_to_userChatFragment"
             app:destination="@id/userChatFragment" />

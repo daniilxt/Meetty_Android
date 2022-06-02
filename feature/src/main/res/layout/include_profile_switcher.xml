@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profile_switcher"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_rounded_switcher_primary"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/dp_8"
+    android:paddingVertical="@dimen/dp_4">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mb_info"
+        style="@style/Button.Enter.Filled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:backgroundTint="@color/button_toggle_tint_second"
+        android:checkable="true"
+        android:fontFamily="@font/gilroy_semibold"
+        android:includeFontPadding="false"
+        android:insetTop="@dimen/dp_2"
+        android:insetBottom="@dimen/dp_2"
+        android:stateListAnimator="@null"
+        android:text="@string/overview"
+        android:textColor="@color/button_text_toggle_tint_second"
+        android:textSize="@dimen/sp_16"
+        app:cornerRadius="@dimen/dp_40"
+        app:rippleColor="@android:color/transparent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mb_achievements"
+        style="@style/Button.Enter.Filled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:backgroundTint="@color/button_toggle_tint_second"
+        android:checkable="true"
+        android:fontFamily="@font/gilroy_semibold"
+        android:includeFontPadding="false"
+        android:insetTop="@dimen/dp_2"
+        android:insetBottom="@dimen/dp_2"
+        android:stateListAnimator="@null"
+        android:text="@string/achievements"
+        android:textColor="@color/button_text_toggle_tint_second"
+        android:textSize="@dimen/sp_16"
+        app:cornerRadius="@dimen/dp_40"
+        app:rippleColor="@android:color/transparent" />
+</LinearLayout>

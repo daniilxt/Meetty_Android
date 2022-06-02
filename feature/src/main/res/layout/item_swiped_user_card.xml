@@ -1,0 +1,146 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/dp_8"
+        app:cardCornerRadius="@dimen/dp_16"
+        app:cardElevation="@dimen/dp_10"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/iv_avatar_blured"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="@drawable/placeholder_white"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="16:10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/iv_avatar_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/dp_10"
+                app:layout_constraintBottom_toTopOf="@+id/tv_username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/iv_avatar_blured"
+                app:layout_constraintTop_toBottomOf="@+id/iv_avatar_blured"
+                app:shapeAppearanceOverlay="@style/MaterialCardView.Circle"
+                app:strokeColor="@color/white"
+                app:strokeWidth="@dimen/dp_1">
+
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_100"
+                    app:srcCompat="@drawable/avatar_default" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tv_user_year"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_20"
+                android:textColor="@color/text_color_third_dark"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeColor="@color/text_color_third_dark"
+                app:chipStrokeWidth="@dimen/dp_2"
+                app:layout_constraintBottom_toBottomOf="@id/iv_avatar_wrapper"
+                app:layout_constraintStart_toEndOf="@id/iv_avatar_wrapper"
+                app:layout_constraintTop_toTopOf="@id/iv_avatar_wrapper" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                style="@style/TextView.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/tv_university"
+                app:layout_constraintEnd_toEndOf="@+id/iv_avatar_wrapper"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/iv_avatar_wrapper"
+                app:layout_constraintTop_toBottomOf="@+id/iv_avatar_wrapper"
+                tools:text="Firsov Daniil Anatolievich" />
+
+            <TextView
+                android:id="@+id/tv_university"
+                style="@style/TextViewDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_linear_gradient"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/iv_avatar_blured"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_username"
+                app:layout_constraintWidth_percent="0.8" />
+
+            <TextView
+                android:id="@+id/tv_interests"
+                style="@style/TextView.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="@string/professional_interests"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_avatar_blured" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_interests"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_min="@dimen/dp_100"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_interests" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/left_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_black">
+
+            <ImageView
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_message_cancelled_24"
+                app:tint="@android:color/darker_gray" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/right_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/overlay_black">
+
+            <ImageView
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_message_24"
+                app:tint="@android:color/holo_green_dark" />
+        </FrameLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

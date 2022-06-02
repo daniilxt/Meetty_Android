@@ -9,6 +9,7 @@ import ru.daniilxt.feature.data.remote.api.FeatureApiService
 import ru.daniilxt.feature.data.remote.source.FeatureDataSourceImpl
 import ru.daniilxt.feature.data.repository.FeatureRepositoryImpl
 import ru.daniilxt.feature.data.source.FeatureDataSource
+import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
 import ru.daniilxt.feature.domain.repository.FeatureRepository
 
 @Module
@@ -26,5 +27,11 @@ abstract class FeatureDataModule {
         @FeatureScope
         fun provideFeatureApiService(retrofit: Retrofit): FeatureApiService =
             retrofit.create(FeatureApiService::class.java)
+
+        @Provides
+        @FeatureScope
+        fun provideDataWrapper(): ProfileDataWrapper {
+            return ProfileDataWrapper()
+        }
     }
 }

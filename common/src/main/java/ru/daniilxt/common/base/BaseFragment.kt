@@ -10,9 +10,8 @@ import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import studio.clapp.common.model.EventState
+import ru.daniilxt.common.model.ResponseState
 import javax.inject.Inject
-
 
 abstract class BaseFragment<T : BaseViewModel>(@LayoutRes fragmentLayoutId: Int) :
     Fragment(fragmentLayoutId) {
@@ -23,10 +22,10 @@ abstract class BaseFragment<T : BaseViewModel>(@LayoutRes fragmentLayoutId: Int)
     protected abstract val binding: ViewBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        inject()
         super.onViewCreated(view, savedInstanceState)
-        setupFromArguments()
+        inject()
         setupViews()
+        setupFromArguments()
         setupViewModelSubscriber()
     }
 
@@ -40,8 +39,8 @@ abstract class BaseFragment<T : BaseViewModel>(@LayoutRes fragmentLayoutId: Int)
         }
     }
 
-    protected open fun handleEventState(eventState: EventState) {
-        if (eventState is EventState.Failure) {
+    protected open fun handleEventState(eventState: ResponseState) {
+        if (eventState is ResponseState.Failure) {
             Toast.makeText(requireContext(), eventState.error.errResId, Toast.LENGTH_LONG)
                 .show()
         }

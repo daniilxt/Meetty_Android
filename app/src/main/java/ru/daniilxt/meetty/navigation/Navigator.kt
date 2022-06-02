@@ -5,6 +5,7 @@ import androidx.navigation.NavController
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.chat.presentation.UserChatFragment
 import ru.daniilxt.feature.domain.model.UserDialog
+import ru.daniilxt.feature.user_profile.presentation.UserProfileFragment
 import ru.daniilxt.meetty.R
 
 class Navigator : FeatureRouter {
@@ -26,7 +27,23 @@ class Navigator : FeatureRouter {
         private val TAG = Navigator::class.simpleName
     }
 
-    override fun openProfileFragment() {
+    override fun openMainScreenFragment() {
+        when (navController?.currentDestination?.id) {
+            R.id.profileStepsFragment -> {
+                navController?.navigate(R.id.action_profileStepsFragment_to_mainScreenFragment)
+            }
+            R.id.loginFragment -> {
+                navController?.navigate(R.id.action_loginFragment_to_mainScreenFragment)
+            }
+        }
+    }
+
+    override fun openProfileStepsFragment() {
+        when (navController?.currentDestination?.id) {
+            R.id.onboardingFragment -> {
+                navController?.navigate(R.id.action_onboardingFragment_to_profileStepsFragment)
+            }
+        }
     }
 
     override fun back() {
@@ -61,6 +78,17 @@ class Navigator : FeatureRouter {
             R.id.onboardingFragment -> {
                 navController?.navigate(
                     R.id.action_onboardingFragment_to_loginFragment
+                )
+            }
+        }
+    }
+
+    override fun openUserProfile(isMy: Boolean, userId: Long) {
+        when (navController?.currentDestination?.id) {
+            R.id.mainScreenFragment -> {
+                val bundle = UserProfileFragment.makeBundle(isMy, userId)
+                navController?.navigate(
+                    R.id.action_mainScreenFragment_to_userProfileFragment, bundle
                 )
             }
         }

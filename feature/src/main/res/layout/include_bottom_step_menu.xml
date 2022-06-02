@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/dp_10"
+    android:backgroundTint="@color/white"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:shapeAppearanceOverlay="@style/RoundedTopCorners">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ru.daniilxt.common.widgets.page_indicator.PageIndicator
+            android:id="@+id/page_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp_10"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            app:layout_constraintBottom_toTopOf="@id/mb_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:selectedColor="@color/button_tint_primary"
+            app:unselectedColor="@color/button_tint_primary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mb_next"
+            style="@style/Button.Enter.Filled"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:fontFamily="@font/gilroy_medium"
+            android:text="@string/next"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintBottom_toTopOf="@id/mb_skip"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mb_prev"
+            app:layout_goneMarginBottom="@dimen/dp_16" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mb_prev"
+            style="@style/ImageButton.Filled.Centered"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_48"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:backgroundTint="@color/white"
+            app:icon="@drawable/ic_back_arrow_24"
+            app:iconGravity="textStart"
+            app:iconSize="@dimen/dp_26"
+            app:iconTint="@color/button_tint_primary"
+            app:layout_constraintBottom_toBottomOf="@id/mb_next"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/mb_next" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mb_skip"
+            style="@style/Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_16"
+            android:text="@string/skip_step"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

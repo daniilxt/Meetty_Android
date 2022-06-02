@@ -1,17 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ru.daniilxt.meetty.root.presentation.MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/navHost"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/main_nav_graph"/>
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/navHost"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:navGraph="@navigation/main_nav_graph"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/bottom_nav_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/background_primary_dark"
+            app:cardCornerRadius="@dimen/dp_16"
+            app:cardElevation="@dimen/dp_8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedTopCorners">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/dp_8">
+
+                <ImageView
+                    android:id="@+id/ib_messages"
+                    style="@style/ImageButtonSelectable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:padding="@dimen/dp_8"
+                    android:src="@drawable/ic_message_24"
+                    app:tint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/ib_home"
+                    style="@style/ImageButtonSelectable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="@dimen/dp_20"
+                    android:padding="@dimen/dp_8"
+                    android:src="@drawable/ic_home_24"
+                    app:tint="@color/white" />
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/ib_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#cbcbcb"
+            app:cardElevation="@dimen/dp_10"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_nav_wrapper"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottom_nav_wrapper"
+            app:shapeAppearanceOverlay="@style/MaterialCardView.Circle">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                style="@style/ImageButtonSelectable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_4"
+                android:src="@drawable/ic_search_metty_60" />
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

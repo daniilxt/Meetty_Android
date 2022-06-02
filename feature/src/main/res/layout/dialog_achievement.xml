@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_primary_rounded_top"
+    android:orientation="vertical"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <View
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_4"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_8"
+        android:background="@drawable/bg_bottom_sheet_top_indicator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_16"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/Achievement"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_18" />
+
+    <include
+        android:id="@+id/et_title"
+        layout="@layout/input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_18"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <include
+        android:id="@+id/et_date"
+        layout="@layout/input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_18"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <include
+        android:id="@+id/et_description"
+        layout="@layout/input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_18"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mb_save"
+        style="@style/Button.Save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_26"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:fontFamily="@font/gilroy_medium"
+        android:text="@string/next"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintBottom_toTopOf="@id/mb_skip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mb_prev"
+        app:layout_goneMarginBottom="@dimen/dp_16" />
+</LinearLayout>

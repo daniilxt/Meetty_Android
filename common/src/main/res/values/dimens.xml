@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="grid_expected_size">100dp</dimen>
 
     <dimen name="sp_36">36sp</dimen>
     <dimen name="sp_34">34sp</dimen>
@@ -29,6 +30,7 @@
     <dimen name="dp_68">68dp</dimen>
     <dimen name="dp_64">64dp</dimen>
     <dimen name="dp_60">60dp</dimen>
+    <dimen name="dp_56">56dp</dimen>
     <dimen name="dp_52">52dp</dimen>
     <dimen name="dp_50">50dp</dimen>
     <dimen name="dp_48">48dp</dimen>

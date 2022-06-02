@@ -9,28 +9,68 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="background_primary">#FFFFFF</color>
+    <color name="background_primary_dark">#4385F6</color>
     <color name="background_secondary">#E5E5E5</color>
-    <color name="background_primary_dark">#0C85B8</color>
     <color name="background_secondary_dark">#1F5281</color>
+    <color name="background_third">#F8F9FB</color>
+    <color name="background_third_dark">#A3A2A7</color>
+    <color name="background_fourth">#eff0f6</color>
+    <color name="background_fourth_dark">#ebebeb</color>
 
     <color name="button_tint_primary">#4385F6</color>
     <color name="button_tint_secondary">#FFFFFF</color>
+    <color name="button_tint_secondary_dark">#A3A3A3</color>
     <color name="button_tint_third">#52B6DF</color>
+    <color name="button_tint_disabled">#A3A3A3</color>
+    <color name="button_disabled_tint">#A3A2A7</color>
+
+    <color name="button_bg_ic_tint_primary">#58B9A1</color>
+    <color name="button_bg_ic_tint_primary_dark">#224342</color>
+
+    <color name="button_icon_tint_primary">#57B2A0</color>
+
+    <color name="chip_tint_disabled">#e8e8ea</color>
+    <color name="chip_tint_primary">#4385F6</color>
 
     <color name="stroke_color_primary">#4385F6</color>
+    <color name="stroke_color_primary_dark">#A3A3A3</color>
 
     <color name="text_color_primary">#4385F6</color>
+    <color name="text_color_primary_dark">#1F5281</color>
     <color name="text_color_secondary">#FFFFFF</color>
     <color name="text_color_secondary_dark">#A3A3A3</color>
     <color name="text_color_third">#B2CBE4</color>
-    <color name="text_color_primary_dark">#3700B3</color>
+    <color name="text_color_third_dark">#0C85B8</color>
+    <color name="text_color_hint">#0C85B8</color>
+    <color name="calendar_days_header_tint">#6D6D6D</color>
 
     <color name="text_color_hint_primary">#A3A3A3</color>
+    <color name="text_color_hint_secondary">#4385F6</color>
 
     <color name="highlight_color_primary">#A3A3A3</color>
+    <color name="highlight_color_secondary">#FFFFFF</color>
 
     <color name="background_dark">#ffb8860b</color>
     <color name="background_light">#ffd2b48c</color>
     <color name="transparent">#00b8860b</color>
 
+    <color name="calendar_range_selection_color">#EBEBEB</color>
+    <color name="calendar_day_color_disabled">#A3A3A3</color>
+    <color name="calendar_day_color_selected">#4385F6</color>
+    <color name="calendar_day_color_enabled">#000000</color>
+
+    <color name="divider_color_secondary">#EBEBEB</color>
+
+    <color name="shadow_color_primary">#261F5281</color>
+
+    <color name="background_shadow">#CD000000</color>
+
+    <color name="calendar_arrows_tint">#007AFF</color>
+    <color name="text_color_selected_date">#007AFF</color>
+    <color name="background_calendar_selection_tint">#DEEDFF</color>
+    <color name="text_color_calendar_selected">#FF000000</color>
+    <color name="text_color_calendar">#BBBABB</color>
+    <color name="text_color_time_picker">#1F5281</color>
+
+    <color name="background_calendar_details">#EFF0F6</color>
 </resources>

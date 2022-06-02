@@ -9,6 +9,7 @@ import dagger.multibindings.IntoMap
 import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.domain.usecase.SignInUseCase
 import ru.daniilxt.feature.login.presentation.LoginViewModel
 
 @Module(
@@ -22,10 +23,11 @@ class LoginModule {
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     fun provideViewModel(
-        navigator: FeatureRouter
+        navigator: FeatureRouter,
+        signInUseCase: SignInUseCase
     ): ViewModel {
         return LoginViewModel(
-            navigator
+            navigator, signInUseCase
         )
     }
 

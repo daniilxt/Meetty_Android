@@ -4,14 +4,18 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import studio.clapp.common.model.EventState
+import ru.daniilxt.common.model.ResponseState
 
 open class BaseViewModel : ViewModel() {
 
-    private val _eventState: MutableStateFlow<EventState> = MutableStateFlow(EventState.Initial)
-    val eventState: StateFlow<EventState> = _eventState
+    private val _eventState: MutableStateFlow<ResponseState> = MutableStateFlow(ResponseState.Initial)
+    val eventState: StateFlow<ResponseState> = _eventState
 
     protected val disposable = CompositeDisposable()
+
+    fun setEventState(state: ResponseState) {
+        _eventState.value = state
+    }
 
     override fun onCleared() {
         disposable.clear()
