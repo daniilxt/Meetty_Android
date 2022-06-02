@@ -31,14 +31,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/dp_8"
-            android:layout_marginEnd="@dimen/dp_30"
             android:ellipsize="end"
             android:gravity="center"
+            android:textSize="@dimen/sp_18"
             android:lines="1"
             app:layout_constraintBottom_toBottomOf="@+id/include_toolbar_back__ib_back"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/include_toolbar_back__ib_back"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/include_toolbar_back__ib_back"
             tools:text="Текст тулбара" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,8 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
+import ru.daniilxt.common.extensions.dpToPx
+import ru.daniilxt.common.extensions.margin
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setStatusBarColor
@@ -49,8 +54,9 @@ class UserChatFragment :
         super.onViewCreated(view, savedInstanceState)
         requireActivity().setStatusBarColor(R.color.white)
         requireView().setLightStatusBar()
-        setFragmentResultListener(DialogReactionChooserFragment.RECEIVED_DATA_KEY) { _, bundle ->
+        binding.layoutToolbar.root.margin(top = requireContext().dpToPx(18F))
 
+        setFragmentResultListener(DialogReactionChooserFragment.RECEIVED_DATA_KEY) { _, bundle ->
             val reactionWrapper =
                 bundle.getParcelable<ReactionWrapper>(DialogReactionChooserFragment.RECEIVED_DATA_KEY)
             reactionWrapper?.let { viewModel.setReaction(it) }
@@ -89,9 +95,12 @@ class UserChatFragment :
     }
 
     private fun initToolbar() {
-        binding.layoutToolbar.includeToolbarBackTvTitle.text =
-            viewModel.userDialog.returnCompanionUser(tokenRepository.getCurrentUserId())
-                .getCapitalizedFullUserName()
+        lifecycleScope.launch {
+            delay(300)
+            binding.layoutToolbar.includeToolbarBackTvTitle.text =
+                viewModel.userDialog.returnCompanionUser(tokenRepository.getCurrentUserId())
+                    .getCapitalizedFullUserName()
+        }
     }
 
     override fun inject() {

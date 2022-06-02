@@ -1,7 +1,9 @@
 package ru.daniilxt.feature.main_screen.presentation
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import coil.load
@@ -17,7 +19,6 @@ import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setNavigationBarColor
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.setWindowTransparency
-import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentMainScreenBinding
@@ -28,13 +29,24 @@ import ru.daniilxt.feature.navigation.MainScreenNavigator
 import javax.inject.Inject
 
 class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_main_screen) {
-    override val binding: FragmentMainScreenBinding by viewBinding(FragmentMainScreenBinding::bind)
+
+    private var _binding: FragmentMainScreenBinding? = null
+    override val binding get() = requireNotNull(_binding)
 
     @Inject
     lateinit var navigator: MainScreenNavigator
 
     @Inject
     lateinit var tokenRepository: TokenRepository
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentMainScreenBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

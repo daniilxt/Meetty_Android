@@ -17,7 +17,7 @@ class LoginViewModel(
     private val tokenRepository: TokenRepository
 ) : BaseViewModel() {
     fun openMainScreenFragment() {
-        // router.openMainScreenFragment()
+        router.openMainScreenFragment()
     }
 
     fun login(login: String, password: String) {
