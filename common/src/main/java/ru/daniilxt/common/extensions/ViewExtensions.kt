@@ -1,6 +1,7 @@
 package ru.daniilxt.common.extensions
 
 import android.animation.ObjectAnimator
+import android.animation.StateListAnimator
 import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.os.Build
@@ -18,6 +19,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.material.appbar.AppBarLayout
 import ru.daniilxt.common.R
 import ru.daniilxt.common.databinding.InputFieldBinding
 import ru.daniilxt.common.utils.DebounceClickListener
@@ -189,4 +191,16 @@ fun Month.getStandaloneName(): String {
     return SimpleDateFormat("LLLL", Locale.getDefault()).format(
         LocalDate.now().withMonth(this.value).toDate()
     )
+}
+
+/**
+ * This extension allows you to remove the shadow from the toolbar
+ */
+fun AppBarLayout.removeAppBarElevation() {
+    val stateListAnimator = StateListAnimator()
+    stateListAnimator.addState(
+        IntArray(0),
+        ObjectAnimator.ofFloat(this, "elevation", 0.1f)
+    )
+    this.stateListAnimator = stateListAnimator
 }

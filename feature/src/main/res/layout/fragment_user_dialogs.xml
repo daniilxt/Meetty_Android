@@ -9,7 +9,10 @@
 
     <include
         android:id="@+id/layout_toolbar"
-        layout="@layout/include_toolbar_back" />
+        layout="@layout/include_toolbar_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dialogs_rv"
