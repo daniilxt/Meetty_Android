@@ -4,7 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import ru.daniilxt.common.di.FeatureUtils
+import ru.daniilxt.common.events.AuthEvent
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.feature.main_screen.presentation.INavigation
 import ru.daniilxt.meetty.R
@@ -50,9 +54,25 @@ class MainActivity : AppCompatActivity(), INavigation {
         }
     }
 
+    override fun onStart() {
+        EventBus.getDefault().register(this)
+        super.onStart()
+    }
+
+    override fun onStop() {
+        EventBus.getDefault().unregister(this)
+        super.onStop()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         navigator.detach()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onAuthEvent(event: AuthEvent) {
+        setBottomNavVisibility(false)
+        navigator.clearBackStackAndOpenOnBoarding()
     }
 
     override fun showNavigation(isVisible: Boolean) {

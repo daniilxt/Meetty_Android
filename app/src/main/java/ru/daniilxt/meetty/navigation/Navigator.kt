@@ -7,6 +7,7 @@ import ru.daniilxt.feature.chat.presentation.UserChatFragment
 import ru.daniilxt.feature.domain.model.UserDialog
 import ru.daniilxt.feature.user_profile.presentation.UserProfileFragment
 import ru.daniilxt.meetty.R
+import timber.log.Timber
 
 class Navigator : FeatureRouter {
 
@@ -25,6 +26,16 @@ class Navigator : FeatureRouter {
 
     private companion object {
         private val TAG = Navigator::class.simpleName
+    }
+
+    fun clearBackStackAndOpenOnBoarding() {
+        if (navController?.currentDestination?.id == R.id.onboardingFragment) {
+            return
+        }
+        while (navController?.popBackStack() == true) {
+            Timber.tag(TAG).d("Skipped backstack entry")
+        }
+        navController?.navigate(R.id.open_onboarding_fragment)
     }
 
     override fun openMainScreenFragment() {

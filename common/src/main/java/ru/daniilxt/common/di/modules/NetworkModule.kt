@@ -7,11 +7,14 @@ import dagger.Provides
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.greenrobot.eventbus.EventBus
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.daniilxt.common.BuildConfig
 import ru.daniilxt.common.di.scope.ApplicationScope
+import ru.daniilxt.common.events.AuthEvent
+import ru.daniilxt.common.token.TokenRepository
 import java.util.concurrent.TimeUnit
 
 @Module
@@ -22,11 +25,13 @@ class NetworkModule {
 
     @Provides
     @ApplicationScope
-    internal fun provideRestInterceptor(): Interceptor =
+    internal fun provideRestInterceptor(
+        gson: Gson,
+        tokenRepository: TokenRepository
+    ): Interceptor =
         Interceptor { chain ->
             val original = chain.request()
-            val accessToken =
-                "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwtZmlyc292QG1haWwucnUiLCJpYXQiOjE2NTQxODk0NzAsImV4cCI6MTY1NDIwNzQ3MH0.4kpV0CDKelutvUJt_xoCe9gGhzwi1DzXB_4rdRRqPVk"
+            val accessToken = tokenRepository.getToken()
             val requestBuilder = original.newBuilder()
             if (!accessToken.isNullOrEmpty() && !original.url.toString()
                 .contains("auth") && !original.url.toString().contains("regsteps")
@@ -35,6 +40,9 @@ class NetworkModule {
             }
             val request = requestBuilder.build()
             val response = chain.proceed(request)
+            if (response.code == 401 && !original.url.toString().contains("auth")) {
+                EventBus.getDefault().post(AuthEvent())
+            }
             response
         }
 

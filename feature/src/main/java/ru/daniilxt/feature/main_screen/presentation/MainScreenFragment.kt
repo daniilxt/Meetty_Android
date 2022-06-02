@@ -18,6 +18,7 @@ import ru.daniilxt.common.extensions.setNavigationBarColor
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.setWindowTransparency
 import ru.daniilxt.common.extensions.viewBinding
+import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentMainScreenBinding
 import ru.daniilxt.feature.di.FeatureApi
@@ -31,6 +32,9 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
 
     @Inject
     lateinit var navigator: MainScreenNavigator
+
+    @Inject
+    lateinit var tokenRepository: TokenRepository
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -5,6 +5,16 @@
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/mainScreenFragment">
 
+    <action
+        android:id="@+id/open_onboarding_fragment"
+        app:destination="@id/onboardingFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        app:popUpTo="@id/mainScreenFragment"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/mainScreenFragment"
         android:name="ru.daniilxt.feature.main_screen.presentation.MainScreenFragment"
