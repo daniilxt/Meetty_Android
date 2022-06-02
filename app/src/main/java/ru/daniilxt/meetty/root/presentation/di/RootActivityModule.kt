@@ -8,6 +8,8 @@ import dagger.Provides
 import dagger.multibindings.IntoMap
 import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
+import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.meetty.navigation.Navigator
 import ru.daniilxt.meetty.root.presentation.MainActivityViewModel
 
 @Module(
@@ -20,8 +22,8 @@ class RootActivityModule {
     @Provides
     @IntoMap
     @ViewModelKey(MainActivityViewModel::class)
-    fun provideViewModel(): ViewModel {
-        return MainActivityViewModel()
+    fun provideViewModel(router: Navigator): ViewModel {
+        return MainActivityViewModel(router)
     }
 
     @Provides

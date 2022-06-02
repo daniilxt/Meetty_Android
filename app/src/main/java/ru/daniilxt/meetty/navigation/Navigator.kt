@@ -104,4 +104,14 @@ class Navigator : FeatureRouter {
             }
         }
     }
+
+    override fun openDialogs() {
+        when (navController?.currentDestination?.id) {
+            R.id.mainScreenFragment -> {
+                navController?.navigate(
+                    R.id.action_mainScreenFragment_to_userDialogsFragment
+                )
+            }
+        }
+    }
 }

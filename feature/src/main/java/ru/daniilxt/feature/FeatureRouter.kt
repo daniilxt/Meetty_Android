@@ -11,4 +11,5 @@ interface FeatureRouter {
     fun openMainScreenFragment()
     fun openUserProfile(isMy: Boolean = false, userId: Long)
     fun openChat(userDialog: UserDialog)
+    fun openDialogs()
 }

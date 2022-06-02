@@ -193,7 +193,7 @@
         <item name="backgroundTint">#282828</item>
     </style>
 
-    <style name="BottomSheet_Style" parent="Widget.Design.BottomSheet.Modal">
+<!--    <style name="BottomSheet_Style" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bg_primary_rounded_top</item>
         <item name="behavior_peekHeight">@dimen/dp_200</item>
     </style>
@@ -203,5 +203,5 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="android:windowNoTitle">true</item>
-    </style>
+    </style>-->
 </resources>
