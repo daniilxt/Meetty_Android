@@ -41,8 +41,8 @@ class MainScreenFragment : BaseFragment<MainScreenViewModel>(R.layout.fragment_m
         requireActivity().setNavigationBarColor(R.color.white)
 
         requireActivity().setWindowTransparency { _, _ ->
-            binding.contentLayout.margin(top = requireContext().dpToPx(40F))
-            binding.toolbar.root.margin(top = requireContext().dpToPx(20F))
+            binding.contentLayout.margin(top = requireContext().dpToPx(34F))
+            binding.toolbar.root.margin(top = requireContext().dpToPx(14F))
         }
         val navHostFragment =
             childFragmentManager.findFragmentById(R.id.main_screen_container) as NavHostFragment

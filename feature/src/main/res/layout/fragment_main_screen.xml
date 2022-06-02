@@ -35,6 +35,7 @@
         android:orientation="vertical"
         android:paddingTop="@dimen/dp_4"
         app:cardCornerRadius="@dimen/dp_16"
+        app:shapeAppearanceOverlay="@style/RoundedTopCorners"
         tools:paddingTop="@dimen/dp_50">
 
         <androidx.fragment.app.FragmentContainerView
