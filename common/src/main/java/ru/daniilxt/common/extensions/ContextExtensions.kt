@@ -38,3 +38,17 @@ fun Context.screenValue(): DisplayMetrics {
         displayMetrics
     }
 }
+
+val Context.actionBarSize
+    get() = theme.obtainStyledAttributes(intArrayOf(android.R.attr.actionBarSize))
+        .let { attrs -> attrs.getDimension(0, 0F).toInt().also { attrs.recycle() } }
+
+val Context.statusBarHeightInPx
+    get() = run {
+        val resourceId = this.resources.getIdentifier(
+            "status_bar_height",
+            "dimen",
+            "android"
+        )
+        this.resources.getDimensionPixelSize(resourceId) / this.resources.displayMetrics.density
+    }

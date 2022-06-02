@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
-import ru.daniilxt.common.extensions.dpToPx
 import ru.daniilxt.common.extensions.margin
 import ru.daniilxt.common.extensions.removeAppBarElevation
 import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.setWindowTransparency
+import ru.daniilxt.common.extensions.statusBarHeightInPx
 import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentUserDialogsBinding
@@ -50,7 +50,7 @@ class UserDialogsFragment : BaseFragment<UserDialogsViewModel>(R.layout.fragment
         requireActivity().setStatusBarColor(R.color.white)
         requireView().setLightStatusBar()
         requireActivity().setWindowTransparency { _, _ ->
-            binding.layoutToolbar.root.margin(top = requireContext().dpToPx(18F))
+            binding.layoutToolbar.root.margin(top = requireActivity().statusBarHeightInPx)
         }
     }
 

@@ -9,11 +9,13 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
-import ru.daniilxt.common.extensions.dpToPx
+import ru.daniilxt.common.extensions.actionBarSize
 import ru.daniilxt.common.extensions.margin
+import ru.daniilxt.common.extensions.screenValue
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setStatusBarColor
+import ru.daniilxt.common.extensions.statusBarHeightInPx
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.R
@@ -54,7 +56,10 @@ class UserChatFragment :
         super.onViewCreated(view, savedInstanceState)
         requireActivity().setStatusBarColor(R.color.white)
         requireView().setLightStatusBar()
-        binding.layoutToolbar.root.margin(top = requireContext().dpToPx(18F))
+        val size = requireContext().actionBarSize
+        requireActivity().screenValue()
+
+        binding.layoutToolbar.root.margin(top = requireActivity().statusBarHeightInPx)
 
         setFragmentResultListener(DialogReactionChooserFragment.RECEIVED_DATA_KEY) { _, bundle ->
             val reactionWrapper =
