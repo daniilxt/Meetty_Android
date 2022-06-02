@@ -2,7 +2,6 @@ package ru.daniilxt.feature.chat.presentation
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import ru.daniilxt.common.base.BaseFragment
@@ -11,6 +10,7 @@ import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.viewBinding
+import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.chat.presentation.adapter.MessageAdapter
 import ru.daniilxt.feature.databinding.FragmentUserChatBinding
@@ -19,13 +19,17 @@ import ru.daniilxt.feature.di.FeatureComponent
 import ru.daniilxt.feature.dialogs.DialogReactionChooserFragment
 import ru.daniilxt.feature.domain.model.ReactionWrapper
 import ru.daniilxt.feature.domain.model.UserDialog
-import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
 import timber.log.Timber
+import javax.inject.Inject
 
 class UserChatFragment :
     BaseFragment<UserChatViewModel>(R.layout.fragment_user_chat) {
 
     override val binding: FragmentUserChatBinding by viewBinding(FragmentUserChatBinding::bind)
+
+    @Inject
+    lateinit var tokenRepository: TokenRepository
+
     private val emojiChooserBottomDialog: DialogReactionChooserFragment by lazy {
         DialogReactionChooserFragment()
     }
@@ -86,7 +90,7 @@ class UserChatFragment :
 
     private fun initToolbar() {
         binding.layoutToolbar.includeToolbarBackTvTitle.text =
-            viewModel.userDialog.returnCompanionUser(49)
+            viewModel.userDialog.returnCompanionUser(tokenRepository.getCurrentUserId())
                 .getCapitalizedFullUserName()
     }
 

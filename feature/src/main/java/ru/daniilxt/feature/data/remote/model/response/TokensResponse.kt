@@ -6,11 +6,16 @@ import ru.daniilxt.feature.domain.model.Tokens
 data class TokensResponse(
     @SerializedName("accessToken")
     val accessToken: String,
+
     @SerializedName("refreshToken")
-    val refreshToken: String
+    val refreshToken: String,
+
+    @SerializedName("userId")
+    val userId: Long
 )
 
 fun TokensResponse.toTokens() = Tokens(
     accessToken = accessToken,
-    refreshToken = refreshToken
+    refreshToken = refreshToken,
+    userId = userId
 )

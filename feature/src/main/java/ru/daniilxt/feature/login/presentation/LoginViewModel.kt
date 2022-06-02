@@ -17,7 +17,7 @@ class LoginViewModel(
     private val tokenRepository: TokenRepository
 ) : BaseViewModel() {
     fun openMainScreenFragment() {
-        router.openMainScreenFragment()
+        // router.openMainScreenFragment()
     }
 
     fun login(login: String, password: String) {
@@ -29,6 +29,7 @@ class LoginViewModel(
                 when (it) {
                     is RequestResult.Success -> {
                         tokenRepository.saveToken(it.data.accessToken)
+                        tokenRepository.saveCurrentUserId(it.data.userId)
                         setEventState(ResponseState.Success)
                     }
                     is RequestResult.Error -> {

@@ -34,13 +34,14 @@ class FeatureDataSourceImpl @Inject constructor(
             .map {
                 when {
                     it.isSuccessful -> {
-                        val access = it.body()?.accessToken
-                        val refresh = it.body()?.refreshToken
-                        if (access == null || refresh == null) {
+                        val res = it.body()
+                        val access = res?.accessToken
+                        val refresh = res?.refreshToken
+                        if (res == null) {
                             //  Timber.tag(TAG).e("One of tokens is null, response=$it")
                             RequestResult.Error(LoginError.Unknown)
                         } else {
-                            RequestResult.Success(Tokens(access, refresh))
+                            RequestResult.Success(res.toTokens())
                         }
                     }
                     it.code() == HttpURLConnection.HTTP_FORBIDDEN -> {
