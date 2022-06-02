@@ -7,16 +7,15 @@ import coil.transform.CircleCropTransformation
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.feature.databinding.ItemDialogBinding
 import ru.daniilxt.feature.domain.model.UserDialog
-import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
 
 @SuppressLint("NewApi")
 
 class UserDialogsViewHolder(
     private val binding: ItemDialogBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(data: UserDialog, onDialogClick: (userDialog: UserDialog) -> Unit) {
+    fun bind(myUserId: Long, data: UserDialog, onDialogClick: (userDialog: UserDialog) -> Unit) {
         // TODO edit
-        val companion = data.returnCompanionUser(UserDialogsProvider.myUser)
+        val companion = data.returnCompanionUser(myUserId)
         binding.tvTitle.text = companion.getCapitalizedFullUserName()
         binding.tvMessage.text = data.lastMessage.content
 

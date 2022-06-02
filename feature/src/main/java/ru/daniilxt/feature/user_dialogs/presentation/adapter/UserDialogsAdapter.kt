@@ -9,7 +9,10 @@ import ru.daniilxt.feature.domain.model.UserDialog
 import ru.daniilxt.feature.user_dialogs.presentation.adapter.diffutil.UserDialogsCallback
 import ru.daniilxt.feature.user_dialogs.presentation.adapter.view_holder.UserDialogsViewHolder
 
-class UserDialogsAdapter(private val onDialogCLick: (userDialog: UserDialog) -> Unit) :
+class UserDialogsAdapter(
+    private val myUserId: Long,
+    private val onDialogCLick: (userDialog: UserDialog) -> Unit
+) :
     RecyclerView.Adapter<UserDialogsViewHolder>() {
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
 
@@ -20,7 +23,7 @@ class UserDialogsAdapter(private val onDialogCLick: (userDialog: UserDialog) -> 
         UserDialogsViewHolder(parent.viewBinding(ItemDialogBinding::inflate))
 
     override fun onBindViewHolder(holder: UserDialogsViewHolder, position: Int) {
-        holder.bind(differ.currentList[position], this.onDialogCLick)
+        holder.bind(myUserId, differ.currentList[position], this.onDialogCLick)
     }
 
     override fun getItemCount(): Int {

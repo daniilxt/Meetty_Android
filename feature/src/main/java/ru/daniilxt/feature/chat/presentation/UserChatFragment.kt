@@ -86,7 +86,7 @@ class UserChatFragment :
 
     private fun initToolbar() {
         binding.layoutToolbar.includeToolbarBackTvTitle.text =
-            viewModel.userDialog.returnCompanionUser(UserDialogsProvider.myUser)
+            viewModel.userDialog.returnCompanionUser(49)
                 .getCapitalizedFullUserName()
     }
 

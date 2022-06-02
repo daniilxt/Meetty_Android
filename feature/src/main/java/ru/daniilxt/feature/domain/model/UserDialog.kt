@@ -11,7 +11,7 @@ data class UserDialog(
     val secondUser: User
 ) : Parcelable {
 
-    fun returnCompanionUser(user: User): User {
-        return if (user.id == firstUser.id) secondUser else firstUser
+    fun returnCompanionUser(userId: Long): User {
+        return if (userId == firstUser.id) secondUser else firstUser
     }
 }

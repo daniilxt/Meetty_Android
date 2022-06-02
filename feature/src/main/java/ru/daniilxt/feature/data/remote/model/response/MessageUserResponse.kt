@@ -1,6 +1,7 @@
 package ru.daniilxt.feature.data.remote.model.response
 
 import com.google.gson.annotations.SerializedName
+import ru.daniilxt.common.BuildConfig
 import ru.daniilxt.feature.domain.model.User
 
 data class MessageUserResponse(
@@ -24,5 +25,5 @@ fun MessageUserResponse.toUser() = User(
     id = id,
     firstName = firstName,
     lastName = lastName,
-    avatarLink = avatarLink
+    avatarLink = BuildConfig.ENDPOINT + avatarLink
 )
