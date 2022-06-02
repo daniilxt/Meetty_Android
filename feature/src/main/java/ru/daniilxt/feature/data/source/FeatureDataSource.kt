@@ -16,5 +16,5 @@ interface FeatureDataSource {
     fun sendRegistrationInfoUseCase(registrationInfo: ProfileData): Single<RequestResult<Tokens>>
     fun getUsersCardInfo(): Single<RequestResult<List<UserProfileInfo>>>
     fun getUserProfileInfo(isMy: Boolean, userId: Long): Single<RequestResult<UserProfileInfo>>
-    fun getDialogs(userId: Long): Single<RequestResult<List<UserDialog>>>
+    fun getDialogs(): Single<RequestResult<List<UserDialog>>>
 }

@@ -9,6 +9,7 @@ import dagger.multibindings.IntoMap
 import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.domain.usecase.GetUserDialogsUseCase
 import ru.daniilxt.feature.user_dialogs.presentation.UserDialogsViewModel
 
 @Module(
@@ -22,10 +23,11 @@ class UserDialogsModule {
     @IntoMap
     @ViewModelKey(UserDialogsViewModel::class)
     fun provideViewModel(
-        navigator: FeatureRouter
+        navigator: FeatureRouter,
+        getUserDialogsUseCase: GetUserDialogsUseCase
     ): ViewModel {
         return UserDialogsViewModel(
-            navigator
+            navigator, getUserDialogsUseCase
         )
     }
 

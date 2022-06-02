@@ -1,7 +1,7 @@
 package ru.daniilxt.feature.data.remote.model.response
 
 import com.google.gson.annotations.SerializedName
-import ru.daniilxt.common.extensions.parseLocalDate
+import ru.daniilxt.common.extensions.toLocalDate
 import ru.daniilxt.feature.domain.model.UserAdditionalInfo
 
 data class UserAdditionalInfoResponse(
@@ -15,7 +15,7 @@ data class UserAdditionalInfoResponse(
 
 fun UserAdditionalInfoResponse.toUserAdditionalInfo() = UserAdditionalInfo(
     id = -1,
-    birthDay = userBirthday.parseLocalDate(),
+    birthDay = userBirthday.toLocalDate(),
     categories = professionalInterests.map { it.toProfessionalInterest() },
     userPhone = if (userPhone.isNullOrEmpty()) "" else userPhone
 )

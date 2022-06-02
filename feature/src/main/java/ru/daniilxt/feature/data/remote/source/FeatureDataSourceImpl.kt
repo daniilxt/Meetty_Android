@@ -11,6 +11,7 @@ import ru.daniilxt.feature.data.remote.model.error.RegistrationError
 import ru.daniilxt.feature.data.remote.model.response.toEducationInstitute
 import ru.daniilxt.feature.data.remote.model.response.toProfessionalInterest
 import ru.daniilxt.feature.data.remote.model.response.toTokens
+import ru.daniilxt.feature.data.remote.model.response.toUserDialog
 import ru.daniilxt.feature.data.remote.model.response.toUserProfileInfo
 import ru.daniilxt.feature.data.source.FeatureDataSource
 import ru.daniilxt.feature.domain.model.EducationInstitute
@@ -20,7 +21,6 @@ import ru.daniilxt.feature.domain.model.Tokens
 import ru.daniilxt.feature.domain.model.UserDialog
 import ru.daniilxt.feature.domain.model.UserProfileInfo
 import ru.daniilxt.feature.domain.model.toRegistrationInfoBody
-import timber.log.Timber
 import java.net.HttpURLConnection
 import javax.inject.Inject
 
@@ -113,20 +113,16 @@ class FeatureDataSourceImpl @Inject constructor(
             featureApiService.getUserProfileInfoById(userId)
         }
         return single.map { response ->
-            Timber.i("!!!!! ERROR PARSE? ${response.body()}  \n ${response.isSuccessful} ${response.errorBody()}")
             getSingleData(response) {
                 response.body()!!.toUserProfileInfo()
             }
         }
     }
 
-    override fun getDialogs(userId: Long): Single<RequestResult<List<UserDialog>>> {
-        return featureApiService.getEvents(userId).map {
-            when {
-                it.isSuccessful -> {
-                    RequestResult.Success(listOf())
-                }
-                else -> RequestResult.Success(listOf())
+    override fun getDialogs(): Single<RequestResult<List<UserDialog>>> {
+        return featureApiService.getUserDialogs().map { response ->
+            getSingleCollectionData(response) {
+                response.body()!!.map { it.toUserDialog() }
             }
         }
     }

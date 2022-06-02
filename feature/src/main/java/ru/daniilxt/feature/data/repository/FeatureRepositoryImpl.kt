@@ -41,7 +41,7 @@ class FeatureRepositoryImpl @Inject constructor(private val featureDataSource: F
         return featureDataSource.getUserProfileInfo(isMy, userId)
     }
 
-    override fun getDialogs(userId: Long): Single<RequestResult<List<UserDialog>>> {
-        return featureDataSource.getDialogs(userId)
+    override fun getDialogs(): Single<RequestResult<List<UserDialog>>> {
+        return featureDataSource.getDialogs()
     }
 }

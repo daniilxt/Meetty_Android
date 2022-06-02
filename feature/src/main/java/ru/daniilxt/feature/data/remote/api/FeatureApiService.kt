@@ -11,8 +11,8 @@ import ru.daniilxt.feature.data.remote.model.body.RegistrationInfoBody
 import ru.daniilxt.feature.data.remote.model.response.EducationInstituteResponse
 import ru.daniilxt.feature.data.remote.model.response.ProfessionalInterestResponse
 import ru.daniilxt.feature.data.remote.model.response.TokensResponse
+import ru.daniilxt.feature.data.remote.model.response.UserDialogResponse
 import ru.daniilxt.feature.data.remote.model.response.UserProfileInfoResponse
-import ru.daniilxt.feature.domain.model.UserDialog
 
 interface FeatureApiService {
     @GET("/api/v1/regsteps/edu")
@@ -38,6 +38,6 @@ interface FeatureApiService {
     @POST("/api/v1/auth/login")
     fun auth(@Body loginCredentialsBody: LoginCredentialsBody): Single<Response<TokensResponse>>
 
-    @GET("/api/dialogs/{id}")
-    fun getEvents(@Path("id") id: Long): Single<Response<UserDialog>>
+    @GET("/api/v1/dialogs")
+    fun getUserDialogs(): Single<Response<List<UserDialogResponse>>>
 }

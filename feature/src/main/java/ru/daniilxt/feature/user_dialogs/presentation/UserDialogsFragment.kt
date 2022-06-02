@@ -17,7 +17,6 @@ import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
 import ru.daniilxt.feature.main_screen.presentation.INavigation
 import ru.daniilxt.feature.user_dialogs.presentation.adapter.UserDialogsAdapter
-import timber.log.Timber
 
 class UserDialogsFragment : BaseFragment<UserDialogsViewModel>(R.layout.fragment_user_dialogs) {
 
