@@ -52,3 +52,13 @@ val Context.statusBarHeightInPx
         )
         this.resources.getDimensionPixelSize(resourceId) / this.resources.displayMetrics.density
     }
+
+val Context.navBarHeightInPx
+    get() = run {
+        val resourceId = this.resources.getIdentifier(
+            "navigation_bar_height",
+            "dimen",
+            "android"
+        )
+        this.resources.getDimensionPixelSize(resourceId) / this.resources.displayMetrics.density
+    }
