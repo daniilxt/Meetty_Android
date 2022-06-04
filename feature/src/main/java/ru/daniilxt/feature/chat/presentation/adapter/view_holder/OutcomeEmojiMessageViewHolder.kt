@@ -1,6 +1,7 @@
 package ru.daniilxt.feature.chat.presentation.adapter.view_holder
 
 import android.annotation.SuppressLint
+import ru.daniilxt.common.extensions.toLocalTimeFormat
 import ru.daniilxt.common.widgets.EmojiView
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.ItemOutcomeEmojiMessageBinding
@@ -19,7 +20,7 @@ class OutcomeEmojiMessageViewHolder(val binding: ItemOutcomeEmojiMessageBinding)
         with(binding) {
             tvMessage.text = message.content
             val time = message.dateTime.toLocalTime()
-            tvDate.text = "${time.hour}:${time.minute}:${time.second}"
+            tvDate.text = time.toLocalTimeFormat()
             flexbox.removeAllViews()
             message.reactions.forEach { reaction ->
                 val emojiView = EmojiView(binding.root.context)

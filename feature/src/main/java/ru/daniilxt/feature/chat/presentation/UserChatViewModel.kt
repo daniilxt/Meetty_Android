@@ -136,7 +136,7 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
                 receiver = companion
             )
         sendCompletable(mStompClient!!.send(CHAT_LINK_SOCKET, gson.toJson(chatSocketMessage)))
-        //addMessage(chatSocketMessage.toMessage())
+        addMessage(chatSocketMessage.toMessage())
     }
 
     // TODO handle reactions count

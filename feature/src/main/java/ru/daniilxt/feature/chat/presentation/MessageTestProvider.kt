@@ -15,7 +15,7 @@ object MessageTestProvider {
             Message(
                 id = 1,
                 dateTime = LocalDateTime.of(2022, 4, 13, 14, 22, 55),
-                "Hello world how are you",
+                "Привет, как дела?",
                 reactions = emptyList(),
                 sender = UserDialogsProvider.firstUser,
                 isMy = false
@@ -23,7 +23,7 @@ object MessageTestProvider {
             Message(
                 id = 2,
                 dateTime = LocalDateTime.of(2022, 4, 13, 14, 25, 15),
-                "Loren is my len the rulesd fear sealed class dexter oxcel ",
+                "Извини, я вчера поздно написал, давай поговорим сегодня? ",
                 reactions = listOf(
                     Reaction(
                         id = 1,
@@ -43,8 +43,8 @@ object MessageTestProvider {
             ),
             Message(
                 id = 3,
-                dateTime = LocalDateTime.of(2022, 4, 13, 15, 25, 15),
-                "Loren is my len the rulesd fear sealed class dexter oxcel ",
+                dateTime = LocalDateTime.of(2022, 6, 13, 23, 17, 15),
+                "Давно тебя не видел, как сам? ",
                 reactions = listOf(
                     Reaction(
                         id = 1,

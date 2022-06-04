@@ -1,6 +1,7 @@
 package ru.daniilxt.feature.user_dialogs.presentation.util
 
 import android.annotation.SuppressLint
+import ru.daniilxt.common.BuildConfig
 import ru.daniilxt.feature.domain.model.Message
 import ru.daniilxt.feature.domain.model.User
 import ru.daniilxt.feature.domain.model.UserDialog
@@ -17,10 +18,16 @@ object UserDialogsProvider {
 
     val firstUser = User(
         id = 2,
+        firstName = "Антон",
+        lastName = "Новиков",
+        avatarLink = BuildConfig.ENDPOINT + "/api/v1/media/image/profile/7"
+    )
+/*    val firstUser = User(
+        id = 2,
         firstName = "Grigoriy",
         lastName = "Tolstolobikov",
         avatarLink = "https://sun9-80.userapi.com/impf/0MmEdStrLGBnqe-ulQi3FgzQe9oagCWdrBJo8w/8MQbR702JZ8.jpg?size=1440x1920&quality=95&sign=b1c3f364b3eb122cc110ab8e5cf399a6&type=album"
-    )
+    )*/
 
     fun getUserDialogs() = listOf(
         UserDialog(
@@ -28,7 +35,7 @@ object UserDialogsProvider {
             lastMessage = Message(
                 id = 1,
                 dateTime = LocalDateTime.of(2022, 4, 13, 14, 22, 55),
-                "Hello world how are you",
+                "Привет, как дела?",
                 reactions = emptyList(),
                 sender = myUser,
                 isMy = false

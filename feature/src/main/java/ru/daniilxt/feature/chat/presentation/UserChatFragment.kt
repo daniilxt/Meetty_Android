@@ -9,9 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
-import ru.daniilxt.common.extensions.actionBarSize
 import ru.daniilxt.common.extensions.margin
-import ru.daniilxt.common.extensions.screenValue
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setStatusBarColor
@@ -56,8 +54,6 @@ class UserChatFragment :
         super.onViewCreated(view, savedInstanceState)
         requireActivity().setStatusBarColor(R.color.white)
         requireView().setLightStatusBar()
-        val size = requireContext().actionBarSize
-        requireActivity().screenValue()
 
         binding.layoutToolbar.root.margin(top = requireActivity().statusBarHeightInPx)
 

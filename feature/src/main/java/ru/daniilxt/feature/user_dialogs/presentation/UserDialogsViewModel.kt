@@ -35,7 +35,7 @@ class UserDialogsViewModel(
                 when (it) {
                     is RequestResult.Success -> {
                         setEventState(ResponseState.Success)
-                        _dialogs.value = it.data
+                        _dialogs.value = it.data.sortedByDescending { item -> item.lastMessage.dateTime }
                     }
                     is RequestResult.Error -> {
                         setEventState(ResponseState.Failure(it.error as ResponseError))
