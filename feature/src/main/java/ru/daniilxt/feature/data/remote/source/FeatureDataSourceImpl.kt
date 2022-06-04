@@ -45,9 +45,6 @@ class FeatureDataSourceImpl @Inject constructor(
                         }
                     }
                     it.code() == HttpURLConnection.HTTP_FORBIDDEN -> {
-                        RequestResult.Error(LoginError.NotActivatedAccount)
-                    }
-                    it.code() == HttpURLConnection.HTTP_UNAUTHORIZED -> {
                         RequestResult.Error(LoginError.InvalidCredentials)
                     }
                     else -> {
