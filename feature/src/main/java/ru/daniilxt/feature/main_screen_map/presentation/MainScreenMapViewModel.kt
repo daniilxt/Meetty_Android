@@ -44,4 +44,7 @@ class MainScreenMapViewModel(
             }, {
             }).addTo(disposable)
     }
+
+    fun searchUser(toString: String) {
+    }
 }
