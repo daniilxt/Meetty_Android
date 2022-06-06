@@ -67,7 +67,11 @@ class UserChatFragment :
     override fun setupFromArguments(args: Bundle) {
         super.setupFromArguments(args)
         val chat = args.getParcelable<UserDialog>(CHAT_ID_TAG)
-        chat?.let { viewModel.userDialog(it) }
+        chat?.let {
+            viewModel.setUserDialog(it)
+            viewModel.getPastMessages()
+        }
+
         Timber.tag(TAG).i("chatId = ${chat?.id}")
     }
 

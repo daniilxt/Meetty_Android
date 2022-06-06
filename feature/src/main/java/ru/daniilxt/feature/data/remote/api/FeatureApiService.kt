@@ -9,6 +9,7 @@ import retrofit2.http.Path
 import ru.daniilxt.feature.data.remote.model.body.LoginCredentialsBody
 import ru.daniilxt.feature.data.remote.model.body.RegistrationInfoBody
 import ru.daniilxt.feature.data.remote.model.response.EducationInstituteResponse
+import ru.daniilxt.feature.data.remote.model.response.MessageResponse
 import ru.daniilxt.feature.data.remote.model.response.ProfessionalInterestResponse
 import ru.daniilxt.feature.data.remote.model.response.TokensResponse
 import ru.daniilxt.feature.data.remote.model.response.UserDialogResponse
@@ -40,4 +41,7 @@ interface FeatureApiService {
 
     @GET("/api/v1/dialogs")
     fun getUserDialogs(): Single<Response<List<UserDialogResponse>>>
+
+    @GET("/api/v1/dialogs/messages/dialog_id={dialog_id}")
+    fun getDialogMessages(@Path("dialog_id") dialogId: Long): Single<Response<List<MessageResponse>>>
 }

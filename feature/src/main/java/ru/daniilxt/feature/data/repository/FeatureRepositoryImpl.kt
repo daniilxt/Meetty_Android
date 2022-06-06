@@ -4,6 +4,7 @@ import io.reactivex.Single
 import ru.daniilxt.common.error.RequestResult
 import ru.daniilxt.feature.data.source.FeatureDataSource
 import ru.daniilxt.feature.domain.model.EducationInstitute
+import ru.daniilxt.feature.domain.model.ChatMessage
 import ru.daniilxt.feature.domain.model.ProfessionalInterest
 import ru.daniilxt.feature.domain.model.ProfileData
 import ru.daniilxt.feature.domain.model.Tokens
@@ -43,5 +44,9 @@ class FeatureRepositoryImpl @Inject constructor(private val featureDataSource: F
 
     override fun getDialogs(): Single<RequestResult<List<UserDialog>>> {
         return featureDataSource.getDialogs()
+    }
+
+    override fun getDialogMessages(dialogId: Long): Single<RequestResult<List<ChatMessage>>> {
+        return featureDataSource.getDialogMessages(dialogId)
     }
 }

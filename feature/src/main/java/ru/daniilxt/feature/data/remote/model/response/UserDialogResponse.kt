@@ -17,9 +17,9 @@ data class UserDialogResponse(
     val secondUser: MessageUserResponse
 )
 
-fun UserDialogResponse.toUserDialog() = UserDialog(
+fun UserDialogResponse.toUserDialog(currentUserId: Long) = UserDialog(
     id = dialogId,
-    lastMessage = lastMessage.toLastMessage(),
+    lastMessage = lastMessage.toChatMessage(currentUserId),
     firstUser = firstUser.toUser(),
     secondUser = secondUser.toUser()
 )

@@ -3,10 +3,9 @@ package ru.daniilxt.feature.chat.presentation
 import android.annotation.SuppressLint
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import ru.daniilxt.feature.domain.model.Message
+import ru.daniilxt.feature.domain.model.ChatMessage
 import ru.daniilxt.feature.domain.model.Reaction
 import ru.daniilxt.feature.domain.model.User
-import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
 import java.time.LocalDateTime
 
 @SuppressLint("NewApi")
@@ -20,13 +19,13 @@ data class ChatSocketMessage(
     val receiver: User,
 ) : Parcelable
 
-fun ChatSocketMessage.toMessage(): Message {
-    return Message(
+fun ChatSocketMessage.toMessage(currentUserId: Long): ChatMessage {
+    return ChatMessage(
         id = this.id,
         dateTime = this.dateTime,
         content = this.content,
         sender = this.sender,
-        isMy = this.sender == UserDialogsProvider.myUser,
+        isMy = this.sender.id == currentUserId,
         reactions = this.reactions
     )
 }

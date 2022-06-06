@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class UserDialog(
     val id: Long,
-    val lastMessage: Message,
+    val lastMessage: ChatMessage,
     val firstUser: User,
     val secondUser: User
 ) : Parcelable {

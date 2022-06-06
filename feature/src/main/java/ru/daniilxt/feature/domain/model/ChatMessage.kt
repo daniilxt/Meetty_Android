@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 
 @SuppressLint("NewApi")
 @Parcelize
-data class Message(
+data class ChatMessage(
     val id: Long = -1L,
     val dateTime: LocalDateTime = LocalDateTime.now(),
     val content: String = "",

@@ -11,6 +11,7 @@ import ru.daniilxt.common.di.viewmodel.ViewModelModule
 import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.chat.presentation.UserChatViewModel
+import ru.daniilxt.feature.domain.usecase.GetDialogMessagesUseCase
 
 @Module(
     includes = [
@@ -24,10 +25,11 @@ class UserChatModule {
     @ViewModelKey(UserChatViewModel::class)
     fun provideViewModel(
         navigator: FeatureRouter,
-        tokenRepository: TokenRepository
+        tokenRepository: TokenRepository,
+        getDialogMessagesUseCase: GetDialogMessagesUseCase
     ): ViewModel {
         return UserChatViewModel(
-            navigator, tokenRepository
+            navigator, tokenRepository, getDialogMessagesUseCase
         )
     }
 

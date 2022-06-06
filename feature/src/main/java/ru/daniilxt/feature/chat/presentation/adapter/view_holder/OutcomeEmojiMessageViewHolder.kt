@@ -5,7 +5,7 @@ import ru.daniilxt.common.extensions.toLocalTimeFormat
 import ru.daniilxt.common.widgets.EmojiView
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.ItemOutcomeEmojiMessageBinding
-import ru.daniilxt.feature.domain.model.Message
+import ru.daniilxt.feature.domain.model.ChatMessage
 import ru.daniilxt.feature.domain.model.Reaction
 
 @SuppressLint("NewApi")
@@ -13,7 +13,7 @@ import ru.daniilxt.feature.domain.model.Reaction
 class OutcomeEmojiMessageViewHolder(val binding: ItemOutcomeEmojiMessageBinding) :
     EmojiMessageViewHolder<OutcomeEmojiMessageViewHolder>(binding) {
     override fun bind(
-        message: Message,
+        message: ChatMessage,
         onEmojiClickListener: (messageId: Long, reaction: Reaction) -> Unit,
         onMessageLongCLickListener: (messageId: Long) -> Unit
     ) {

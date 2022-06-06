@@ -2,7 +2,7 @@ package ru.daniilxt.feature.user_dialogs.presentation.util
 
 import android.annotation.SuppressLint
 import ru.daniilxt.common.BuildConfig
-import ru.daniilxt.feature.domain.model.Message
+import ru.daniilxt.feature.domain.model.ChatMessage
 import ru.daniilxt.feature.domain.model.User
 import ru.daniilxt.feature.domain.model.UserDialog
 import java.time.LocalDateTime
@@ -32,7 +32,7 @@ object UserDialogsProvider {
     fun getUserDialogs() = listOf(
         UserDialog(
             id = 1L,
-            lastMessage = Message(
+            lastMessage = ChatMessage(
                 id = 1,
                 dateTime = LocalDateTime.of(2022, 4, 13, 14, 22, 55),
                 "Привет, как дела?",

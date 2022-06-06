@@ -6,16 +6,20 @@ import com.google.gson.GsonBuilder
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import ru.daniilxt.common.BuildConfig.ENDPOINT
 import ru.daniilxt.common.base.BaseViewModel
+import ru.daniilxt.common.error.RequestResult
+import ru.daniilxt.common.model.ResponseState
 import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.FeatureRouter
-import ru.daniilxt.feature.domain.model.Message
+import ru.daniilxt.feature.domain.model.ChatMessage
 import ru.daniilxt.feature.domain.model.ReactionWrapper
 import ru.daniilxt.feature.domain.model.UserDialog
+import ru.daniilxt.feature.domain.usecase.GetDialogMessagesUseCase
 import timber.log.Timber
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
@@ -27,17 +31,18 @@ import java.util.*
 @SuppressLint("NewApi")
 class UserChatViewModel(
     private val router: FeatureRouter,
-    private val tokenRepository: TokenRepository
+    private val tokenRepository: TokenRepository,
+    private val getDialogMessagesUseCase: GetDialogMessagesUseCase
 ) : BaseViewModel() {
-    private var _userMessages: MutableStateFlow<List<Message>> = MutableStateFlow(emptyList())
-    val userMessages: StateFlow<List<Message>> get() = _userMessages
+    private var _userMessages: MutableStateFlow<List<ChatMessage>> = MutableStateFlow(emptyList())
+    val userMessages: StateFlow<List<ChatMessage>> get() = _userMessages
 
     private var _userDialog: UserDialog? = null
     val userDialog get() = _userDialog!!
 
     var myId: Long = -1
 
-    fun userDialog(chat: UserDialog) {
+    fun setUserDialog(chat: UserDialog) {
         _userDialog = chat
     }
 
@@ -49,13 +54,29 @@ class UserChatViewModel(
     private var compositeDisposable: CompositeDisposable? = null
 
     init {
-        // _userMessages.value = MessageTestProvider.getMessages()
         val headerMap: Map<String, String> =
             Collections.singletonMap(AUTHORIZATION, BEARER + tokenRepository.getToken())
         mStompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, SOCKET_URL, headerMap)
-            .withServerHeartbeat(30000)
         resetSubscriptions()
         initChat()
+    }
+
+    fun getPastMessages() {
+        setEventState(ResponseState.Success)
+        getDialogMessagesUseCase.invoke(userDialog.id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                when (it) {
+                    is RequestResult.Success -> {
+                        setEventState(ResponseState.Success)
+                        _userMessages.value = it.data
+                    }
+                    is RequestResult.Error -> {
+                    }
+                }
+            }, {
+            }).addTo(disposable)
     }
 
     private fun initChat() {
@@ -70,7 +91,7 @@ class UserChatViewModel(
                         Timber.tag(STOMP).i("$topicMessage")
                         val message: ChatSocketMessage =
                             gson.fromJson(topicMessage.payload, ChatSocketMessage::class.java)
-                        addMessage(message.toMessage())
+                        addMessage(message.toMessage(tokenRepository.getCurrentUserId()))
                     },
                     {
                         Timber.tag(STOMP).i("Error! $it")
@@ -88,6 +109,7 @@ class UserChatViewModel(
                         LifecycleEvent.Type.FAILED_SERVER_HEARTBEAT,
                         LifecycleEvent.Type.CLOSED -> {
                             Timber.tag(STOMP).i("Stomp connection closed")
+                            initChat()
                         }
                     }
                 }
@@ -103,7 +125,7 @@ class UserChatViewModel(
         }
     }
 
-    private fun addMessage(message: Message) {
+    private fun addMessage(message: ChatMessage) {
         _userMessages.value = _userMessages.value + listOf(message)
     }
 
@@ -145,7 +167,7 @@ class UserChatViewModel(
                 receiver = userDialog.returnCompanionUser(myId)
             )
         sendCompletable(mStompClient!!.send(CHAT_LINK_SOCKET, gson.toJson(chatSocketMessage)))
-        addMessage(chatSocketMessage.toMessage())
+        addMessage(chatSocketMessage.toMessage(tokenRepository.getCurrentUserId()))
     }
 
     // TODO handle reactions count

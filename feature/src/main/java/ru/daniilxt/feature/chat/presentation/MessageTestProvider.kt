@@ -1,7 +1,7 @@
 package ru.daniilxt.feature.chat.presentation
 
 import android.annotation.SuppressLint
-import ru.daniilxt.feature.domain.model.Message
+import ru.daniilxt.feature.domain.model.ChatMessage
 import ru.daniilxt.feature.domain.model.Reaction
 import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
 import java.time.LocalDateTime
@@ -10,9 +10,9 @@ import java.time.LocalDateTime
 
 object MessageTestProvider {
 
-    fun getMessages(): List<Message> {
+    fun getMessages(): List<ChatMessage> {
         return listOf(
-            Message(
+            ChatMessage(
                 id = 1,
                 dateTime = LocalDateTime.of(2022, 4, 13, 14, 22, 55),
                 "Привет, как дела?",
@@ -20,7 +20,7 @@ object MessageTestProvider {
                 sender = UserDialogsProvider.firstUser,
                 isMy = false
             ),
-            Message(
+            ChatMessage(
                 id = 2,
                 dateTime = LocalDateTime.of(2022, 4, 13, 14, 25, 15),
                 "Извини, я вчера поздно написал, давай поговорим сегодня? ",
@@ -41,7 +41,7 @@ object MessageTestProvider {
                 sender = UserDialogsProvider.firstUser,
                 isMy = false
             ),
-            Message(
+            ChatMessage(
                 id = 3,
                 dateTime = LocalDateTime.of(2022, 6, 13, 23, 17, 15),
                 "Давно тебя не видел, как сам? ",

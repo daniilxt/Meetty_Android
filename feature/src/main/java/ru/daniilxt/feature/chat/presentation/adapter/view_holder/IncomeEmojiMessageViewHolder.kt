@@ -5,14 +5,14 @@ import coil.transform.CircleCropTransformation
 import ru.daniilxt.common.widgets.EmojiView
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.ItemIncomeEmojiMessageBinding
-import ru.daniilxt.feature.domain.model.Message
+import ru.daniilxt.feature.domain.model.ChatMessage
 import ru.daniilxt.feature.domain.model.Reaction
 import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
 
 class IncomeEmojiMessageViewHolder(val binding: ItemIncomeEmojiMessageBinding) :
     EmojiMessageViewHolder<IncomeEmojiMessageViewHolder>(binding) {
     override fun bind(
-        message: Message,
+        message: ChatMessage,
         onEmojiClickListener: (messageId: Long, reaction: Reaction) -> Unit,
         onMessageLongCLickListener: (messageId: Long) -> Unit
     ) {

@@ -4,16 +4,19 @@ import io.reactivex.Single
 import retrofit2.Response
 import ru.daniilxt.common.error.RequestResult
 import ru.daniilxt.common.model.ResponseError
+import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.data.remote.api.FeatureApiService
 import ru.daniilxt.feature.data.remote.model.body.LoginCredentialsBody
 import ru.daniilxt.feature.data.remote.model.error.LoginError
 import ru.daniilxt.feature.data.remote.model.error.RegistrationError
+import ru.daniilxt.feature.data.remote.model.response.toChatMessage
 import ru.daniilxt.feature.data.remote.model.response.toEducationInstitute
 import ru.daniilxt.feature.data.remote.model.response.toProfessionalInterest
 import ru.daniilxt.feature.data.remote.model.response.toTokens
 import ru.daniilxt.feature.data.remote.model.response.toUserDialog
 import ru.daniilxt.feature.data.remote.model.response.toUserProfileInfo
 import ru.daniilxt.feature.data.source.FeatureDataSource
+import ru.daniilxt.feature.domain.model.ChatMessage
 import ru.daniilxt.feature.domain.model.EducationInstitute
 import ru.daniilxt.feature.domain.model.ProfessionalInterest
 import ru.daniilxt.feature.domain.model.ProfileData
@@ -28,6 +31,8 @@ class FeatureDataSourceImpl @Inject constructor(
     private val featureApiService: FeatureApiService
 ) :
     FeatureDataSource {
+    @Inject
+    lateinit var tokenRepository: TokenRepository
 
     override fun auth(email: String, password: String): Single<RequestResult<Tokens>> {
         return featureApiService.auth(LoginCredentialsBody(email, password))
@@ -120,7 +125,15 @@ class FeatureDataSourceImpl @Inject constructor(
     override fun getDialogs(): Single<RequestResult<List<UserDialog>>> {
         return featureApiService.getUserDialogs().map { response ->
             getSingleCollectionData(response) {
-                response.body()!!.map { it.toUserDialog() }
+                response.body()!!.map { it.toUserDialog(tokenRepository.getCurrentUserId()) }
+            }
+        }
+    }
+
+    override fun getDialogMessages(dialogId: Long): Single<RequestResult<List<ChatMessage>>> {
+        return featureApiService.getDialogMessages(dialogId).map { response ->
+            getSingleCollectionData(response) {
+                response.body()!!.map { it.toChatMessage(tokenRepository.getCurrentUserId()) }
             }
         }
     }

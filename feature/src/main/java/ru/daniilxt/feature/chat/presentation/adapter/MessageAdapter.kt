@@ -10,7 +10,7 @@ import ru.daniilxt.feature.chat.presentation.adapter.view_holder.IncomeEmojiMess
 import ru.daniilxt.feature.chat.presentation.adapter.view_holder.OutcomeEmojiMessageViewHolder
 import ru.daniilxt.feature.databinding.ItemIncomeEmojiMessageBinding
 import ru.daniilxt.feature.databinding.ItemOutcomeEmojiMessageBinding
-import ru.daniilxt.feature.domain.model.Message
+import ru.daniilxt.feature.domain.model.ChatMessage
 import ru.daniilxt.feature.domain.model.Reaction
 
 class MessageAdapter(
@@ -54,7 +54,7 @@ class MessageAdapter(
         return differ.currentList.size
     }
 
-    fun bind(data: List<Message>) {
+    fun bind(data: List<ChatMessage>) {
         differ.submitList(data)
     }
 
