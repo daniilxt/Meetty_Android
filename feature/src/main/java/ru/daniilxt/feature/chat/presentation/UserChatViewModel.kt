@@ -9,26 +9,34 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import ru.daniilxt.common.BuildConfig.ENDPOINT
 import ru.daniilxt.common.base.BaseViewModel
+import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.domain.model.Message
 import ru.daniilxt.feature.domain.model.ReactionWrapper
 import ru.daniilxt.feature.domain.model.UserDialog
-import ru.daniilxt.feature.user_dialogs.presentation.util.UserDialogsProvider
 import timber.log.Timber
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
 import ua.naiksoftware.stomp.dto.LifecycleEvent
 import ua.naiksoftware.stomp.dto.StompMessage
 import java.time.LocalDateTime
+import java.util.*
 
 @SuppressLint("NewApi")
-class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
+class UserChatViewModel(
+    private val router: FeatureRouter,
+    private val tokenRepository: TokenRepository
+) : BaseViewModel() {
     private var _userMessages: MutableStateFlow<List<Message>> = MutableStateFlow(emptyList())
     val userMessages: StateFlow<List<Message>> get() = _userMessages
 
     private var _userDialog: UserDialog? = null
     val userDialog get() = _userDialog!!
+
+    var myId: Long = -1
+
     fun userDialog(chat: UserDialog) {
         _userDialog = chat
     }
@@ -41,8 +49,10 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
     private var compositeDisposable: CompositeDisposable? = null
 
     init {
-        _userMessages.value = MessageTestProvider.getMessages()
-        mStompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, SOCKET_URL)
+        // _userMessages.value = MessageTestProvider.getMessages()
+        val headerMap: Map<String, String> =
+            Collections.singletonMap(AUTHORIZATION, BEARER + tokenRepository.getToken())
+        mStompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, SOCKET_URL, headerMap)
             .withServerHeartbeat(30000)
         resetSubscriptions()
         initChat()
@@ -57,7 +67,7 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { topicMessage: StompMessage ->
-                        Timber.tag(STOMP).i(topicMessage.payload)
+                        Timber.tag(STOMP).i("$topicMessage")
                         val message: ChatSocketMessage =
                             gson.fromJson(topicMessage.payload, ChatSocketMessage::class.java)
                         addMessage(message.toMessage())
@@ -94,7 +104,6 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
     }
 
     private fun addMessage(message: Message) {
-        Timber.tag(STOMP).i("added msg $message")
         _userMessages.value = _userMessages.value + listOf(message)
     }
 
@@ -132,8 +141,8 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
         val chatSocketMessage =
             ChatSocketMessage(
                 content = text,
-                sender = iUser,
-                receiver = companion
+                sender = userDialog.returnMyUser(myId),
+                receiver = userDialog.returnCompanionUser(myId)
             )
         sendCompletable(mStompClient!!.send(CHAT_LINK_SOCKET, gson.toJson(chatSocketMessage)))
         addMessage(chatSocketMessage.toMessage())
@@ -154,12 +163,14 @@ class UserChatViewModel(private val router: FeatureRouter) : BaseViewModel() {
     }
 
     companion object {
-        val iUser = UserDialogsProvider.myUser
-        val companion = UserDialogsProvider.firstUser
+        private const val BEARER = "Bearer "
+        private const val AUTHORIZATION = "Authorization"
 
         private const val STOMP = "STOMP_STOMP"
-        const val SOCKET_URL = "wss://4847-95-24-226-149.eu.ngrok.io/api/chat/websocket"
-        const val CHAT_TOPIC = "/topic/chat"
-        const val CHAT_LINK_SOCKET = "/api/chat/sock"
+        val SOCKET_URL = "wss://${ENDPOINT.getAddress()}/api/v1/chat/websocket"
+        const val CHAT_TOPIC = "/user/topic/chat"
+        const val CHAT_LINK_SOCKET = "/api/v1/chat/sock"
     }
 }
+
+private fun String.getAddress() = replaceBeforeLast("/", "")

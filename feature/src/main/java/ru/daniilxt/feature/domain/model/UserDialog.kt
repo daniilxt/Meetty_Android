@@ -14,4 +14,7 @@ data class UserDialog(
     fun returnCompanionUser(userId: Long): User {
         return if (userId == firstUser.id) secondUser else firstUser
     }
+    fun returnMyUser(userId: Long): User {
+        return if (userId != firstUser.id) secondUser else firstUser
+    }
 }

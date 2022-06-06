@@ -97,7 +97,8 @@ class UserChatFragment :
 
     private fun initToolbar() {
         lifecycleScope.launch {
-            delay(300)
+            delay(200)
+            viewModel.myId = tokenRepository.getCurrentUserId()
             binding.layoutToolbar.includeToolbarBackTvTitle.text =
                 viewModel.userDialog.returnCompanionUser(tokenRepository.getCurrentUserId())
                     .getCapitalizedFullUserName()
