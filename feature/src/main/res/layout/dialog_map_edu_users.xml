@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_rounded_top"
@@ -29,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/top_view" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_services"
+        android:id="@+id/rv_edu_users"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
@@ -39,5 +40,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_search" />
+        app:layout_constraintTop_toBottomOf="@+id/et_search"
+        tools:listitem="@layout/item_edu_user_card" />
 </androidx.constraintlayout.widget.ConstraintLayout>

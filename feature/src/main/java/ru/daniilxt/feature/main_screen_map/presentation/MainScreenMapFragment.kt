@@ -5,7 +5,6 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -29,6 +28,7 @@ import ru.daniilxt.feature.databinding.FragmentMainScreenMapBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
 import ru.daniilxt.feature.domain.model.MapEducation
+import ru.daniilxt.feature.main_screen_map.presentation.adapter.EduUserCardAdapter
 
 class MainScreenMapFragment :
     BaseFragment<MainScreenMapViewModel>(R.layout.fragment_main_screen_map), OnMapReadyCallback {
@@ -39,6 +39,9 @@ class MainScreenMapFragment :
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
+    private val eduUserCardAdapter = EduUserCardAdapter(onItemClickListener = {
+    })
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.mapView.onCreate(savedInstanceState)
@@ -48,6 +51,7 @@ class MainScreenMapFragment :
     override fun setupViews() {
         super.setupViews()
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheetUsers.root)
+        binding.bottomSheetUsers.rvEduUsers.adapter = eduUserCardAdapter
         binding.mapView.getMapAsync(this)
 
         initBottomSheetInputForm()
@@ -55,17 +59,29 @@ class MainScreenMapFragment :
         setSearchListener()
     }
 
+    @SuppressLint("PotentialBehaviorOverride")
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         googleMap.setMapStyle(
             MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.google_map_style)
         )
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(spb, MAP_ZOOM_NEAR))
-        clusterManager = ClusterManager(context, map)
-        setUpClusterer()
-
+        map.setOnMarkerClickListener { marker ->
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, MAP_ZOOM_NEAR))
+            if (marker.isInfoWindowShown) {
+                marker.hideInfoWindow()
+            } else {
+                viewModel.selectUsersByCoordinates(marker.position)
+                changeSearchVisibility(false)
+                marker.showInfoWindow()
+            }
+            true
+        }
         viewModel.mapEduList.observe {
             pinEducationOnMap(it)
+        }
+        viewModel.eduUsersCard.observe {
+            eduUserCardAdapter.bind(it)
         }
     }
 
@@ -88,12 +104,6 @@ class MainScreenMapFragment :
 
     @SuppressLint("PotentialBehaviorOverride")
     private fun setUpClusterer() {
-        map.setOnCameraIdleListener(clusterManager)
-        map.setOnMarkerClickListener(clusterManager)
-        clusterManager.setOnClusterClickListener {
-            Toast.makeText(requireContext(), "Clicked ${it.position}", Toast.LENGTH_SHORT).show()
-            true
-        }
     }
 
     private fun initBottomSheetInputForm() {
