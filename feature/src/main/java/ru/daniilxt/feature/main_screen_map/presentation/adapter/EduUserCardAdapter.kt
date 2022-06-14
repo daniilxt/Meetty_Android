@@ -1,5 +1,6 @@
 package ru.daniilxt.feature.main_screen_map.presentation.adapter
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,7 @@ import ru.daniilxt.feature.main_screen_map.presentation.adapter.diffutil.EduUser
 import ru.daniilxt.feature.main_screen_map.presentation.adapter.view_holder.EduUserCardViewHolder
 
 class EduUserCardAdapter(
-    private val onItemClickListener: (data: MapSimpleUser) -> Unit,
+    private val onItemClickListener: (data: MapSimpleUser, sharedView: View) -> Unit
 ) : RecyclerView.Adapter<EduUserCardViewHolder>() {
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
 

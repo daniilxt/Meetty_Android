@@ -17,10 +17,9 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "String", "ENDPOINT", "\"https://34c5-95-24-224-232.eu.ngrok.io\""
+            buildConfigField "String", "ENDPOINT", "\"https://89f1-95-27-43-5.eu.ngrok.io\""
         }
         release {
-            buildConfigField "String", "ENDPOINT", "\"https://developerslife.ru\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

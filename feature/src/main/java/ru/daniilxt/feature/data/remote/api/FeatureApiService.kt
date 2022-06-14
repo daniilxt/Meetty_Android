@@ -16,6 +16,9 @@ import ru.daniilxt.feature.data.remote.model.response.UserDialogResponse
 import ru.daniilxt.feature.data.remote.model.response.UserProfileInfoResponse
 
 interface FeatureApiService {
+    @POST("/api/v1/auth/login")
+    fun auth(@Body loginCredentialsBody: LoginCredentialsBody): Single<Response<TokensResponse>>
+
     @GET("/api/v1/regsteps/edu")
     fun getEducationInstitutes(): Single<Response<List<EducationInstituteResponse>>>
 
@@ -35,9 +38,6 @@ interface FeatureApiService {
 
     @GET("/api/v1/profile/{id}")
     fun getUserProfileInfoById(@Path("id") userId: Long): Single<Response<UserProfileInfoResponse>>
-
-    @POST("/api/v1/auth/login")
-    fun auth(@Body loginCredentialsBody: LoginCredentialsBody): Single<Response<TokensResponse>>
 
     @GET("/api/v1/dialogs")
     fun getUserDialogs(): Single<Response<List<UserDialogResponse>>>

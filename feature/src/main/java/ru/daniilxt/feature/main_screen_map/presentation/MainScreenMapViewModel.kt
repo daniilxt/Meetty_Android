@@ -24,7 +24,7 @@ class MainScreenMapViewModel(
     val mapEduList: StateFlow<List<MapEducation>> get() = _mapEduList
 
     private val _eduUsersCard: MutableStateFlow<List<MapSimpleUser>> = MutableStateFlow(emptyList())
-     val eduUsersCard: StateFlow<List<MapSimpleUser>> get() = _eduUsersCard
+    val eduUsersCard: StateFlow<List<MapSimpleUser>> get() = _eduUsersCard
 
     init {
         loadUsers()
@@ -61,6 +61,9 @@ class MainScreenMapViewModel(
             _mapEduList.value.filter { it.edu.location.coordinates.latLng == position }
                 .map { it.users }.flatten()
         Timber.i(">???? ${_mapEduList.value}")
+    }
 
+    fun openProfile(it: MapSimpleUser) {
+        router.openUserProfile(false, it.userInfo.id)
     }
 }

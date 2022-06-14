@@ -44,4 +44,8 @@ class UserProfileViewModel(
                 setEventState(ResponseState.Failure(ResponseError.ConnectionError))
             }).addTo(disposable)
     }
+
+    fun openLogin() {
+        router.openOnboarding()
+    }
 }

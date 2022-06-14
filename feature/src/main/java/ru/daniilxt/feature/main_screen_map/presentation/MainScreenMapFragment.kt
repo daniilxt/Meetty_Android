@@ -3,7 +3,6 @@ package ru.daniilxt.feature.main_screen_map.presentation
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.text.InputType
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -21,7 +20,6 @@ import com.google.maps.android.clustering.ClusterManager
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
 import ru.daniilxt.common.extensions.loadIcon
-import ru.daniilxt.common.extensions.setInputFormAttributes
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentMainScreenMapBinding
@@ -39,7 +37,8 @@ class MainScreenMapFragment :
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
-    private val eduUserCardAdapter = EduUserCardAdapter(onItemClickListener = {
+    private val eduUserCardAdapter = EduUserCardAdapter(onItemClickListener = { data, sharedView ->
+        viewModel.openProfile(data)
     })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,6 +71,7 @@ class MainScreenMapFragment :
                 marker.hideInfoWindow()
             } else {
                 viewModel.selectUsersByCoordinates(marker.position)
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
                 changeSearchVisibility(false)
                 marker.showInfoWindow()
             }
@@ -127,7 +127,6 @@ class MainScreenMapFragment :
                     R.color.background_third_dark
                 )
             )
-            setInputFormAttributes(inputType = (InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS))
         }
     }
 

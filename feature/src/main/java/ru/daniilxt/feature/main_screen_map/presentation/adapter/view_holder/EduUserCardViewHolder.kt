@@ -15,7 +15,10 @@ import ru.daniilxt.feature.domain.model.MapSimpleUser
 class EduUserCardViewHolder(
     private val binding: ItemEduUserCardBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(data: MapSimpleUser, onCardClickListener: (data: MapSimpleUser) -> Unit) {
+    fun bind(
+        data: MapSimpleUser,
+        onCardClickListener: (data: MapSimpleUser, sharedView: View) -> Unit
+    ) {
         with(binding) {
             ivAvatar.load(data.userInfo.avatarLink) {
                 transformations(CircleCropTransformation())
@@ -38,7 +41,7 @@ class EduUserCardViewHolder(
             }
         }
         itemView.setDebounceClickListener {
-            onCardClickListener(data)
+            onCardClickListener(data, it)
         }
     }
 }
