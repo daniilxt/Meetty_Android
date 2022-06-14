@@ -7,12 +7,14 @@ import io.reactivex.schedulers.Schedulers
 import ru.daniilxt.common.base.BaseViewModel
 import ru.daniilxt.common.error.RequestResult
 import ru.daniilxt.common.model.ResponseState
+import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.domain.usecase.SignInUseCase
 
 class LoginViewModel(
     private val router: FeatureRouter,
-    private val signInUseCase: SignInUseCase
+    private val signInUseCase: SignInUseCase,
+    private val tokenRepository: TokenRepository
 ) : BaseViewModel() {
     fun openMainScreenFragment() {
         router.openMainScreenFragment()
@@ -26,6 +28,8 @@ class LoginViewModel(
             .subscribe({
                 when (it) {
                     is RequestResult.Success -> {
+                        tokenRepository.saveToken(it.data.accessToken)
+                        tokenRepository.saveCurrentUserId(it.data.userId)
                         setEventState(ResponseState.Success)
                     }
                     is RequestResult.Error -> {

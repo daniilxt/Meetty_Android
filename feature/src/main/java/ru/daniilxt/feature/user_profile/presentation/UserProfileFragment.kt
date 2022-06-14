@@ -6,14 +6,17 @@ import android.view.View
 import androidx.core.view.isVisible
 import coil.load
 import com.google.android.material.chip.Chip
+import org.greenrobot.eventbus.EventBus
 import ru.daniilxt.common.base.BaseFragment
 import ru.daniilxt.common.di.FeatureUtils
+import ru.daniilxt.common.events.AuthEvent
 import ru.daniilxt.common.extensions.addBackPressedCallback
 import ru.daniilxt.common.extensions.setDebounceClickListener
 import ru.daniilxt.common.extensions.setLightStatusBar
 import ru.daniilxt.common.extensions.setStatusBarColor
 import ru.daniilxt.common.extensions.setWindowTransparency
 import ru.daniilxt.common.extensions.viewBinding
+import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.R
 import ru.daniilxt.feature.databinding.FragmentUserProfileBinding
 import ru.daniilxt.feature.di.FeatureApi
@@ -22,10 +25,14 @@ import ru.daniilxt.feature.domain.model.UserProfileInfo
 import ru.daniilxt.feature.main_screen.presentation.INavigation
 import ru.daniilxt.feature.profile_user_achievements.presentation.adapter.UserAchievementAdapter
 import timber.log.Timber
+import javax.inject.Inject
 
 class UserProfileFragment : BaseFragment<UserProfileViewModel>(R.layout.fragment_user_profile) {
 
     override val binding: FragmentUserProfileBinding by viewBinding(FragmentUserProfileBinding::bind)
+
+    @Inject
+    lateinit var tokenRepository: TokenRepository
 
     private val achieveAdapter by lazy {
         UserAchievementAdapter(onDeleteAchieveClickListener = {
@@ -77,6 +84,12 @@ class UserProfileFragment : BaseFragment<UserProfileViewModel>(R.layout.fragment
             })
         }
 
+        if (data.userInfo.id == 49L) {
+            binding.ibExit.setDebounceClickListener {
+                EventBus.getDefault().post(AuthEvent())
+            }
+            binding.fabMessage.isVisible = false
+        }
         binding.includeProfileInfo.tvGender.text = data.userInfo.sex
         binding.includeProfileInfo.tvBirthday.text = data.userAdditionalInfo.birthDay.toString()
         binding.includeProfileInfo.tvPhone.text = data.userAdditionalInfo.userPhone

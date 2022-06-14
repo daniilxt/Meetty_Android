@@ -8,6 +8,7 @@
     tools:context=".user_profile.presentation.UserProfileFragment">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/sp_16"
@@ -27,6 +28,28 @@
             android:layout_gravity="center"
             android:padding="@dimen/dp_8"
             android:src="@drawable/ic_back_arrow_2_24" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_48"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/dp_8"
+        app:cardElevation="@dimen/dp_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/MaterialCardView.Circle">
+
+        <ImageView
+            android:id="@+id/ib_exit"
+            style="@style/ImageButtonSelectable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/dp_8"
+            android:src="@drawable/ic_baseline_exit_to_app_24" />
     </com.google.android.material.card.MaterialCardView>
 
     <ImageView
@@ -63,11 +86,24 @@
         app:layout_constraintBottom_toBottomOf="@+id/iv_user_avatar"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_40"
+        android:src="@drawable/ic_message_24"
+        app:backgroundTint="@android:color/holo_green_dark"
+        app:layout_constraintBottom_toTopOf="@+id/contentLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/contentLayout"
+        app:tint="@android:color/white" />
+
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_4"
         android:backgroundTint="@color/white"
         android:orientation="vertical"
         app:cardCornerRadius="@dimen/dp_16"

@@ -54,8 +54,8 @@ class MainScreenViewModel(
             .subscribe({
                 when (it) {
                     is RequestResult.Success -> {
-                        _userInfo.value = listOf(it.data)
                         setEventState(ResponseState.Success)
+                        _userInfo.value = listOf(it.data)
                     }
                     is RequestResult.Error -> {
                         setEventState(ResponseState.Failure(it.error as ResponseError))

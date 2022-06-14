@@ -6,6 +6,7 @@ import ru.daniilxt.common.di.CommonApi
 import ru.daniilxt.common.di.scope.FeatureScope
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.calendar.di.CalendarComponent
+import ru.daniilxt.feature.chat.di.UserChatComponent
 import ru.daniilxt.feature.login.di.LoginComponent
 import ru.daniilxt.feature.main_screen.di.MainScreenComponent
 import ru.daniilxt.feature.main_screen_map.di.MainScreenMapComponent
@@ -18,6 +19,7 @@ import ru.daniilxt.feature.profile_registration.di.ProfileRegistrationComponent
 import ru.daniilxt.feature.profile_steps.di.ProfileStepsComponent
 import ru.daniilxt.feature.profile_user_achievements.di.ProfileUserAchievementsComponent
 import ru.daniilxt.feature.profile_user_education.di.ProfileUserEducationComponent
+import ru.daniilxt.feature.user_dialogs.di.UserDialogsComponent
 import ru.daniilxt.feature.user_profile.di.UserProfileComponent
 import ru.daniilxt.feature.welcome_screen.di.WelcomeScreenComponent
 import ru.daniilxt.feature.welcome_screen_description.di.WelcomeScreenDescriptionComponent
@@ -52,6 +54,8 @@ interface FeatureComponent {
     fun calendarComponentFactory(): CalendarComponent.Factory
     fun profileProfessionalInterestsComponentFactory(): ProfileProfessionalInterestsComponent.Factory
     fun userProfileComponentFactory(): UserProfileComponent.Factory
+    fun userDialogsComponentFactory(): UserDialogsComponent.Factory
+    fun userChatComponentFactory(): UserChatComponent.Factory
 
     @Component.Factory
     interface Factory {

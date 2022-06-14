@@ -27,16 +27,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/background_primary_dark"
-            app:cardCornerRadius="@dimen/dp_16"
             app:cardElevation="@dimen/dp_8"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:shapeAppearanceOverlay="@style/RoundedTopCorners">
+            app:shapeAppearanceOverlay="@style/RoundedTopCorners2">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingVertical="@dimen/dp_8">
+                android:paddingVertical="@dimen/dp_2">
 
                 <ImageView
                     android:id="@+id/ib_messages"

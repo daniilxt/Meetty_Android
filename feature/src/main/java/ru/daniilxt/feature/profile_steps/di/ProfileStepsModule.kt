@@ -8,6 +8,7 @@ import dagger.Provides
 import dagger.multibindings.IntoMap
 import ru.daniilxt.common.di.viewmodel.ViewModelKey
 import ru.daniilxt.common.di.viewmodel.ViewModelModule
+import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
 import ru.daniilxt.feature.domain.usecase.SendRegistrationInfoUseCase
@@ -25,11 +26,12 @@ class ProfileStepsModule {
     @ViewModelKey(ProfileStepsViewModel::class)
     fun provideViewModel(
         navigator: FeatureRouter,
+        tokenRepository: TokenRepository,
         profileDataWrapper: ProfileDataWrapper,
         sendRegistrationInfoUseCase: SendRegistrationInfoUseCase
     ): ViewModel {
         return ProfileStepsViewModel(
-            navigator, profileDataWrapper, sendRegistrationInfoUseCase
+            navigator, tokenRepository, profileDataWrapper, sendRegistrationInfoUseCase
         )
     }
 

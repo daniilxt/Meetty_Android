@@ -22,6 +22,9 @@ fun Context.dpToPx(dp: Float): Float =
 fun Context.getDrawableCompat(@DrawableRes drawable: Int) =
     ContextCompat.getDrawable(this, drawable)
 
+fun Context.spToPx(sp: Float): Float =
+    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, resources.displayMetrics)
+
 fun Context.screenValue(): DisplayMetrics {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         val defaultDisplay =
@@ -35,3 +38,27 @@ fun Context.screenValue(): DisplayMetrics {
         displayMetrics
     }
 }
+
+val Context.actionBarSize
+    get() = theme.obtainStyledAttributes(intArrayOf(android.R.attr.actionBarSize))
+        .let { attrs -> attrs.getDimension(0, 0F).toInt().also { attrs.recycle() } }
+
+val Context.statusBarHeightInPx
+    get() = run {
+        val resourceId = this.resources.getIdentifier(
+            "status_bar_height",
+            "dimen",
+            "android"
+        )
+        this.resources.getDimensionPixelSize(resourceId) / this.resources.displayMetrics.density
+    }
+
+val Context.navBarHeightInPx
+    get() = run {
+        val resourceId = this.resources.getIdentifier(
+            "navigation_bar_height",
+            "dimen",
+            "android"
+        )
+        this.resources.getDimensionPixelSize(resourceId) / this.resources.displayMetrics.density
+    }

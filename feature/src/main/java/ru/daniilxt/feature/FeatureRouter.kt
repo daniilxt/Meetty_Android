@@ -1,5 +1,7 @@
 package ru.daniilxt.feature
 
+import ru.daniilxt.feature.domain.model.UserDialog
+
 interface FeatureRouter {
     fun back()
     fun openWelcomeDescriptionFragment()
@@ -8,4 +10,6 @@ interface FeatureRouter {
     fun openProfileStepsFragment()
     fun openMainScreenFragment()
     fun openUserProfile(isMy: Boolean = false, userId: Long)
+    fun openChat(userDialog: UserDialog)
+    fun openDialogs()
 }

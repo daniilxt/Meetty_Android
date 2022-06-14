@@ -33,14 +33,17 @@ class MainScreenUserCardFragment :
         SwipedUserCardAdapter()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val layoutManager = CardStackLayoutManager(requireContext(), this).apply {
+    val layoutManager by lazy {
+        CardStackLayoutManager(requireContext(), this).apply {
             setStackFrom(StackFrom.Bottom)
             setVisibleCount(3)
             setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
             setOverlayInterpolator(OvershootInterpolator())
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.stackView.layoutManager = layoutManager
         binding.stackView.adapter = userCardsAdapter
@@ -88,9 +91,9 @@ class MainScreenUserCardFragment :
 
     override fun onCardSwiped(direction: Direction) {
         if (direction == Direction.Left) {
-            Toast.makeText(requireContext(), "Вы отменили", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Временно скрыт", Toast.LENGTH_SHORT).show()
         } else if (direction == Direction.Right) {
-            Toast.makeText(requireContext(), "Написать?", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Диалог создан", Toast.LENGTH_SHORT).show()
         }
     }
 

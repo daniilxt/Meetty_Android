@@ -3,7 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/mainScreenFragment">
+    app:startDestination="@id/welcomeScreenFragment">
+
+    <action
+        android:id="@+id/open_onboarding_fragment"
+        app:destination="@id/onboardingFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        app:popUpTo="@id/mainScreenFragment"
+        app:popUpToInclusive="true" />
 
     <fragment
         android:id="@+id/mainScreenFragment"
@@ -13,6 +23,13 @@
         <action
             android:id="@+id/action_mainScreenFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/open_fragment_slide_right"
+            app:exitAnim="@anim/close_fragment_slide_left"
+            app:popEnterAnim="@anim/open_fragment_slide_left"
+            app:popExitAnim="@anim/close_fragment_slide_right" />
+        <action
+            android:id="@+id/action_mainScreenFragment_to_userDialogsFragment"
+            app:destination="@id/userDialogsFragment"
             app:enterAnim="@anim/open_fragment_slide_right"
             app:exitAnim="@anim/close_fragment_slide_left"
             app:popEnterAnim="@anim/open_fragment_slide_left"
@@ -91,4 +108,16 @@
         android:id="@+id/userProfileFragment"
         android:name="ru.daniilxt.feature.user_profile.presentation.UserProfileFragment"
         android:label="UserProfileFragment" />
+    <fragment
+        android:id="@+id/userDialogsFragment"
+        android:name="ru.daniilxt.feature.user_dialogs.presentation.UserDialogsFragment"
+        android:label="UserDialogsFragment">
+        <action
+            android:id="@+id/action_userDialogsFragment_to_userChatFragment"
+            app:destination="@id/userChatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userChatFragment"
+        android:name="ru.daniilxt.feature.chat.presentation.UserChatFragment"
+        android:label="UserChatFragment" />
 </navigation>

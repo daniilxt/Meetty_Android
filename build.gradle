@@ -47,7 +47,7 @@ buildscript {
 
         securityVersion = '1.1.0-alpha03'
 
-        coreVersion = '1.5.0'
+        coreVersion = '1.6.0'
 
         coreLibDesugaringVersion = '1.1.5'
 
@@ -82,6 +82,8 @@ buildscript {
         imageCompressorVersion = '3.0.1'
 
         skeletonLoadingVersion = '1.2'
+
+        stompVersion = '1.6.4'
 
 
         kotlinDep = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
@@ -140,7 +142,6 @@ buildscript {
         coilDep = "io.coil-kt:coil:$coilVersion"
         matisseDep = "com.zhihu.android:matisse:$matisseVersion"
 
-
         maskedEditTextDep = "ru.egslava:MaskedEditText:$maskedEditTextVersion"
 
         calendarViewDep = "com.github.kizitonwose:CalendarView:$calendarViewVersion"
@@ -156,12 +157,13 @@ buildscript {
         googleLocationServicesDep = "com.google.android.gms:play-services-location:$googleLocationServicesVersion"
         googleMapKitUtilsDep = "com.google.maps.android:maps-utils-ktx:$googleMapKitUtilsVersion"
 
-
         swipableCardViewDep = "com.yuyakaido.android:card-stack-view:$swipableCardViewVersion"
 
         imageCompressorDep = "id.zelory:compressor:$imageCompressorVersion"
 
         skeletonLoadingDep = "com.github.AgnaldoNP:AGSkeletonLoading:$skeletonLoadingVersion"
+
+        stompDep = "com.github.NaikSoftware:StompProtocolAndroid:$stompVersion"
     }
 
     ext.kotlin_version = "1.5.30"

@@ -3,8 +3,11 @@ package ru.daniilxt.meetty.navigation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import ru.daniilxt.feature.FeatureRouter
+import ru.daniilxt.feature.chat.presentation.UserChatFragment
+import ru.daniilxt.feature.domain.model.UserDialog
 import ru.daniilxt.feature.user_profile.presentation.UserProfileFragment
 import ru.daniilxt.meetty.R
+import timber.log.Timber
 
 class Navigator : FeatureRouter {
 
@@ -23,6 +26,16 @@ class Navigator : FeatureRouter {
 
     private companion object {
         private val TAG = Navigator::class.simpleName
+    }
+
+    fun clearBackStackAndOpenOnBoarding() {
+        if (navController?.currentDestination?.id == R.id.onboardingFragment) {
+            return
+        }
+        while (navController?.popBackStack() == true) {
+            Timber.tag(TAG).d("Skipped backstack entry")
+        }
+        navController?.navigate(R.id.open_onboarding_fragment)
     }
 
     override fun openMainScreenFragment() {
@@ -87,6 +100,27 @@ class Navigator : FeatureRouter {
                 val bundle = UserProfileFragment.makeBundle(isMy, userId)
                 navController?.navigate(
                     R.id.action_mainScreenFragment_to_userProfileFragment, bundle
+                )
+            }
+        }
+    }
+
+    override fun openChat(userDialog: UserDialog) {
+        when (navController?.currentDestination?.id) {
+            R.id.userDialogsFragment -> {
+                val bundle = UserChatFragment.makeBundle(userDialog)
+                navController?.navigate(
+                    R.id.action_userDialogsFragment_to_userChatFragment, bundle
+                )
+            }
+        }
+    }
+
+    override fun openDialogs() {
+        when (navController?.currentDestination?.id) {
+            R.id.mainScreenFragment -> {
+                navController?.navigate(
+                    R.id.action_mainScreenFragment_to_userDialogsFragment
                 )
             }
         }

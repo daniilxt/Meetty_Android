@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ru.daniilxt.common.widgets.map_view.CustomMapView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/map_view"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent">
+
+    <ru.daniilxt.common.widgets.map_view.CustomMapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include
+        android:id="@+id/bottom_sheet_users"
+        layout="@layout/dialog_map_edu_users" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

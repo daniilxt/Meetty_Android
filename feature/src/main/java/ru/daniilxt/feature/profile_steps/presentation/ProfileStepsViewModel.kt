@@ -9,12 +9,14 @@ import ru.daniilxt.common.base.BaseViewModel
 import ru.daniilxt.common.error.ErrorEntity
 import ru.daniilxt.common.error.RequestResult
 import ru.daniilxt.common.model.ResponseState
+import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.FeatureRouter
 import ru.daniilxt.feature.data_wrapper.ProfileDataWrapper
 import ru.daniilxt.feature.domain.usecase.SendRegistrationInfoUseCase
 
 class ProfileStepsViewModel(
     private val router: FeatureRouter,
+    private val tokenRepository: TokenRepository,
     private val dataWrapper: ProfileDataWrapper,
     private val sendRegistrationInfoUseCase: SendRegistrationInfoUseCase
 ) : BaseViewModel() {
@@ -44,6 +46,8 @@ class ProfileStepsViewModel(
             .subscribe({
                 when (it) {
                     is RequestResult.Success -> {
+                        tokenRepository.saveToken(it.data.accessToken)
+                        tokenRepository.saveCurrentUserId(it.data.userId)
                         _uiState.value = UiState.Success
                         setEventState(ResponseState.Success)
                     }

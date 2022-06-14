@@ -1,6 +1,7 @@
 package ru.daniilxt.common.extensions
 
 import android.animation.ObjectAnimator
+import android.animation.StateListAnimator
 import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.os.Build
@@ -18,7 +19,9 @@ import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.material.appbar.AppBarLayout
 import ru.daniilxt.common.R
+import ru.daniilxt.common.databinding.IncludeRoundedEtFormBinding
 import ru.daniilxt.common.databinding.InputFieldBinding
 import ru.daniilxt.common.utils.DebounceClickListener
 import ru.daniilxt.common.utils.DebouncePostHandler
@@ -26,7 +29,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Month
 import java.time.YearMonth
-import java.util.*
+import java.util.* // ktlint-disable no-wildcard-imports
 
 @Suppress("DEPRECATION")
 fun View.setLightStatusBar() {
@@ -161,6 +164,35 @@ fun InputFieldBinding.setInputFormAttributes(
 }
 
 /**
+ * Allows set text attributes on EditTextLayout. Set hint,text,input type
+ *
+ * @param hintText The hint text string
+ * @param textLength The constraint of text. Like: max text length is 6
+ * @param inputType The type of text like Password,TextAllCaps etc..
+ * @param text The text in EditText..
+ * @param textTypeface The text typeface like BOLD or NORMAL etc...
+ */
+fun IncludeRoundedEtFormBinding.setInputFormAttributes(
+    hintText: String = "",
+    textLength: Int = 100,
+    inputType: Int = (InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS),
+    text: String = "",
+    textTypeface: Int = Typeface.NORMAL
+) {
+    with(this) {
+        inputFormEt.id = View.generateViewId()
+        etLayout.id = View.generateViewId()
+        etLayout.hint = hintText
+        inputFormEt.inputType = inputType
+        etLayout.typeface =
+            ResourcesCompat.getFont(this.inputFormEt.context, R.font.gilroy_medium)
+        inputFormEt.filters += InputFilter.LengthFilter(textLength)
+        inputFormEt.setText(text)
+        inputFormEt.setTypeface(inputFormEt.typeface, textTypeface)
+    }
+}
+
+/**
  * This extension set the capitalized name of the month in STANDALONE format.
  * example: July | Июль
  *
@@ -189,4 +221,16 @@ fun Month.getStandaloneName(): String {
     return SimpleDateFormat("LLLL", Locale.getDefault()).format(
         LocalDate.now().withMonth(this.value).toDate()
     )
+}
+
+/**
+ * This extension allows you to remove the shadow from the toolbar
+ */
+fun AppBarLayout.removeAppBarElevation() {
+    val stateListAnimator = StateListAnimator()
+    stateListAnimator.addState(
+        IntArray(0),
+        ObjectAnimator.ofFloat(this, "elevation", 0.1f)
+    )
+    this.stateListAnimator = stateListAnimator
 }

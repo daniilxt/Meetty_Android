@@ -4,22 +4,26 @@ import io.reactivex.Single
 import retrofit2.Response
 import ru.daniilxt.common.error.RequestResult
 import ru.daniilxt.common.model.ResponseError
+import ru.daniilxt.common.token.TokenRepository
 import ru.daniilxt.feature.data.remote.api.FeatureApiService
 import ru.daniilxt.feature.data.remote.model.body.LoginCredentialsBody
 import ru.daniilxt.feature.data.remote.model.error.LoginError
 import ru.daniilxt.feature.data.remote.model.error.RegistrationError
+import ru.daniilxt.feature.data.remote.model.response.toChatMessage
 import ru.daniilxt.feature.data.remote.model.response.toEducationInstitute
 import ru.daniilxt.feature.data.remote.model.response.toProfessionalInterest
 import ru.daniilxt.feature.data.remote.model.response.toTokens
+import ru.daniilxt.feature.data.remote.model.response.toUserDialog
 import ru.daniilxt.feature.data.remote.model.response.toUserProfileInfo
 import ru.daniilxt.feature.data.source.FeatureDataSource
+import ru.daniilxt.feature.domain.model.ChatMessage
 import ru.daniilxt.feature.domain.model.EducationInstitute
 import ru.daniilxt.feature.domain.model.ProfessionalInterest
 import ru.daniilxt.feature.domain.model.ProfileData
 import ru.daniilxt.feature.domain.model.Tokens
+import ru.daniilxt.feature.domain.model.UserDialog
 import ru.daniilxt.feature.domain.model.UserProfileInfo
 import ru.daniilxt.feature.domain.model.toRegistrationInfoBody
-import timber.log.Timber
 import java.net.HttpURLConnection
 import javax.inject.Inject
 
@@ -27,25 +31,25 @@ class FeatureDataSourceImpl @Inject constructor(
     private val featureApiService: FeatureApiService
 ) :
     FeatureDataSource {
+    @Inject
+    lateinit var tokenRepository: TokenRepository
 
     override fun auth(email: String, password: String): Single<RequestResult<Tokens>> {
         return featureApiService.auth(LoginCredentialsBody(email, password))
             .map {
                 when {
                     it.isSuccessful -> {
-                        val access = it.body()?.accessToken
-                        val refresh = it.body()?.refreshToken
-                        if (access == null || refresh == null) {
+                        val res = it.body()
+                        val access = res?.accessToken
+                        val refresh = res?.refreshToken
+                        if (res == null) {
                             //  Timber.tag(TAG).e("One of tokens is null, response=$it")
                             RequestResult.Error(LoginError.Unknown)
                         } else {
-                            RequestResult.Success(Tokens(access, refresh))
+                            RequestResult.Success(res.toTokens())
                         }
                     }
                     it.code() == HttpURLConnection.HTTP_FORBIDDEN -> {
-                        RequestResult.Error(LoginError.NotActivatedAccount)
-                    }
-                    it.code() == HttpURLConnection.HTTP_UNAUTHORIZED -> {
                         RequestResult.Error(LoginError.InvalidCredentials)
                     }
                     else -> {
@@ -112,9 +116,24 @@ class FeatureDataSourceImpl @Inject constructor(
             featureApiService.getUserProfileInfoById(userId)
         }
         return single.map { response ->
-            Timber.i("!!!!! ERROR PARSE? ${response.body()}  \n ${response.isSuccessful} ${response.errorBody()}")
             getSingleData(response) {
                 response.body()!!.toUserProfileInfo()
+            }
+        }
+    }
+
+    override fun getDialogs(): Single<RequestResult<List<UserDialog>>> {
+        return featureApiService.getUserDialogs().map { response ->
+            getSingleCollectionData(response) {
+                response.body()!!.map { it.toUserDialog(tokenRepository.getCurrentUserId()) }
+            }
+        }
+    }
+
+    override fun getDialogMessages(dialogId: Long): Single<RequestResult<List<ChatMessage>>> {
+        return featureApiService.getDialogMessages(dialogId).map { response ->
+            getSingleCollectionData(response) {
+                response.body()!!.map { it.toChatMessage(tokenRepository.getCurrentUserId()) }
             }
         }
     }

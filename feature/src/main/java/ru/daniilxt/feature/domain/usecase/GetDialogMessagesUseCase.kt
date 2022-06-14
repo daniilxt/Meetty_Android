@@ -1,0 +1,13 @@
+package ru.daniilxt.feature.domain.usecase
+
+import io.reactivex.Single
+import ru.daniilxt.common.error.RequestResult
+import ru.daniilxt.feature.domain.model.ChatMessage
+import ru.daniilxt.feature.domain.repository.FeatureRepository
+import javax.inject.Inject
+
+class GetDialogMessagesUseCase @Inject constructor(private val featureRepository: FeatureRepository) {
+    operator fun invoke(dialogId: Long): Single<RequestResult<List<ChatMessage>>> {
+        return featureRepository.getDialogMessages(dialogId)
+    }
+}

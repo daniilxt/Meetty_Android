@@ -13,6 +13,7 @@ import ru.daniilxt.common.extensions.setWindowTransparency
 import ru.daniilxt.common.extensions.viewBinding
 import ru.daniilxt.common.model.ResponseState
 import ru.daniilxt.feature.R
+import ru.daniilxt.feature.data.remote.model.error.LoginError
 import ru.daniilxt.feature.databinding.FragmentLoginBinding
 import ru.daniilxt.feature.di.FeatureApi
 import ru.daniilxt.feature.di.FeatureComponent
@@ -48,7 +49,8 @@ class LoginFragment : BaseFragment<LoginViewModel>(R.layout.fragment_login) {
             is ResponseState.Failure -> {
             }
             is ResponseState.Error -> {
-                Toast.makeText(requireContext(), eventState.error.toString(), Toast.LENGTH_LONG)
+                val errorMessage = eventState.error as LoginError
+                Toast.makeText(requireContext(), errorMessage.errResId, Toast.LENGTH_LONG)
                     .show()
             }
         }

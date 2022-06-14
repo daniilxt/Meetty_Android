@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EmojiView">
+        <attr name="customTextColor" format="color" />
+        <attr name="customText" format="string" />
+        <attr name="customReactionsCount" format="integer" />
+        <attr name="customTextSize" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="FlexBoxLayout">
+        <attr name="horizontalMargins" format="dimension" />
+        <attr name="verticalMargins" format="dimension" />
+        <attr name="percent" format="float" />
+    </declare-styleable>
+</resources>

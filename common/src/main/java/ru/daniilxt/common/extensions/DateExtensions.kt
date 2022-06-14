@@ -2,6 +2,7 @@ package ru.daniilxt.common.extensions
 
 import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -16,3 +17,6 @@ fun LocalDate.toDate(): Date {
 
 fun LocalDate.toSendDateString(): String =
     format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toString()
+
+fun LocalTime.toLocalTimeFormat(): String =
+    format(DateTimeFormatter.ofPattern("HH:mm:ss")).toString()
